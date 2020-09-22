@@ -63,6 +63,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(bCrypt);
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
         http.cors().and().csrf().disable()
@@ -71,6 +76,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html**",
                         "/webjars/**").permitAll()
                 .anyRequest().authenticated().and()
+                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler()).and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

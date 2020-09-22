@@ -23,7 +23,7 @@ public class RolDTO {
     
     
     private Long id;
-    private String nombreRol;
+    private String codigo;
     private String descripcion;
     private boolean estado;
     

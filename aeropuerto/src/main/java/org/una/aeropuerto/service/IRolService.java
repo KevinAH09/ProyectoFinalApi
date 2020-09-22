@@ -25,5 +25,5 @@ public interface IRolService {
     
     public Optional<List<RolDTO>> findByEstado(boolean estado);
     
-    public Optional<List<RolDTO>> findByNombreRolContainingIgnoreCase(String nombreRol);
+    public Optional<RolDTO> findByCodigo(String nombreRol);
 }

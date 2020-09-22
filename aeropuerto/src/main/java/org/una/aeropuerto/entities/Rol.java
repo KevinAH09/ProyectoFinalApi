@@ -5,6 +5,7 @@
  */
 package org.una.aeropuerto.entities;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,17 +28,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Rol {
+public class Rol implements Serializable{
     
     private static final long serialVersionUID = 1L;
     
     
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre_rol", length = 50)
-    private String nombreRol;
+    @Column(name = "codigo", length = 50)
+    private String codigo;
 
     @Column(length = 150)
     private String descripcion;

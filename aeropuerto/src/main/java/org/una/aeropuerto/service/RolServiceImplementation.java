@@ -59,8 +59,8 @@ public class RolServiceImplementation implements IRolService {
     }
 
     @Override
-    public Optional<List<RolDTO>> findByNombreRolContainingIgnoreCase(String nombreRol) {
-        return (Optional<List<RolDTO>>) ConversionLista.findList(RolRepository.findByNombreRolContainingIgnoreCase(nombreRol), RolDTO.class);
+    public Optional<RolDTO> findByCodigo(String codigo) {
+        return (Optional<RolDTO>) ConversionLista.oneToDto(Optional.ofNullable(RolRepository.findByCodigo(codigo)), RolDTO.class);
     }
 
 }

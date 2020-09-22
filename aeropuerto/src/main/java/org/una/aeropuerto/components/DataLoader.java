@@ -11,9 +11,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.una.aeropuerto.dto.RolDTO;
 import org.una.aeropuerto.dto.UsuarioDTO;
+import org.una.aeropuerto.entities.Rol;
 import org.una.aeropuerto.entities.Usuario;
+import org.una.aeropuerto.loaders.Roles;
+import org.una.aeropuerto.service.IRolService;
 import org.una.aeropuerto.service.IUsuarioService;
+import org.una.aeropuerto.utils.MapperUtils;
 
 /**
  *
@@ -30,39 +35,41 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     private IUsuarioService usuarioService;
+    
+    @Autowired
+    private IRolService rolService;
 
 
     @Override
     public void run(ApplicationArguments args) {
          System.out.println("org.una.tramites.utils.ConversionLista.findList() wqeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         if (usuarioService.findByCedula(cedula).isEmpty()) {
-             
-//            PermisoDTO permiso;
-//            final String codigo = "USU1";
-//            Optional<PermisoDTO> permisoBuscado = permisoService.findByCodigo(codigo);
-//
-//            if (permisoBuscado.isEmpty()) {
-//                permiso = new PermisoDTO();
-//                permiso.setCodigo(codigo);
-//                permiso.setDescripcion("USUARIO_CREAR");
-//                permiso = permisoService.create(permiso);
-//
-//            } else {
-//                permiso = permisoBuscado.get();
-//            }
+            RolDTO rolDTO;
+            final String codigo = "ROLE_ADMIN";
+            Optional<RolDTO> rolBuscado = rolService.findByCodigo(codigo);
+
+            if (rolBuscado.isEmpty()) {
+                rolDTO = new RolDTO();
+                rolDTO.setCodigo(codigo);
+                rolDTO.setDescripcion("ROL_ADMINISTRADOR");
+                rolDTO = rolService.create(rolDTO);
+
+            } else {
+                rolDTO = rolBuscado.get();
+            }
             
-//            createPermisos();
+            createRoles();
+            rolBuscado = rolService.findByCodigo(codigo);
+            
             UsuarioDTO usuario = new UsuarioDTO();
-            
+            Rol rol = MapperUtils.EntityFromDto(rolBuscado.get(), Rol.class);
             usuario.setNombreCompleto("Usuario Admin");
             usuario.setCedula(cedula);
             usuario.setContrasenaEncriptada(password);
+            usuario.setRolId(rol);
             usuario = usuarioService.create(usuario);
 
-//            PermisoOtorgadoDTO permisoOtorgado = new PermisoOtorgadoDTO();
-//            permisoOtorgado.setPermisoId(permiso);
-//            permisoOtorgado.setUsuarios(usuario);
-//            permisoOtorgadoService.create(permisoOtorgado);
+//         
 
             System.out.println("Se agrega el usuario inicial");
         } else {
@@ -73,13 +80,13 @@ public class DataLoader implements ApplicationRunner {
 
     }
     
-//    private void createPermisos() {
-//        for (Permisos permiso : Permisos.values()) {
-//            PermisoDTO nuevoPermiso = new PermisoDTO();
-//            nuevoPermiso.setCodigo(permiso.getCodigo());
-//            nuevoPermiso.setDescripcion(permiso.name());
-//            permisoService.create(nuevoPermiso);
-//        } 
-//    }
+    private void createRoles() {
+        for (Roles rol : Roles.values()) {
+            RolDTO nuevoPermiso = new RolDTO();
+            nuevoPermiso.setCodigo(rol.getCodigo());
+            nuevoPermiso.setDescripcion(rol.name());
+            rolService.create(nuevoPermiso);
+        } 
+    }
 }
 

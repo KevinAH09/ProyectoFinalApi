@@ -6,6 +6,7 @@
 package org.una.aeropuerto.repositories;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.una.aeropuerto.entities.Rol;
@@ -20,6 +21,6 @@ public interface IRolRepository  extends JpaRepository<Rol, Long>{
     
     public List<Rol> findByEstado(boolean estado);
     
-    public List<Rol> findByNombreRolContainingIgnoreCase(@Param("nombreRol")String nombreRol);
+    public Rol findByCodigo(@Param("codigo")String nombreRol);
     
 }

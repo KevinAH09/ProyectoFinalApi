@@ -34,6 +34,7 @@ import org.una.aeropuerto.repositories.IUsuarioRepository;
  */
 @Service
 public class AutenticacionLoginServiceImplementation implements UserDetailsService,IAutenticacionLoginService{
+    
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -72,7 +73,7 @@ public class AutenticacionLoginServiceImplementation implements UserDetailsServi
         Usuario usuarioBuscado = usuarioRepository.findByCedula(username);
         if (usuarioBuscado != null) {
             List<GrantedAuthority> roles = new ArrayList<>();
-            roles.add(new SimpleGrantedAuthority("ADMIN"));
+            roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
             UserDetails userDetails = new User(usuarioBuscado.getCedula(), usuarioBuscado.getContrasenaEncriptada(), roles);
             return userDetails;
         } else {
