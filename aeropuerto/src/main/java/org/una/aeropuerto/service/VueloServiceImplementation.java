@@ -55,27 +55,27 @@ public class VueloServiceImplementation implements IVueloService {
 
     @Override
     public Optional<List<VueloDTO>> findByEstadoContaining(boolean estado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Optional<List<VueloDTO>>) ConversionLista.findList(Optional.ofNullable(VueloRepository.findByEstadoContaining(estado)), VueloDTO.class);
     }
 
     @Override
     public Optional<List<VueloDTO>> findByDestino(String destino) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Optional<List<VueloDTO>>) ConversionLista.findList(VueloRepository.findByDestino(destino), VueloDTO.class);
     }
 
     @Override
     public Optional<List<VueloDTO>> findByOrigen(String origen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Optional<List<VueloDTO>>) ConversionLista.findList(VueloRepository.findByOrigen(origen), VueloDTO.class);
     }
 
     @Override
     public Optional<List<VueloDTO>> findByAvionId(Long avion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Optional<List<VueloDTO>>) ConversionLista.findList(VueloRepository.findByAvionId(avion),VueloDTO.class);
     }
 
     @Override
     public Optional<List<VueloDTO>> findBybitacoraVueloId(Long bitacora) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Optional<List<VueloDTO>>) ConversionLista.findList(VueloRepository.findBybitacoraVueloId(bitacora),VueloDTO.class);
     }
 
 }
