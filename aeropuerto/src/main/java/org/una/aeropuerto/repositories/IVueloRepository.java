@@ -15,7 +15,7 @@ import org.una.aeropuerto.entities.Vuelo;
  *
  * @author Bosco
  */
-public interface IVueloRespository extends JpaRepository<Vuelo, Long>{
+public interface IVueloRepository extends JpaRepository<Vuelo, Long>{
     
     public List<Vuelo> findByEstadoContaining(boolean estado);
     
