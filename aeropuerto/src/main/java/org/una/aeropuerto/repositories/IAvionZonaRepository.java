@@ -1,0 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package org.una.aeropuerto.repositories;
+
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.una.aeropuerto.entities.AvionZona;
+
+/**
+ *
+ * @author Bosco
+ */
+public interface IAvionZonaRepository extends JpaRepository<AvionZona, Long>{
+    
+    public List<AvionZona> findByAvionId(@Param("avion") Long avion);
+
+    public List<AvionZona> findByZonaId(@Param("zona") Long zona);
+
+    public List<AvionZona> findByAvionIdAndEstado(@Param("Avion") Long Avion, @Param("estado") boolean estado);
+
+    public List<AvionZona> findByZonaIdAndEstado(@Param("Zona") Long Zona, @Param("estado") boolean estado);
+}
