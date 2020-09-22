@@ -5,8 +5,6 @@
  */
 package org.una.aeropuerto.dto;
 
-import org.una.aeropuerto.entities.*;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,22 +16,11 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
-public class UsuarioDTO {
+public class AuthenticationRequest {
 
-    private Long id;
-    private String nombreCompleto;
-    private String contrasenaEncriptada;
     private String cedula;
-    private String correo;
-    private boolean estado;
-    private Rol rolId;
-    private AreaTrabajo areaTrabajoId;
-    private Date fechaRegistro;
-    private boolean jefeId;
+    private String contrasena;
 
-    
-    
 }
-

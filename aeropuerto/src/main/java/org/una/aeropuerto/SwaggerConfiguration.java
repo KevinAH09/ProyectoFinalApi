@@ -33,17 +33,29 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
-    @Bean
+   @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .securitySchemes(singletonList(new ApiKey("JWT", AUTHORIZATION, HEADER.name())))
+                .securityContexts(singletonList(
+                        SecurityContext.builder()
+                                .securityReferences(
+                                        singletonList(SecurityReference.builder()
+                                                .reference("JWT")
+                                                .scopes(new AuthorizationScope[0])
+                                                .build()
+                                        )
+                                )
+                                .build())
+                )
                 .select()
                 .apis(
                         RequestHandlerSelectors
-                                .basePackage("org.una.tramites.controllers"))
-                .paths(PathSelectors.any())
+                                .basePackage("org.una.aeropuerto.controllers"))
+                .paths(PathSelectors.regex("/.*"))
                 .build()
                 .apiInfo(apiInfo())
-                .tags(new Tag("Seguridad", "Metodos de Seguridad"),
+                .tags(   new Tag("Seguridad", "Metodos de Seguridad") {},
                          new Tag("Usuarios", "Entidad de Usuarios")
                 );
 
@@ -51,8 +63,8 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "Administracion de la AerolineaUNA",
-                "Rest API sobre Administracion de la AerolineaUNA.",
+                "Administracion del AeropuertoUNA",
+                "Rest API sobre la administracion del AeropuertoUNA.",
                 "Versión:2.1.0",
                 "https://google.com",
                 new Contact("UNA Sede Región Brunca", "https://srb.una.ac.cr/index.php/es/", "decanatosrb@una.cr"),

@@ -49,7 +49,7 @@ public class Usuario implements Serializable {
     @Column(name = "nombre_completo", length = 50)
     private String nombreCompleto;
 
-    @Column(length = 50, name = "contrasena_encriptada")
+    @Column(length = 100, name = "contrasena_encriptada")
     private String contrasenaEncriptada;
 
     @Column(length = 10, unique = true)
