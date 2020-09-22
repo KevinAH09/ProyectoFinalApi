@@ -29,12 +29,12 @@ import lombok.ToString;
  * @author colo7
  */
 @Entity
-@Table(name = "Datalle_control_gasto")
+@Table(name = "Detalle_control_gasto")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class DatelleControlGasto {
+public class DetalleControlGasto {
     
     private static final long serialVersionUID = 1L;
 
