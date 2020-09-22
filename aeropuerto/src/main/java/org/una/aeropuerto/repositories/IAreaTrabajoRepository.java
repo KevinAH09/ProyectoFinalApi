@@ -18,5 +18,5 @@ public interface IAreaTrabajoRepository extends JpaRepository<AreaTrabajo, Long>
     
     public List<AreaTrabajo> findByEstado(boolean estado);
     
-    public List<AreaTrabajo> findByNombreAreaTrabajoContainingIgnoreCase(@Param("nombre_area_trabajo")String nombreAreaTrabajo);
+    public List<AreaTrabajo> findByNombreAreaTrabajoContainingIgnoreCase(@Param("nombreAreaTrabajo")String nombreAreaTrabajo);
 }

@@ -17,16 +17,16 @@ import org.una.aeropuerto.entities.ControlGasto;
  */
 public interface IControlGastoRepository extends JpaRepository<ControlGasto, Long> {
     
-    public List<ControlGasto> findByEmpresaContratanteContainingIgnoreCase(@Param("empresa_contratante") String empresa);
+    public List<ControlGasto> findByEmpresaContratanteContainingIgnoreCase(@Param("empresaContratante") String empresa);
     
-    public List<ControlGasto> findByFechaRegistro(@Param("fecha_registro") Date fecha);
+    public List<ControlGasto> findByFechaRegistro(@Param("fechaRegistro") Date fecha);
 
     public List<ControlGasto> findByFechaRegistroBetween(@Param("fechaRegistro") Date startDate, @Param("fechaRegistro1") Date endDate);
 
-    public ControlGasto findByNumeroContrato(@Param("numero_contrato") String numeroContrato);
+    public ControlGasto findByNumeroContrato(@Param("numeroContrato") String numeroContrato);
     
     public List<ControlGasto> findByEstado(String estado);
     
-    public List<ControlGasto>  findByAreaTrabajoId(@Param("area_trabajo_id") Long id);
+    public List<ControlGasto>  findByAreaTrabajoId(@Param("areaTrabajoId") Long id);
     
 }

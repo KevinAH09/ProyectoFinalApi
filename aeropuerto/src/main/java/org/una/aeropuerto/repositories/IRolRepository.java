@@ -20,6 +20,6 @@ public interface IRolRepository  extends JpaRepository<Rol, Long>{
     
     public List<Rol> findByEstado(boolean estado);
     
-    public List<Rol> findByNombreRolContainingIgnoreCase(@Param("nombre_rol")String nombreRol);
+    public List<Rol> findByNombreRolContainingIgnoreCase(@Param("nombreRol")String nombreRol);
     
 }

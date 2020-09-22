@@ -18,9 +18,9 @@ import org.una.aeropuerto.entities.Usuario;
  */
 public interface IRegistroAccionRepository extends JpaRepository<RegistroAccion, Long> {
 
-    public List<RegistroAccion> findByUsuarioId(@Param("usuario_id") Long id);
+    public List<RegistroAccion> findByUsuarioId(@Param("usuarioId") Long id);
 
-    public List<RegistroAccion> findByFechaRegistro(@Param("fecha_registro") Date fecha);
+    public List<RegistroAccion> findByFechaRegistro(@Param("fechaRegistro") Date fecha);
 
     public List<RegistroAccion> findByFechaRegistroBetween(@Param("fechaRegistro") Date startDate, @Param("fechaRegistro1") Date endDate);
 

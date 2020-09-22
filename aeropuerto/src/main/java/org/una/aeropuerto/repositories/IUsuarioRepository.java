@@ -18,7 +18,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     
     
 
-    public Usuario findByCedulaAndPasswordEncriptado(@Param("cedula") String cedula,@Param("passwordEncriptado") String passwordEncriptado);
+    public Usuario findByCedulaAndPasswordEncriptado(@Param("cedula") String cedula,@Param("contrasenaEncriptado") String passwordEncriptado);
 
     public List<Usuario> findByNombreCompletoContainingIgnoreCase(String nombreCompleto);
 
@@ -26,7 +26,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     
     public List<Usuario> findByEstado(boolean estado);
     
-    public List<Usuario>  findByRolId(@Param("rol_id") Long id);
+    public List<Usuario>  findByRolId(@Param("rolId") Long id);
     
-    public List<Usuario>  findByAreaTrabajoId(@Param("area_trabajo_id") Long id);
+    public List<Usuario>  findByAreaTrabajoId(@Param("areaTrabajoId") Long id);
 }
