@@ -16,7 +16,7 @@ import org.una.aeropuerto.entities.DetalleControlGasto;
  */
 public interface IDetalleControlGastoRepository extends JpaRepository<DetalleControlGasto, Long> {
     
-    public DetalleControlGasto findByControlGastoId(@Param("controlGastoId") String cedula);
+    public DetalleControlGasto findByControlGastoId(@Param("controlGastoId") Long controlGastoId);
 
     public List<DetalleControlGasto> findByTipoServicio(@Param("tipoServicio") String tipoServicio);
     

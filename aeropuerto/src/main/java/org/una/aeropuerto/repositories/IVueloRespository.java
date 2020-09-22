@@ -19,11 +19,15 @@ public interface IVueloRespository extends JpaRepository<Vuelo, Long>{
     
     public List<Vuelo> findByEstadoContaining(boolean estado);
     
-    public List<BitacoraVuelo> findByDestino(@Param("destino") String destino);
+    public List<Vuelo> findByDestino(@Param("destino") String destino);
     
     public List<Vuelo> findByOrigen(@Param("origen") String origen);
     
     public List<Vuelo> findByAvionId(@Param("avion") Long avion);
+    
+    public List<Vuelo> findBybitacoraVueloId(@Param("bitacoraVueloId") Long bitacoraVueloId);
+    
+    
 
 //    public List<Vuelo> findByZonaId(@Param("zona") Long zona);
 }
