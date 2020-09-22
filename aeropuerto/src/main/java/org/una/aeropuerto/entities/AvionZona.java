@@ -31,7 +31,7 @@ import lombok.ToString;
  * @author Bosco
  */
 @Entity
-@Table(name = "Avionzona")
+@Table(name = "Avion_zona")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,17 +41,17 @@ public class AvionZona implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "fechaIngreso")
+    @Column(name = "fecha_ingreso")
     @Setter(AccessLevel.NONE)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaIngreso;
     
     @ManyToOne
-    @JoinColumn(name = "zona")
+    @JoinColumn(name = "zona_id")
     private BitacoraVuelo zona;
     
     @ManyToOne
-    @JoinColumn(name = "avion")
+    @JoinColumn(name = "avion_id")
     private BitacoraVuelo avion;
     
     private static final long serialVersionUID = 1L;

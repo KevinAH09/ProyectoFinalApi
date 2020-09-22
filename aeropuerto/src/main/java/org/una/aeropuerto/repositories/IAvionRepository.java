@@ -18,7 +18,7 @@ public interface IAvionRepository extends JpaRepository<Avion, Long>{
     
     public List<Avion> findByEstadoContaining(boolean estado);
     
-    public List<Avion> findByMatriculaContainingIgnoreCase(@Param("Matricula") String Matricula);
+    public List<Avion> findByMatriculaContainingIgnoreCase(@Param("Matricula") String matricula);
 
     public List<Avion> findBytipoAvionContainingIgnoreCase(@Param("tipoAvion") String tipoAvion);
     

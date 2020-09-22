@@ -30,7 +30,7 @@ import lombok.ToString;
  * @author Bosco
  */
 @Entity
-@Table(name = "vuelo")
+@Table(name = "Vuelo")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,12 +46,12 @@ public class Vuelo {
     @Column(name = "destino", length = 50)
     private String destino;
     
-    @Column(name = "fechaInicio", updatable = false)
+    @Column(name = "fecha_inical", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @Setter(AccessLevel.NONE)
     private Date fechaInicio;
 
-    @Column(name = "fechaFinal")
+    @Column(name = "fecha_final")
     @Setter(AccessLevel.NONE)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFinal;
@@ -60,11 +60,11 @@ public class Vuelo {
     private boolean estado;
     
     @ManyToOne
-    @JoinColumn(name = "avionId")
+    @JoinColumn(name = "avion_Id")
     private Avion avionId;
     
     @ManyToOne
-    @JoinColumn(name = "bitacoraVueloId")
+    @JoinColumn(name = "bitacora_vuelo_id")
     private BitacoraVuelo bitacoraVueloId;
     
     private static final long serialVersionUID = 1L;

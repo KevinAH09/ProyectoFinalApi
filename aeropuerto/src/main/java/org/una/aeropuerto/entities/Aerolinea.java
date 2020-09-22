@@ -23,7 +23,7 @@ import lombok.ToString;
  * @author Bosco
  */
 @Entity
-@Table(name = "aerolinea")
+@Table(name = "Aerolinea")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,10 +33,10 @@ public class Aerolinea implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombreAerolinea", length = 50)
+    @Column(name = "nombre_aerolinea", length = 50)
     private String nombreAerolinea;
 
-    @Column(length = 50, name = "nombreResponsable")
+    @Column(length = 50, name = "nombre_responsable")
     private String nombreResponsable;
 
     @Column

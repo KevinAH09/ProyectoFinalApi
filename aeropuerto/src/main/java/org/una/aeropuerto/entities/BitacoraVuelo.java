@@ -26,7 +26,7 @@ import lombok.ToString;
  * @author Bosco
  */
 @Entity
-@Table(name = "bitacoraVuelo")
+@Table(name = "Bitacora_vuelo")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,7 +36,7 @@ public class BitacoraVuelo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "tipoBitacora", length = 50)
+    @Column(name = "tipo_bitacora", length = 50)
     private String tipoBitacora;
     
     @Column
@@ -50,8 +50,8 @@ public class BitacoraVuelo {
     @Column
     private boolean autorizacionTorreControl;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bitacoraVueloId")
-    private List<Avion> vuelo = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bitacora_vueloId")
+//    private List<Avion> vuelo = new ArrayList<>();
     
     private static final long serialVersionUID = 1L;
     

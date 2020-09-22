@@ -29,7 +29,7 @@ import lombok.ToString;
  * @author Bosco
  */
 @Entity
-@Table(name = "avion")
+@Table(name = "Avion")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -42,14 +42,14 @@ public class Avion implements Serializable{
     @Column(name = "matricula", length = 50)
     private String matricula;
 
-    @Column(length = 50, name = "tipoAvion")
+    @Column(length = 50, name = "tipo_avion")
     private String tipoAvion;
 
-    @Column(length = 30, name = "horasVuelo")
+    @Column(length = 30, name = "horas_vuelo")
     private String horasVuelo;
     
     @ManyToOne
-    @JoinColumn(name = "aerolineaId")
+    @JoinColumn(name = "aerolinea_id")
     private Aerolinea aerolineaId;
     
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "avionId")
