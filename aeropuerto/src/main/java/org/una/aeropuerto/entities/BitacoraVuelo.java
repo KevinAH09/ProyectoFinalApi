@@ -51,7 +51,7 @@ public class BitacoraVuelo {
     private boolean autorizacionTorreControl;
     
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bitacora_vueloId")
-//    private List<Avion> vuelo = new ArrayList<>();
+//    private List<Vuelo> vuelo = new ArrayList<>();
     
     private static final long serialVersionUID = 1L;
     
