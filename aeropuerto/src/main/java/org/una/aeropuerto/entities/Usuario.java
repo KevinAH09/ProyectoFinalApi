@@ -49,8 +49,8 @@ public class Usuario implements Serializable {
     @Column(name = "nombre_completo", length = 50)
     private String nombreCompleto;
 
-    @Column(length = 50, name = "contrasena_encriptado")
-    private String contrasenaEncriptado;
+    @Column(length = 50, name = "contrasena_encriptada")
+    private String contrasenaEncriptada;
 
     @Column(length = 10, unique = true)
     private String cedula;
@@ -61,8 +61,8 @@ public class Usuario implements Serializable {
     @Column
     private boolean estado;
 
-//////////    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-//////////    private List<PermisoOtorgado> PermisoOtorgado = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioId")
+    private List<RegistroAccion> registroAcciones = new ArrayList<>();
 //    
     @ManyToOne
     @JoinColumn(name = "rol_id")

@@ -19,8 +19,4 @@ public interface IAvionZonaRepository extends JpaRepository<AvionZona, Long>{
     public List<AvionZona> findByAvionId(@Param("avion") Long avion);
 
     public List<AvionZona> findByZonaId(@Param("zona") Long zona);
-
-    public List<AvionZona> findByAvionIdAndEstado(@Param("Avion") Long Avion, @Param("estado") boolean estado);
-
-    public List<AvionZona> findByZonaIdAndEstado(@Param("Zona") Long Zona, @Param("estado") boolean estado);
 }

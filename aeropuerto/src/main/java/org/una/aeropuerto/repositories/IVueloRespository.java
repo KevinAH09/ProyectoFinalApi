@@ -25,5 +25,5 @@ public interface IVueloRespository extends JpaRepository<Vuelo, Long>{
     
     public List<Vuelo> findByAvionId(@Param("avion") Long avion);
 
-    public List<Vuelo> findByZonaId(@Param("zona") Long zona);
+//    public List<Vuelo> findByZonaId(@Param("zona") Long zona);
 }
