@@ -19,7 +19,7 @@ public interface IAreaTrabajoService {
 
     public Optional<AreaTrabajoDTO> findById(Long id);
     
-    public Optional<List<AreaTrabajoDTO>> findByEstadoContaining(boolean estado);
+    public Optional<List<AreaTrabajoDTO>> findByEstado(boolean estado);
     
     public Optional<List<AreaTrabajoDTO>> findByNombreAreaTrabajoContainingIgnoreCase(String nombreAreaTrabajo);
     

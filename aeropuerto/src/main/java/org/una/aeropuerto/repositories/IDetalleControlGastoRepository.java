@@ -15,11 +15,9 @@ import org.una.aeropuerto.entities.DetalleControlGasto;
  * @author colo7
  */
 public interface IDetalleControlGastoRepository extends JpaRepository<DetalleControlGasto, Long> {
-    
-    public DetalleControlGasto findByControlGastoId(@Param("controlGastoId") Long controlGastoId);
 
     public List<DetalleControlGasto> findByTipoServicio(@Param("tipoServicio") String tipoServicio);
-    
-    public List<DetalleControlGasto>  findByDuracion(@Param("duracion") Long duracion);
-    
+
+    public List<DetalleControlGasto> findByDuracion(@Param("duracion") Long duracion);
+
 }

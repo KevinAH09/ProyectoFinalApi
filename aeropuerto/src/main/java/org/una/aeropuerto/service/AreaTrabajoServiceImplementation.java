@@ -36,7 +36,7 @@ public class AreaTrabajoServiceImplementation implements IAreaTrabajoService {
     }
 
     @Override
-    public Optional<List<AreaTrabajoDTO>> findByEstadoContaining(boolean estado) {
+    public Optional<List<AreaTrabajoDTO>> findByEstado(boolean estado) {
         return (Optional<List<AreaTrabajoDTO>>) ConversionLista.findList(Optional.ofNullable(AreaTrabajoRepository.findByEstado(estado)), AreaTrabajoDTO.class);
     }
 

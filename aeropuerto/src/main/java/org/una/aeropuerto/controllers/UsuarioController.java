@@ -64,35 +64,19 @@ public class UsuarioController {
         }
 
     }
+    @GetMapping("/cedula/{cedula}")
+    @ApiOperation(value = "Obtiene un Usuario por la cedula", response = UsuarioDTO.class, tags = "Usuarios")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> findByCedula(@PathVariable(value = "cedula") String ced) {
+        try {
+            return new ResponseEntity(usuarioService.findByCedula(ced), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
-//    @PostMapping("/login")
-//    @ResponseBody
-//    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuarioDTO.class, tags = "Seguridad")
-//    public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequest authenticationRequest, BindingResult bindingResult) {
-//
-//        if (bindingResult.hasErrors()) {
-//            return new ResponseEntity(MENSAJE_VERIFICAR_CREDENCIALES, HttpStatus.BAD_REQUEST);
-//        }
-//        try {
-//            AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-//            String token = service.login(authenticationRequest).getJwt();
-//            if (!token.isBlank()) {
-//                authenticationResponse.setJwt(token);
-//                Optional<Usuario> user = service.findByCedula(authenticationRequest.getCedula());
-//                UsuarioDTO userDto = MapperUtils.DtoFromEntity(user.get(), UsuarioDTO.class);
-//                authenticationResponse.setUsuario(userDto);
-//                authenticationResponse.setPermisos(userDto.getPermisos());
-//                return new ResponseEntity(authenticationResponse, HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>("Credenciales invalidos", HttpStatus.UNAUTHORIZED);
-//            }
-//        } catch(UsernameNotFoundException | BadCredentialsException ex){
-//            return new ResponseEntity(MENSAJE_VERIFICAR_CREDENCIALES, HttpStatus.BAD_REQUEST);
-//        }catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-    
+    }
+
+//  
 
     @GetMapping("/cedula/{cedula}/password_encriptado/{password}")
     @ApiOperation(value = "Obtiene un Usuario por cedula y password", response = UsuarioDTO.class, tags = "Usuarios")
@@ -104,21 +88,7 @@ public class UsuarioController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//    @GetMapping("/cedula/{term}")
-//    @ApiOperation(value = "Obtiene un usuario por su cedula", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
-//    public ResponseEntity<?> findByCedula(@PathVariable(value = "term") String term) {
-//        try {
-//            Optional<List<Usuario>> result = usuarioService.findByCedula(term);
-//            if (result.isPresent()) {
-//                List<UsuarioDTO> usuariosDTO = MapperUtils.DtoListFromEntityList(result.get(), UsuarioDTO.class);
-//                return new ResponseEntity<>(usuariosDTO, HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+   
 
     @GetMapping("/nombre/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los Usuarios", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
@@ -178,30 +148,6 @@ public class UsuarioController {
             return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
-
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity delete(@PathVariable(value = "id") Long id) {
-        try {
-            usuarioService.delete(id);
-            return new ResponseEntity(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-    }
-
-    @DeleteMapping("/")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity deleteAll() {
-        try {
-            usuarioService.deleteAll();
-            return new ResponseEntity(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 
     @GetMapping("/rol/{id}")
     @ApiOperation(value = "Obtiene una lista de Usuarios por Id del rol", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")

@@ -30,7 +30,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         try {
             hsr1.getWriter().write(new JSONObject()
                     .put("timestamp", LocalDateTime.now())
-                    .put("mensaje", "Se requiere un permiso adicional para realizar esta accion")
+                    .put("mensaje", "Se requiere un rol diferente para realizar esta accion")
                     .toString());
         } catch (JSONException ex) {
             Logger.getLogger(CustomAccessDeniedHandler.class.getName()).log(Level.SEVERE, null, ex);

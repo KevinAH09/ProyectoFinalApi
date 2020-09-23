@@ -21,8 +21,6 @@ public interface IDetalleControlGastoService {
     public DetalleControlGastoDTO create(DetalleControlGastoDTO controlGastoDetalle);
 
     public Optional<DetalleControlGastoDTO> update(DetalleControlGastoDTO controlGastoDetalle, Long id);
-    
-    public Optional<DetalleControlGastoDTO> findByControlGastoId(Long cedula);
 
     public Optional<List<DetalleControlGastoDTO>> findByTipoServicio(String tipoServicio);
     

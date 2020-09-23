@@ -30,6 +30,8 @@ public interface IControlGastoService {
     public Optional<ControlGastoDTO> findByNumeroContrato(String numeroContrato);
     
     public Optional<List<ControlGastoDTO>> findByEstado(String estado);
+    
+    public Optional<List<ControlGastoDTO>> findByEstadoPago(String estado);
             
     public Optional<List<ControlGastoDTO>> findByAreaTrabajoId(Long id);
     

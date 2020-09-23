@@ -55,9 +55,7 @@ public class DetalleControlGasto {
     private Long periodicidad;
     
     
-    @ManyToOne
-    @JoinColumn(name = "control_gasto_id")
-    private AreaTrabajo controlGastoId;
+  
     
     @PrePersist
     public void prePersist() {

@@ -66,6 +66,10 @@ public class ControlGasto {
     @Temporal(TemporalType.TIMESTAMP)
     @Setter(AccessLevel.NONE)
     private Date fechaRegistro;
+    
+    @ManyToOne
+    @JoinColumn(name = "detalle_control_gasto_id")
+    private DetalleControlGasto detalleControlGastoId;
 
     @PrePersist
     public void prePersist() {

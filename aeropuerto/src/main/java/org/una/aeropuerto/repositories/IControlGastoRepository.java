@@ -27,6 +27,8 @@ public interface IControlGastoRepository extends JpaRepository<ControlGasto, Lon
     
     public List<ControlGasto> findByEstado(String estado);
     
+    public List<ControlGasto> findByEstadoPago(String estadoPago);
+    
     public List<ControlGasto>  findByAreaTrabajoId(@Param("areaTrabajoId") Long id);
     
 }

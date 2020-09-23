@@ -83,4 +83,9 @@ return (Optional<ControlGastoDTO>) ConversionLista.oneToDto(Optional.ofNullable(
         return (Optional<List<ControlGastoDTO>>)ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByFechaRegistroBetween(startDate, endDate)),ControlGastoDTO.class);
     }
 
+    @Override
+    public Optional<List<ControlGastoDTO>> findByEstadoPago(String estado) {
+        return (Optional<List<ControlGastoDTO>>)ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByEstadoPago(estado)),ControlGastoDTO.class);
+    }
+
 }

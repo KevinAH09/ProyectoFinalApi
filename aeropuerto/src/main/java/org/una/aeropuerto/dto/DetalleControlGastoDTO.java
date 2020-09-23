@@ -26,7 +26,6 @@ public class DetalleControlGastoDTO {
     private String tipoServicio;
     private Long duracion;
     private Long periodicidad;
-    private AreaTrabajo controlGastoId;
     
     
 }

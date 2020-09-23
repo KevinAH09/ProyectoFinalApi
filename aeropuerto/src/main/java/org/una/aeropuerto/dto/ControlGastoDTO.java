@@ -18,10 +18,10 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 public class ControlGastoDTO {
-    
+
     private Long id;
     private String responsable;
     private String empresaContratante;
@@ -29,7 +29,7 @@ public class ControlGastoDTO {
     private String estado;
     private String estadoPago;
     private AreaTrabajo areaTrabajoId;
+    private DetalleControlGasto detalleControlGastoId;
     private Date fechaRegistro;
 
-    
 }

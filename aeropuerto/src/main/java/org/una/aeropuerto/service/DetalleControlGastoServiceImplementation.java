@@ -53,10 +53,6 @@ public class DetalleControlGastoServiceImplementation implements IDetalleControl
         }
     }
 
-    @Override
-    public Optional<DetalleControlGastoDTO> findByControlGastoId(Long cedula) {
-        return (Optional<DetalleControlGastoDTO>) ConversionLista.oneToDto(Optional.ofNullable(DetalleControlGastoRepository.findByControlGastoId(cedula)), DetalleControlGastoDTO.class);
-    }
 
     @Override
     public Optional<List<DetalleControlGastoDTO>> findByTipoServicio(String tipoServicio) {
