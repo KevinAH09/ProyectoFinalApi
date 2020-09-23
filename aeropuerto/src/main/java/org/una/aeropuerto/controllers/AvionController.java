@@ -22,54 +22,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.una.aeropuerto.dto.AerolineaDTO;
-import org.una.aeropuerto.service.IAerolineaService;
+import org.una.aeropuerto.dto.AvionDTO;
+import org.una.aeropuerto.service.IAvionService;
 
 /**
  *
  * @author Bosco
  */
 @RestController
-@RequestMapping("/aerolinea")
-@Api(tags = {"Aerolineas"})
-public class AerolineaController {
-
+@RequestMapping("/aviones")
+@Api(tags = {"Aviones"})
+public class AvionController {
+    
     @Autowired
-    private IAerolineaService AerolineaService;
+    private IAvionService AvionService;
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
-
+    
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene una lista de Aerolineas por id", response = AerolineaDTO.class, tags = "Aerolineas")
+    @ApiOperation(value = "Obtiene una lista de aviones por id", response = AvionDTO.class, tags = "Aviones")
     //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
-            return new ResponseEntity(AerolineaService.findById(id), HttpStatus.OK);
+            return new ResponseEntity(AvionService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todas las aerolineas", response = AerolineaDTO.class, responseContainer = "List", tags = "Aerolineas")
+    @ApiOperation(value = "Obtiene una lista de todos los aviones", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
     //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR_TODO')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
-            return new ResponseEntity<>(AerolineaService.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(AvionService.findAll(), HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
     //@PreAuthorize("hasAuthority('ARCHIVO_CREAR')")
-    public ResponseEntity<?> create(@Valid @RequestBody AerolineaDTO AerolineaDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> create(@Valid @RequestBody AvionDTO AvionDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                return new ResponseEntity(AerolineaService.create(AerolineaDTO), HttpStatus.CREATED);
+                return new ResponseEntity(AvionService.create(AvionDTO), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -81,12 +81,12 @@ public class AerolineaController {
     @PutMapping("/{id}")
     @ResponseBody
     //@PreAuthorize("hasAuthority('ARCHIVO_MODIFICAR')")
-    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody AerolineaDTO AerolineaDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody AvionDTO AvionDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                Optional<AerolineaDTO> AerolineaUpdated = AerolineaService.update(AerolineaDTO, id);
-                if (AerolineaUpdated.isPresent()) {
-                    return new ResponseEntity(AerolineaUpdated, HttpStatus.OK);
+                Optional<AvionDTO> AvionUpdated = AvionService.update(AvionDTO, id);
+                if (AvionUpdated.isPresent()) {
+                    return new ResponseEntity(AvionUpdated, HttpStatus.OK);
                 } else {
                     return new ResponseEntity(HttpStatus.NOT_FOUND);
                 }
@@ -97,39 +97,41 @@ public class AerolineaController {
             return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
-
-    @GetMapping("/estado/{term}")
-    @ApiOperation(value = "Obtiene una lista de todas las aerolineas por estado", response = AerolineaDTO.class, responseContainer = "List", tags = "Aerolineas")
-    //@PreAuthorize("hasAuthority('USUARIO_INACTIVAR')")
-    public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
-        try {
-            return new ResponseEntity<>(AerolineaService.findByEstadoContaining(term), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/nombre_aerolinea/{term}")
-    @ApiOperation(value = "Obtiene una lista de todas las aerolineas por nombre de la aerolinea", response = AerolineaDTO.class, responseContainer = "List", tags = "Aerolineas")
+    
+    @GetMapping("/matricula/{term}")
+    @ApiOperation(value = "Obtiene una lista de todos los aviones por matricula", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
     //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
-    public ResponseEntity<?> findByNombreAerolineaContainingIgnoreCase(@PathVariable(value = "term") String term) {
+    public ResponseEntity<?> findByMatriculaContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
-            return new ResponseEntity(AerolineaService.findByNombreAerolineaContainingIgnoreCase(term), HttpStatus.OK);
+            return new ResponseEntity(AvionService.findByMatriculaContainingIgnoreCase(term), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
     
-    @GetMapping("/nombre_responsable/{value}")//Puede que aqui sea nombreCompleto
-    @ApiOperation(value = "Obtiene una lista de todas las aerolineas por el nombre del responsable", response = AerolineaDTO.class, responseContainer = "List", tags = "Aerolineas")
-    //@PreAuthorize("hasAuthority('PERMISO_CONSULTAR')")
-    public ResponseEntity<?> findByNombreResponsableContainingIgnoreCase(@PathVariable(value = "value") String value) {
+    @GetMapping("/tipo_avion/{term}")
+    @ApiOperation(value = "Obtiene una lista de todos los aviones por tipo de avion", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
+    //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
+    public ResponseEntity<?> findBytipoAvionContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
-            return new ResponseEntity<>(AerolineaService.findByNombreResponsableContainingIgnoreCase(value), HttpStatus.OK);
+            return new ResponseEntity(AvionService.findBytipoAvionContainingIgnoreCase(term), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    
+    @GetMapping("/aerolinea/{id}")
+    @ApiOperation(value = "Obtiene una lista de aviones por Id de la aerolinea", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> findByAerolineaId(@PathVariable(value = "id") Long id) {
+        try {
+            return new ResponseEntity(AvionService.findByAerolineaId(id), HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
 }
