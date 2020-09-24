@@ -32,7 +32,7 @@ import org.una.aeropuerto.service.IParametroService;
  */
 @RestController
 @RequestMapping("/parametro")
-@Api(tags = {"Parametros"})
+@Api(tags = {"Parametros del sistema"})
 public class ParametroController {
     
     @Autowired
@@ -117,7 +117,7 @@ public class ParametroController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
-            return new ResponseEntity<>(ParametroService.findByEstadoContaining(term), HttpStatus.OK);
+            return new ResponseEntity<>(ParametroService.findByEstado(term), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
