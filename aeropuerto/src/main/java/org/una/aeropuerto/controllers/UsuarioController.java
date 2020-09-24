@@ -42,9 +42,8 @@ public class UsuarioController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los Usuarios", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
-    public @ResponseBody
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    ResponseEntity<?> findAll() {
+    @PreAuthorize("hasRole('ROLE_AUDITOR')")
+    public @ResponseBody ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(usuarioService.findAll(), HttpStatus.OK);
 
@@ -115,7 +114,7 @@ public class UsuarioController {
 
     @PostMapping("/")
     @ApiOperation(value = "Permite crear un Usuario", response = UsuarioDTO.class, tags = "Usuarios")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> create(@Valid @RequestBody UsuarioDTO usuarioDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {

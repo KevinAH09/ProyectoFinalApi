@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +42,7 @@ public class ParametroController {
     
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de parametros por id", response = ParametroDTO.class, tags = "Parametros")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(ParametroService.findById(id), HttpStatus.OK);
@@ -52,7 +53,7 @@ public class ParametroController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los parametros", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR_TODO')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -66,7 +67,7 @@ public class ParametroController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_CREAR')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> create(@Valid @RequestBody ParametroDTO ParametroDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -81,7 +82,7 @@ public class ParametroController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_MODIFICAR')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody ParametroDTO ParametroDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -101,7 +102,7 @@ public class ParametroController {
     
     @GetMapping("/nombre_parametro/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los parametros por nombre del parametro", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros")
-    //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByNombreParametro(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(ParametroService.findByNombreParametro(term), HttpStatus.OK);
@@ -113,7 +114,7 @@ public class ParametroController {
     
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los parametros por estado", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros")
-    //@PreAuthorize("hasAuthority('USUARIO_INACTIVAR')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(ParametroService.findByEstadoContaining(term), HttpStatus.OK);

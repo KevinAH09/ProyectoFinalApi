@@ -60,10 +60,7 @@ public class Usuario implements Serializable {
  
     @Column
     private boolean estado;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioId")
-    private List<RegistroAccion> registroAcciones = new ArrayList<>();
-//    
+    
     @ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rolId;

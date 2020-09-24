@@ -15,6 +15,7 @@ import org.una.aeropuerto.dto.RegistroAccionDTO;
  * @author Bosco
  */
 public interface IRegistroAccionService {
+    
     public Optional<List<RegistroAccionDTO>> findAll();
 
     public Optional<RegistroAccionDTO> findById(Long id);

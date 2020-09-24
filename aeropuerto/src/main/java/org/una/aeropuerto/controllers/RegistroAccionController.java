@@ -43,9 +43,8 @@ public class RegistroAccionController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos registros de acciones", response = RegistroAccionDTO.class, responseContainer = "List", tags = "Registro de acciones")
-    public @ResponseBody
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    ResponseEntity<?> findAll() {
+    @PreAuthorize("hasRole('ROLE_AUDITOR')")
+    public @ResponseBody ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(registroAccionService.findAll(), HttpStatus.OK);
 
@@ -56,7 +55,7 @@ public class RegistroAccionController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un registro de accion", response = RegistroAccionDTO.class, tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(registroAccionService.findById(id), HttpStatus.OK);
@@ -65,10 +64,11 @@ public class RegistroAccionController {
         }
 
     }
+   
     
     @PostMapping("/")
     @ApiOperation(value = "Permite crear un registro de accion", response = RegistroAccionDTO.class, tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR') or hasRole('ROLE_GERENTE')")
     public ResponseEntity<?> create(@Valid @RequestBody RegistroAccionDTO registroAccionDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -80,31 +80,10 @@ public class RegistroAccionController {
             return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
-
-    @PutMapping("/{id}")
-    @ResponseBody
-    @ApiOperation(value = "Modifica un registro de accion", response = RegistroAccionDTO.class, tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody RegistroAccionDTO registroAccionDTO, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
-            try {
-                Optional<RegistroAccionDTO> registroAccionUpdated = registroAccionService.update(registroAccionDTO, id);
-                if (registroAccionUpdated.isPresent()) {
-                    return new ResponseEntity(registroAccionUpdated, HttpStatus.OK);
-                } else {
-                    return new ResponseEntity(HttpStatus.NOT_FOUND);
-                }
-            } catch (Exception e) {
-                return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        } else {
-            return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
-        }
-    }
     
     @GetMapping("/fechaRegistro/{date}")
     @ApiOperation(value = "Obtiene una lista de todos los registros accion por fecha de registro", response = RegistroAccionDTO.class, responseContainer = "List", tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findByFechaRegistro(@PathVariable(value = "date") Date fecha) {
         try {
             return new ResponseEntity<>(registroAccionService.findByFechaRegistro(fecha), HttpStatus.OK);
@@ -113,9 +92,20 @@ public class RegistroAccionController {
         }
     }
     
+    @GetMapping("/usuarioId/{id}")
+    @ApiOperation(value = "Obtiene una lista de todos los registros accion por usuario", response = RegistroAccionDTO.class, responseContainer = "List", tags = "Registro de acciones")
+    @PreAuthorize("hasRole('ROLE_AUDITOR')")
+    public ResponseEntity<?> findByUsuarioId(@PathVariable(value = "id") Long id) {
+        try {
+            return new ResponseEntity<>(registroAccionService.findByUsuarioId(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
     @GetMapping("/fechaRegistroStar/{dateStar}/fechaRegistroEnd/{dateEnd}")
     @ApiOperation(value = "Obtiene una lista de todos los registros de acciones por rango de fechas de registro", response = RegistroAccionDTO.class, responseContainer = "List", tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findByFechaRegistroBetween(@PathVariable(value = "dateStar") Date fechaStar,@PathVariable(value = "dateEnd") Date fechaEnd) {
         try {
             return new ResponseEntity<>(registroAccionService.findByFechaRegistroBetween(fechaStar, fechaEnd), HttpStatus.OK);

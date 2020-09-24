@@ -23,7 +23,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 /**
  *
  * @author colo7
@@ -35,8 +34,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class RegistroAccion {
-    
-     private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,10 +44,10 @@ public class RegistroAccion {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuarioId;
-    
+
     @Column(length = 50)
     private String accion;
-    
+
     @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @Setter(AccessLevel.NONE)

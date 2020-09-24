@@ -46,7 +46,7 @@ public class ControlGastoController {
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los gastos por mantenimento", response = ControlGastoDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
     public @ResponseBody
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(controlGastoService.findAll(), HttpStatus.OK);
@@ -58,7 +58,7 @@ public class ControlGastoController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un gasto por mantenimento", response = ControlGastoDTO.class, tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(controlGastoService.findById(id), HttpStatus.OK);
@@ -71,7 +71,7 @@ public class ControlGastoController {
 
     @GetMapping("/empresa/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los gastos de mantenimento", response = UsuarioDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> findByEmpresaContratanteContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(controlGastoService.findByEmpresaContratanteContainingIgnoreCase(term), HttpStatus.OK);
@@ -83,7 +83,7 @@ public class ControlGastoController {
 
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los control de gastos de mantenimiento por estado(Valida o Anulada)", response = UsuarioDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> findByEstado(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity<>(controlGastoService.findByEstado(term), HttpStatus.OK);
@@ -93,7 +93,7 @@ public class ControlGastoController {
     }
     @GetMapping("/estadoPago/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los control de gastos de mantenimiento por estado de pago(Cancelado o Pendiente)", response = UsuarioDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> findByEstadoPago(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity<>(controlGastoService.findByEstadoPago(term), HttpStatus.OK);
@@ -104,7 +104,7 @@ public class ControlGastoController {
 
     @PostMapping("/")
     @ApiOperation(value = "Permite crear un control de gastos de mantenimiento", response = ControlGastoDTO.class, tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> create(@Valid @RequestBody ControlGastoDTO controlGastoDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -120,7 +120,7 @@ public class ControlGastoController {
     @PutMapping("/{id}")
     @ResponseBody
     @ApiOperation(value = "Modifica un control de gastos de mantenimiento ", response = ControlGastoDTO.class, tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody ControlGastoDTO controlGastoDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -140,7 +140,7 @@ public class ControlGastoController {
 
     @GetMapping("/numeroContrato/{numeroContrato}")
     @ApiOperation(value = "Obtiene una lista de control de gastos de mantenimiento por numero de contrato", response = UsuarioDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> findByNumerocontrato(@PathVariable(value = "numeroContrato") String contrato) {
         try {
             return new ResponseEntity(controlGastoService.findByNumeroContrato(contrato), HttpStatus.OK);
@@ -153,7 +153,7 @@ public class ControlGastoController {
     
     @GetMapping("/areaTrabajo/{id}")
     @ApiOperation(value = "Obtiene una lista de todos los control de gastos de mantenimiento por area trabajo", response = UsuarioDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> findByAreaTrabajo(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(controlGastoService.findByAreaTrabajoId(id), HttpStatus.OK);
@@ -164,7 +164,7 @@ public class ControlGastoController {
     
     @GetMapping("/fechaRegistro/{date}")
     @ApiOperation(value = "Obtiene una lista de todos los control de gastos de mantenimiento por fecha de registro", response = UsuarioDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> findByFechaRegistro(@PathVariable(value = "date") Date fecha) {
         try {
             return new ResponseEntity<>(controlGastoService.findByFechaRegistro(fecha), HttpStatus.OK);
@@ -175,7 +175,7 @@ public class ControlGastoController {
     
     @GetMapping("/fechaRegistroStar/{dateStar}/fechaRegistroEnd/{dateEnd}")
     @ApiOperation(value = "Obtiene una lista de todos los control de gastos de mantenimiento por rango de fechas de registro", response = UsuarioDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
     public ResponseEntity<?> findByFechaRegistroBetween(@PathVariable(value = "dateStar") Date fechaStar,@PathVariable(value = "dateEnd") Date fechaEnd) {
         try {
             return new ResponseEntity<>(controlGastoService.findByFechaRegistroBetween(fechaStar, fechaEnd), HttpStatus.OK);
