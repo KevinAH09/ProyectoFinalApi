@@ -8,6 +8,7 @@ package org.una.aeropuerto.repositories;
 import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.una.aeropuerto.entities.ControlGasto;
 
@@ -29,6 +30,7 @@ public interface IControlGastoRepository extends JpaRepository<ControlGasto, Lon
     
     public List<ControlGasto> findByEstadoPago(String estadoPago);
     
-    public List<ControlGasto>  findByAreaTrabajoId(@Param("areaTrabajoId") Long id);
+    @Query("SELECT u FROM ControlGasto u LEFT JOIN u.areaTrabajoId d WHERE  d.id=:id")
+    public List<ControlGasto>  findByAreaTrabajoId(Long id);
     
 }

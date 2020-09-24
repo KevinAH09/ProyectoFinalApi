@@ -41,7 +41,7 @@ public class ParametroController {
     
     
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene una lista de parametros por id", response = ParametroDTO.class, tags = "Parametros")
+    @ApiOperation(value = "Obtiene una lista de parametros por id", response = ParametroDTO.class, tags = "Parametros del sistema")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
@@ -52,7 +52,7 @@ public class ParametroController {
     }
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todos los parametros", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros")
+    @ApiOperation(value = "Obtiene una lista de todos los parametros", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros del sistema")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
@@ -101,7 +101,7 @@ public class ParametroController {
     }
     
     @GetMapping("/nombre_parametro/{term}")
-    @ApiOperation(value = "Obtiene una lista de todos los parametros por nombre del parametro", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros")
+    @ApiOperation(value = "Obtiene una lista de todos los parametros por nombre del parametro", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros del sistema")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByNombreParametro(@PathVariable(value = "term") String term) {
         try {
@@ -113,7 +113,7 @@ public class ParametroController {
     }
     
     @GetMapping("/estado/{term}")
-    @ApiOperation(value = "Obtiene una lista de todos los parametros por estado", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros")
+    @ApiOperation(value = "Obtiene una lista de todos los parametros por estado", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros del sistema")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
