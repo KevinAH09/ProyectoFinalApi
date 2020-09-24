@@ -16,7 +16,7 @@ import org.una.aeropuerto.entities.Aerolinea;
  */
 public interface IAerolineaRepository  extends JpaRepository<Aerolinea, Long> {
     
-    public List<Aerolinea> findByEstadoContaining(boolean estado);
+    public List<Aerolinea> findByEstado(boolean estado);
     
     public List<Aerolinea> findByNombreAerolineaContainingIgnoreCase(@Param("nombreAerolinea") String nombreAerolinea);
 

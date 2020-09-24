@@ -36,8 +36,8 @@ public class AerolineaServiceImplementation implements IAerolineaService {
     }
 
     @Override
-    public Optional<List<AerolineaDTO>> findByEstadoContaining(boolean estado) {
-        return (Optional<List<AerolineaDTO>>) ConversionLista.findList(Optional.ofNullable(aerolineaRepository.findByEstadoContaining(estado)), AerolineaDTO.class);
+    public Optional<List<AerolineaDTO>> findByEstado(boolean estado) {
+        return (Optional<List<AerolineaDTO>>) ConversionLista.findList(Optional.ofNullable(aerolineaRepository.findByEstado(estado)), AerolineaDTO.class);
 
     }
 
