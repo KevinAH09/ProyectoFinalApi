@@ -7,6 +7,7 @@ package org.una.aeropuerto.repositories;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.una.aeropuerto.entities.BitacoraVuelo;
 import org.una.aeropuerto.entities.Vuelo;
@@ -23,9 +24,11 @@ public interface IVueloRepository extends JpaRepository<Vuelo, Long>{
     
     public List<Vuelo> findByOrigen(@Param("origen") String origen);
     
-    public List<Vuelo> findByAvionId(@Param("avion") Long avion);
+    @Query("SELECT u FROM Vuelo u LEFT JOIN u.avionId d WHERE  d.id=:id")
+    public List<Vuelo> findByAvionId(Long id);
     
-    public List<Vuelo> findBybitacoraVueloId(@Param("bitacoraVueloId") Long bitacoraVueloId);
+    @Query("SELECT u FROM Vuelo u LEFT JOIN u.bitacoraVueloId d WHERE  d.id=:id")
+    public List<Vuelo> findBybitacoraVueloId(Long id);
     
     
 
