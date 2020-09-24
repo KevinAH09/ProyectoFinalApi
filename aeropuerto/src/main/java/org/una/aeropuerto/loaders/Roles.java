@@ -12,7 +12,8 @@ package org.una.aeropuerto.loaders;
 public enum Roles {
 
    
-    ROL_USUARIO("ROLE_USER"),
+    ROL_GERENTE("ROLE_GERENTE"),
+    ROL_AUDITOR("ROLE_AUDITOR"),
     ROL_GESTOR("ROLE_GESTOR");
 
     private String codigo;
