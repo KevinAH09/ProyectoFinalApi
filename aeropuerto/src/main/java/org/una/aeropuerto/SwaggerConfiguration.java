@@ -58,7 +58,7 @@ public class SwaggerConfiguration {
                 },
                         new Tag("Roles", "Metodos de Roles") {
                 },
-                        new Tag("Aeropuertos", "Metodos de Aeropuerto") {
+                        new Tag("Aerolineas", "Metodos de aerolineas") {
                 },
                         new Tag("Parametros del sistema", "Metodos de parametros del sistema") {
                 },
