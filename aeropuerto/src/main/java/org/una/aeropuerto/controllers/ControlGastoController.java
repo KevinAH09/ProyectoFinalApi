@@ -162,6 +162,17 @@ public class ControlGastoController {
         }
     }
     
+    @GetMapping("/detalleControlGasto/{id}")
+    @ApiOperation(value = "Obtiene una lista de todos los control de gastos de mantenimiento por detalle de control gasto", response = UsuarioDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
+    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    public ResponseEntity<?> findByDetalleControlGasto(@PathVariable(value = "id") Long id) {
+        try {
+            return new ResponseEntity<>(controlGastoService.findByDetalleControlGastoId(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
     @GetMapping("/fechaRegistro/{date}")
     @ApiOperation(value = "Obtiene una lista de todos los control de gastos de mantenimiento por fecha de registro", response = UsuarioDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
     @PreAuthorize("hasRole('ROLE_GESTOR')")

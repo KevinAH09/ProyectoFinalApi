@@ -88,4 +88,9 @@ return (Optional<ControlGastoDTO>) ConversionLista.oneToDto(Optional.ofNullable(
         return (Optional<List<ControlGastoDTO>>)ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByEstadoPago(estado)),ControlGastoDTO.class);
     }
 
+    @Override
+    public Optional<ControlGastoDTO> findByDetalleControlGastoId(Long id) {
+       return (Optional<ControlGastoDTO>)ConversionLista.oneToDto(Optional.ofNullable(ControlGastoRepository.findByDetalleControlGastoId(id)),ControlGastoDTO.class);
+    }
+
 }

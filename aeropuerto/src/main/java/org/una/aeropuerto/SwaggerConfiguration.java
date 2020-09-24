@@ -76,9 +76,9 @@ public class SwaggerConfiguration {
                 },
                         new Tag("Registro de acciones", "Metodos de registro de acciones") {
                 },
-                        new Tag("Control de gastos de mantenimiento", "Metodos sobre control de gastos por mantenimiento") {
+                        new Tag("Control de gastos de mantenimiento", "Metodos sobre control de gastos de mantenimiento") {
                 },
-                        new Tag("Detalle de control de gastos de mantenimiento", "Metodos sobre detalle de control de gastos por mantenimiento") {
+                        new Tag("Detalle de control de gastos de mantenimiento", "Metodos sobre detalle de control de gastos de mantenimiento") {
                 },  
                         new Tag("Usuarios", "Entidad de Usuarios")
                 );

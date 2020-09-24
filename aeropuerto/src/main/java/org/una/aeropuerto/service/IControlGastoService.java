@@ -38,4 +38,6 @@ public interface IControlGastoService {
     public Optional<List<ControlGastoDTO>> findByFechaRegistro(Date fecha);
     
     public Optional<List<ControlGastoDTO>> findByFechaRegistroBetween(Date startDate, Date endDate);
+    
+    public Optional<ControlGastoDTO> findByDetalleControlGastoId(Long id);
 }

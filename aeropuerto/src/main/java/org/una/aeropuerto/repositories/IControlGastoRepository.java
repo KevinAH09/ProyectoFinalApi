@@ -33,4 +33,6 @@ public interface IControlGastoRepository extends JpaRepository<ControlGasto, Lon
     @Query("SELECT u FROM ControlGasto u LEFT JOIN u.areaTrabajoId d WHERE  d.id=:id")
     public List<ControlGasto>  findByAreaTrabajoId(Long id);
     
+    @Query("SELECT u FROM ControlGasto u LEFT JOIN u.detalleControlGastoId d WHERE  d.id=:id")
+    public ControlGasto  findByDetalleControlGastoId(Long id);
 }
