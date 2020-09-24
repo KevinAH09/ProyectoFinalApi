@@ -23,7 +23,7 @@ public interface IParametroService {
 
     public Optional<ParametroDTO> update(ParametroDTO parametro, Long id);
     
-    public Optional<List<ParametroDTO>> findByEstadoContaining(boolean estado);
+    public Optional<List<ParametroDTO>> findByEstado(boolean estado);
     
     public Optional<List<ParametroDTO>> findByNombreParametro(String nombreParametro);
     

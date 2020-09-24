@@ -102,7 +102,7 @@ public class VueloController {
     //@PreAuthorize("hasAuthority('USUARIO_INACTIVAR')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
-            return new ResponseEntity<>(VueloService.findByEstadoContaining(term), HttpStatus.OK);
+            return new ResponseEntity<>(VueloService.findByEstado(term), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }

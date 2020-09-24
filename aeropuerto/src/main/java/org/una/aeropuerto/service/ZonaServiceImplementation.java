@@ -54,8 +54,8 @@ public class ZonaServiceImplementation implements IZonaService {
     }
 
     @Override
-    public Optional<List<ZonaDTO>> findByEstadoContaining(boolean estado) {
-        return (Optional<List<ZonaDTO>>) ConversionLista.findList(Optional.ofNullable(ZonaRepository.findByEstadoContaining(estado)), ZonaDTO.class);
+    public Optional<List<ZonaDTO>> findByEstado(boolean estado) {
+        return (Optional<List<ZonaDTO>>) ConversionLista.findList(Optional.ofNullable(ZonaRepository.findByEstado(estado)), ZonaDTO.class);
     }
 
     @Override

@@ -17,7 +17,7 @@ import org.una.aeropuerto.entities.Vuelo;
  */
 public interface IVueloRepository extends JpaRepository<Vuelo, Long>{
     
-    public List<Vuelo> findByEstadoContaining(boolean estado);
+    public List<Vuelo> findByEstado(boolean estado);
     
     public List<Vuelo> findByDestino(@Param("destino") String destino);
     

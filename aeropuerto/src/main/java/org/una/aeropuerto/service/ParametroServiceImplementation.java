@@ -53,8 +53,8 @@ if (ParametroRepository.findById(id).isPresent()) {
         }    }
 
     @Override
-    public Optional<List<ParametroDTO>> findByEstadoContaining(boolean estado) {
-        return (Optional<List<ParametroDTO>>)ConversionLista.findList(Optional.ofNullable(ParametroRepository.findByEstadoContaining(estado)),ParametroDTO.class);
+    public Optional<List<ParametroDTO>> findByEstado(boolean estado) {
+        return (Optional<List<ParametroDTO>>)ConversionLista.findList(Optional.ofNullable(ParametroRepository.findByEstado(estado)),ParametroDTO.class);
     }
 
     @Override

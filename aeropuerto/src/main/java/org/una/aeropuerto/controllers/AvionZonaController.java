@@ -31,7 +31,7 @@ import org.una.aeropuerto.service.IAvionZonaService;
  */
 @RestController
 @RequestMapping("/avion_zona")
-@Api(tags = {"AvionZonas"})
+@Api(tags = {"Zonas y Aviones"})
 public class AvionZonaController {
     
     @Autowired
@@ -39,7 +39,7 @@ public class AvionZonaController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
     
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene una lista de las zonas de los aviones por id", response = AvionZonaDTO.class, tags = "AvionZonas")
+    @ApiOperation(value = "Obtiene una lista de las zonas de los aviones por id", response = AvionZonaDTO.class, tags = "Zonas y Aviones")
     //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
@@ -50,7 +50,7 @@ public class AvionZonaController {
     }
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todas las zonas de los aviones", response = AvionZonaDTO.class, responseContainer = "List", tags = "AvionZonas")
+    @ApiOperation(value = "Obtiene una lista de todas las zonas de los aviones", response = AvionZonaDTO.class, responseContainer = "List", tags = "Zonas y Aviones")
     //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR_TODO')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
@@ -99,7 +99,7 @@ public class AvionZonaController {
     }
     
     @GetMapping("/zona/{id}")
-    @ApiOperation(value = "Obtiene una lista de aviones por Id de la zona", response = AvionZonaDTO.class, responseContainer = "List", tags = "AvionZonas")
+    @ApiOperation(value = "Obtiene una lista de aviones por Id de la zona", response = AvionZonaDTO.class, responseContainer = "List", tags = "Zonas y Aviones")
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByZonaId(@PathVariable(value = "id") Long id) {
         try {
@@ -111,7 +111,7 @@ public class AvionZonaController {
     }
  
     @GetMapping("/avion/{id}")
-    @ApiOperation(value = "Obtiene una lista de zonas por Id del avion", response = AvionZonaDTO.class, responseContainer = "List", tags = "AvionZonas")
+    @ApiOperation(value = "Obtiene una lista de zonas por Id del avion", response = AvionZonaDTO.class, responseContainer = "List", tags = "Zonas y Aviones")
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByAvionId(@PathVariable(value = "id") Long id) {
         try {

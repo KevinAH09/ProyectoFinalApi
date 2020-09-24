@@ -125,7 +125,7 @@ public class AvionController {
     @GetMapping("/aerolinea/{id}")
     @ApiOperation(value = "Obtiene una lista de aviones por Id de la aerolinea", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> findByAerolineaId(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<?> findByAerolinea(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AvionService.findByAerolineaId(id), HttpStatus.OK);
 
