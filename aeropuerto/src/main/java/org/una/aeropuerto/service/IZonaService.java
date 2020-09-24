@@ -22,7 +22,7 @@ public interface IZonaService {
 
     public Optional<ZonaDTO> update(ZonaDTO zona, Long id);
     
-    public Optional<List<ZonaDTO>> findByEstadoContaining(boolean estado);
+    public Optional<List<ZonaDTO>> findByEstado(boolean estado);
     
     public Optional<List<ZonaDTO>> findByNombreZonaContainingIgnoreCase(String nombreZona);
 

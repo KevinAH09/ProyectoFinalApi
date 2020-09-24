@@ -54,8 +54,8 @@ public class VueloServiceImplementation implements IVueloService {
     }
 
     @Override
-    public Optional<List<VueloDTO>> findByEstadoContaining(boolean estado) {
-        return (Optional<List<VueloDTO>>) ConversionLista.findList(Optional.ofNullable(VueloRepository.findByEstadoContaining(estado)), VueloDTO.class);
+    public Optional<List<VueloDTO>> findByEstado(boolean estado) {
+        return (Optional<List<VueloDTO>>) ConversionLista.findList(Optional.ofNullable(VueloRepository.findByEstado(estado)), VueloDTO.class);
     }
 
     @Override

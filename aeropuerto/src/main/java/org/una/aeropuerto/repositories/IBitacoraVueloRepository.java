@@ -19,12 +19,12 @@ public interface IBitacoraVueloRepository extends JpaRepository<BitacoraVuelo, L
     
     public List<BitacoraVuelo> findByTipoBitacoraContainingIgnoreCase(@Param("TipoBitacora") String tipoBitacora);
     
-    public List<AvionZona> findByCargaPasajero(@Param("cargaPasajero") boolean cargaPasajero);
+    public List<BitacoraVuelo> findByCargaPasajero(boolean cargaPasajero);
     
-    public List<AvionZona> findByCargaCombustible(@Param("CargaCombustible") boolean cargaCombustible);
+    public List<BitacoraVuelo> findByCargaCombustible(boolean cargaCombustible);
     
-    public List<AvionZona> findByZonaDescarga(@Param("ZonaDescarga") boolean zonaDescarga);
+    public List<BitacoraVuelo> findByZonaDescarga(boolean zonaDescarga);
     
-    public List<AvionZona> findByAutorizacionTorreControl(@Param("autorizacionTorreControl") boolean autorizacionTorreControl);
+    public List<BitacoraVuelo> findByAutorizacionTorreControl(boolean autorizacionTorreControl);
     
 }

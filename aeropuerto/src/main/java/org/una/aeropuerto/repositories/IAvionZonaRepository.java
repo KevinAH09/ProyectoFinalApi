@@ -16,7 +16,7 @@ import org.una.aeropuerto.entities.AvionZona;
  */
 public interface IAvionZonaRepository extends JpaRepository<AvionZona, Long>{
     
-    public List<AvionZona> findByAvionId(@Param("avion") Long avion);
+    public List<AvionZona> findByAvionId(Long avion);
 
-    public List<AvionZona> findByZonaId(@Param("zona") Long zona);
+    public List<AvionZona> findByZonaId(Long zona);
 }

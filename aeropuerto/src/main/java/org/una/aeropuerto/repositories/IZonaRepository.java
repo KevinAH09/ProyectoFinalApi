@@ -16,7 +16,7 @@ import org.una.aeropuerto.entities.Zona;
  */
 public interface IZonaRepository extends JpaRepository<Zona, Long>{
     
-    public List<Zona> findByEstadoContaining(boolean estado);
+    public List<Zona> findByEstado(boolean estado);
     
     public List<Zona> findByNombreZonaContainingIgnoreCase(@Param("nombreZona") String nombreZona);
 

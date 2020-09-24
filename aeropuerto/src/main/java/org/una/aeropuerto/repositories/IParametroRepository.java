@@ -18,7 +18,7 @@ import org.una.aeropuerto.entities.Parametro;
  */
 public interface IParametroRepository extends JpaRepository<Parametro, Long>{
     
-    public List<Parametro> findByEstadoContaining(boolean estado);
+    public List<Parametro> findByEstado(boolean estado);
 
 
     public List<Parametro> findByNombreParametro(@Param("nombreParametro") String nombreParametro);

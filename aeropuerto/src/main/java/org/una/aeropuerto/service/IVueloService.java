@@ -22,7 +22,7 @@ public interface IVueloService {
 
     public Optional<VueloDTO> update(VueloDTO vuelo, Long id);
     
-    public Optional<List<VueloDTO>> findByEstadoContaining(boolean estado);
+    public Optional<List<VueloDTO>> findByEstado(boolean estado);
     
     public Optional<List<VueloDTO>> findByDestino(String destino);
     

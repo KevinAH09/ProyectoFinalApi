@@ -31,7 +31,7 @@ import org.una.aeropuerto.service.IParametroService;
  */
 @RestController
 @RequestMapping("/parametro")
-@Api(tags = {"Parametros"})
+@Api(tags = {"Parametros del sistema"})
 public class ParametroController {
     
     @Autowired
@@ -40,7 +40,7 @@ public class ParametroController {
     
     
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene una lista de parametros por id", response = ParametroDTO.class, tags = "Parametros")
+    @ApiOperation(value = "Obtiene una lista de parametros por id", response = ParametroDTO.class, tags = "Parametros del sistema")
     //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
@@ -51,7 +51,7 @@ public class ParametroController {
     }
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todos los parametros", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros")
+    @ApiOperation(value = "Obtiene una lista de todos los parametros", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros del sistema")
     //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR_TODO')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
@@ -100,7 +100,7 @@ public class ParametroController {
     }
     
     @GetMapping("/nombre_parametro/{term}")
-    @ApiOperation(value = "Obtiene una lista de todos los parametros por nombre del parametro", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros")
+    @ApiOperation(value = "Obtiene una lista de todos los parametros por nombre del parametro", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros del sistema")
     //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
     public ResponseEntity<?> findByNombreParametro(@PathVariable(value = "term") String term) {
         try {
@@ -112,11 +112,11 @@ public class ParametroController {
     }
     
     @GetMapping("/estado/{term}")
-    @ApiOperation(value = "Obtiene una lista de todos los parametros por estado", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros")
+    @ApiOperation(value = "Obtiene una lista de todos los parametros por estado", response = ParametroDTO.class, responseContainer = "List", tags = "Parametros del sistema")
     //@PreAuthorize("hasAuthority('USUARIO_INACTIVAR')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
-            return new ResponseEntity<>(ParametroService.findByEstadoContaining(term), HttpStatus.OK);
+            return new ResponseEntity<>(ParametroService.findByEstado(term), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
