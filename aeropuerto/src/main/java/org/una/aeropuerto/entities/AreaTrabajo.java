@@ -36,7 +36,7 @@ public class AreaTrabajo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre_area_trabajo", length = 50)
+    @Column(name = "nombre_area_trabajo", length = 50, unique=true)
     private String nombreAreaTrabajo;
 
     @Column(length = 150)

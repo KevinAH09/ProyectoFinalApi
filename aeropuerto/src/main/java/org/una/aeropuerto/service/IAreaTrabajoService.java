@@ -23,6 +23,8 @@ public interface IAreaTrabajoService {
     
     public Optional<List<AreaTrabajoDTO>> findByNombreAreaTrabajoContainingIgnoreCase(String nombreAreaTrabajo);
     
+    public Optional<AreaTrabajoDTO> findByNombreAreaTrabajo(String nombreAreaTrabajo);
+    
     public AreaTrabajoDTO create(AreaTrabajoDTO areaTrabajo);
 
     public Optional<AreaTrabajoDTO> update(AreaTrabajoDTO areaTrabajo, Long id);

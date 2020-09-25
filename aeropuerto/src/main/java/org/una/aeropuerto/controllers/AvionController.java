@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +41,7 @@ public class AvionController {
     
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de aviones por id", response = AvionDTO.class, tags = "Aviones")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AvionService.findById(id), HttpStatus.OK);
@@ -51,7 +52,7 @@ public class AvionController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los aviones", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR_TODO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -65,7 +66,7 @@ public class AvionController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_CREAR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> create(@Valid @RequestBody AvionDTO AvionDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -80,7 +81,7 @@ public class AvionController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_MODIFICAR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody AvionDTO AvionDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -100,7 +101,7 @@ public class AvionController {
     
     @GetMapping("/matricula/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los aviones por matricula", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
-    //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByMatriculaContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(AvionService.findByMatriculaContainingIgnoreCase(term), HttpStatus.OK);
@@ -112,7 +113,7 @@ public class AvionController {
     
     @GetMapping("/tipo_avion/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los aviones por tipo de avion", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
-    //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findBytipoAvionContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(AvionService.findBytipoAvionContainingIgnoreCase(term), HttpStatus.OK);
@@ -124,7 +125,7 @@ public class AvionController {
     
     @GetMapping("/aerolinea/{id}")
     @ApiOperation(value = "Obtiene una lista de aviones por Id de la aerolinea", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByAerolinea(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AvionService.findByAerolineaId(id), HttpStatus.OK);

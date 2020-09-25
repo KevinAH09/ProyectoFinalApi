@@ -73,7 +73,8 @@ public class AutenticacionLoginServiceImplementation implements UserDetailsServi
         Usuario usuarioBuscado = usuarioRepository.findByCedula(username);
         if (usuarioBuscado != null) {
             List<GrantedAuthority> roles = new ArrayList<>();
-            roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRolId().getCodigo()));
+            roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRolId().getCodigo() + usuarioBuscado.getAreaTrabajoId().getNombreAreaTrabajo()));
+            System.out.println("org.una.aeropuerto.service.AutenticacionLoginServiceImplementation.loadUserByUsername() "+ roles.toString());
             UserDetails userDetails = new User(usuarioBuscado.getCedula(), usuarioBuscado.getContrasenaEncriptada(), roles);
             return userDetails;
         } else {

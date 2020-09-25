@@ -7,6 +7,7 @@ package org.una.aeropuerto.repositories;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.una.aeropuerto.entities.Usuario;
 
@@ -26,7 +27,9 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     
     public List<Usuario> findByEstado(boolean estado);
     
-    public List<Usuario>  findByRolId(@Param("rolId") Long rolId);
+    @Query("SELECT u FROM Usuario u LEFT JOIN u.rolId d WHERE  d.id=:id")
+    public List<Usuario>  findByRolId(@Param("id") Long rolId);
     
-    public List<Usuario>  findByAreaTrabajoId(@Param("areaTrabajoId") Long areaTrabajoId);
+    @Query("SELECT u FROM Usuario u LEFT JOIN u.areaTrabajoId d WHERE  d.id=:id")
+    public List<Usuario>  findByAreaTrabajoId(@Param("id") Long areaTrabajoId);
 }

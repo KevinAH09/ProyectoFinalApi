@@ -45,7 +45,7 @@ public class RolController {
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los Roles", response = RolDTO.class, responseContainer = "List", tags = "Roles")
     public @ResponseBody
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
     ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(rolService.findAll(), HttpStatus.OK);
@@ -57,7 +57,7 @@ public class RolController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un Rol", response = RolDTO.class, tags = "Roles")
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(rolService.findById(id), HttpStatus.OK);
@@ -69,7 +69,7 @@ public class RolController {
 
     @GetMapping("/codigo/{codigo}")
     @ApiOperation(value = "Obtiene un Rol por codigo", response = RolDTO.class, tags = "Roles")
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findByCodigo(@PathVariable(value = "codigo") String codigo) {
         try {
             return new ResponseEntity(rolService.findByCodigo(codigo), HttpStatus.OK);
@@ -81,7 +81,7 @@ public class RolController {
 
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los roles por estado", response = RolDTO.class, responseContainer = "List", tags = "Roles")
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findByEstado(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(rolService.findByEstado(term), HttpStatus.OK);
@@ -92,7 +92,7 @@ public class RolController {
 
     @PostMapping("/")
     @ApiOperation(value = "Permite crear un rol", response = RolDTO.class, tags = "Roles")
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_RRHH')")
     public ResponseEntity<?> create(@Valid @RequestBody RolDTO rolDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -108,7 +108,7 @@ public class RolController {
     @PutMapping("/{id}")
     @ResponseBody
     @ApiOperation(value = "Modifica un rol", response = RolDTO.class, tags = "Roles")
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_RRHH')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody RolDTO rolDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {

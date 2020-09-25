@@ -37,7 +37,7 @@ public class AreaTrabajoServiceImplementation implements IAreaTrabajoService {
 
     @Override
     public Optional<List<AreaTrabajoDTO>> findByEstado(boolean estado) {
-        return (Optional<List<AreaTrabajoDTO>>) ConversionLista.findList(Optional.ofNullable(AreaTrabajoRepository.findByEstado(estado)), AreaTrabajoDTO.class);
+        return (Optional<List<AreaTrabajoDTO>>) ConversionLista.findList(AreaTrabajoRepository.findByEstado(estado), AreaTrabajoDTO.class);
     }
 
     @Override
@@ -61,6 +61,11 @@ public class AreaTrabajoServiceImplementation implements IAreaTrabajoService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public Optional<AreaTrabajoDTO> findByNombreAreaTrabajo(String nombreAreaTrabajo) {
+        return (Optional<AreaTrabajoDTO>) ConversionLista.oneToDto(Optional.ofNullable(AreaTrabajoRepository.findByNombreAreaTrabajo(nombreAreaTrabajo)), AreaTrabajoDTO.class);
     }
 
 }

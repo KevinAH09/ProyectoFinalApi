@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +40,7 @@ public class VueloController {
     
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de los vuelos por id", response = VueloDTO.class, tags = "Vuelos")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(VueloService.findById(id), HttpStatus.OK);
@@ -50,7 +51,7 @@ public class VueloController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todas los vuelos", response = VueloDTO.class, responseContainer = "List", tags = "Vuelos")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR_TODO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -64,7 +65,7 @@ public class VueloController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_CREAR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> create(@Valid @RequestBody VueloDTO VueloDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -79,7 +80,7 @@ public class VueloController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_MODIFICAR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody VueloDTO VueloDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -99,7 +100,7 @@ public class VueloController {
     
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todas los vuelos por estado", response = VueloDTO.class, responseContainer = "List", tags = "Vuelos")
-    //@PreAuthorize("hasAuthority('USUARIO_INACTIVAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(VueloService.findByEstado(term), HttpStatus.OK);
@@ -110,7 +111,7 @@ public class VueloController {
     
     @GetMapping("/origen/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los vuelos por el origen del vuelo", response = VueloDTO.class, responseContainer = "List", tags = "Vuelos")
-    //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByOrigen(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(VueloService.findByOrigen(term), HttpStatus.OK);
@@ -122,7 +123,7 @@ public class VueloController {
     
     @GetMapping("/destino/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los vuelos por el destino del vuelo", response = VueloDTO.class, responseContainer = "List", tags = "Vuelos")
-    //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByDestino(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(VueloService.findByDestino(term), HttpStatus.OK);
@@ -134,7 +135,7 @@ public class VueloController {
     
     @GetMapping("/avion/{id}")
     @ApiOperation(value = "Obtiene una lista de vuelos por Id del avion", response = VueloDTO.class, responseContainer = "List", tags = "Vuelos")
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByAvionId(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(VueloService.findByAvionId(id), HttpStatus.OK);
@@ -146,7 +147,7 @@ public class VueloController {
  
     @GetMapping("/bitacora_vuelo/{id}")
     @ApiOperation(value = "Obtiene una lista de vuelos por Id de la bitacora de vuelo", response = VueloDTO.class, responseContainer = "List", tags = "Vuelos")
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findBybitacoraVueloId(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(VueloService.findBybitacoraVueloId(id), HttpStatus.OK);

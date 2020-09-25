@@ -9,22 +9,20 @@ package org.una.aeropuerto.loaders;
  *
  * @author colo7
  */
-public enum Roles {
-
+public enum AreasTrabajo {
     
-    ROL_GERENTE("ROLE_GERENTE"),
-    ROL_AUDITOR("ROLE_AUDITOR"),
-    ROL_ADMINISTRADOR("ROLE_ADMIN");
     
+    AREA_TRABAJO_OPERACIONES_AEROLINEAS("_OPER_AERO"),
+    AREA_TRABAJO_GASTOS_MANTENIMENTO("_GAST_MANT");
 
-    private String codigo;
+    private String nombre;
 
-    Roles(String codigo) {
-        this.codigo = codigo;
+    AreasTrabajo(String codigo) {
+        this.nombre = codigo;
     }
 
     public String getCodigo() {
-        return codigo;
+        return nombre;
     }
 
 }

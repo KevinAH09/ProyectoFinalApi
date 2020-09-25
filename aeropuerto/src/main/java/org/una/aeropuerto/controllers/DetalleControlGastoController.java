@@ -45,7 +45,7 @@ public class DetalleControlGastoController {
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los detalle de gastos por mantenimento", response = DetalleControlGastoDTO.class, responseContainer = "List", tags = "Detalle de control de gastos por mantenimiento")
     public @ResponseBody
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_GAST_MANT') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
     ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(detalleControlGastoService.findAll(), HttpStatus.OK);
@@ -57,7 +57,7 @@ public class DetalleControlGastoController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un detalle de gasto por mantenimento ", response = DetalleControlGastoDTO.class, tags = "Detalle de control de gastos por mantenimiento")
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_GAST_MANT') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(detalleControlGastoService.findById(id), HttpStatus.OK);
@@ -70,7 +70,7 @@ public class DetalleControlGastoController {
 
     @GetMapping("/tipoServicio/{term}")
     @ApiOperation(value = "Obtiene una lista de datalles de gastos de mantenimento por tipo de servicio", response = DetalleControlGastoDTO.class, responseContainer = "List", tags = "Detalle de control de gastos por mantenimiento")
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_GAST_MANT') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
     public ResponseEntity<?> findByTipoServicio(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(detalleControlGastoService.findByTipoServicio(term), HttpStatus.OK);
@@ -83,7 +83,7 @@ public class DetalleControlGastoController {
     
     @PostMapping("/")
     @ApiOperation(value = "Permite crear un detalle de control de gastos de mantenimiento", response = DetalleControlGastoDTO.class, tags = "Detalle de control de gastos por mantenimiento")
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_GAST_MANT')")
     public ResponseEntity<?> create(@Valid @RequestBody DetalleControlGastoDTO detallecontrolGastoDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -99,7 +99,7 @@ public class DetalleControlGastoController {
     @PutMapping("/{id}")
     @ResponseBody
     @ApiOperation(value = "Modifica un detalle de control de gastos de mantenimiento ", response = DetalleControlGastoDTO.class, tags = "Detalle de control de gastos por mantenimiento")
-    @PreAuthorize("hasRole('ROLE_GESTOR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_GAST_MANT')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody DetalleControlGastoDTO detallecontrolGastoDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {

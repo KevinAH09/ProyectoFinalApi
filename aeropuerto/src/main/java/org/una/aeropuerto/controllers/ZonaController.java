@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +41,7 @@ public class ZonaController {
     
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de la zonas por id", response = ZonaDTO.class, tags = "Zonas")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(ZonaService.findById(id), HttpStatus.OK);
@@ -51,7 +52,7 @@ public class ZonaController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todas las zonas", response = ZonaDTO.class, responseContainer = "List", tags = "Zonas")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR_TODO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -65,7 +66,7 @@ public class ZonaController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_CREAR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> create(@Valid @RequestBody ZonaDTO ZonaDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -80,7 +81,7 @@ public class ZonaController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_MODIFICAR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody ZonaDTO ZonaDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -100,7 +101,7 @@ public class ZonaController {
     
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las zonas por estado", response = ZonaDTO.class, responseContainer = "List", tags = "Zonas")
-    //@PreAuthorize("hasAuthority('USUARIO_INACTIVAR')")
+   @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(ZonaService.findByEstado(term), HttpStatus.OK);
@@ -111,7 +112,7 @@ public class ZonaController {
     
     @GetMapping("/nombre_zona/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las zonas por nombre de la zona", response = ZonaDTO.class, responseContainer = "List", tags = "Zonas")
-    //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByNombreZonaContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(ZonaService.findByNombreZonaContainingIgnoreCase(term), HttpStatus.OK);
@@ -123,7 +124,7 @@ public class ZonaController {
     
     @GetMapping("/codigo/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las zonas por codigo de la zona", response = ZonaDTO.class, responseContainer = "List", tags = "Zonas")
-    //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByCodigo(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(ZonaService.findByCodigo(term), HttpStatus.OK);
