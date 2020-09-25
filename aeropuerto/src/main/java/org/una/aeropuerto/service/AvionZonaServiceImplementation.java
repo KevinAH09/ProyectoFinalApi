@@ -54,8 +54,8 @@ public class AvionZonaServiceImplementation implements IAvionZonaService {
     }
 
     @Override
-    public Optional<List<AvionZonaDTO>> findByAvionId(Long avion) {
-        return (Optional<List<AvionZonaDTO>>) ConversionLista.findList(AvionRepository.findByAvionId(avion),AvionZonaDTO.class);
+    public Optional<List<AvionZonaDTO>> findByAvion(Long avion) {
+        return (Optional<List<AvionZonaDTO>>) ConversionLista.findList(AvionRepository.findByAvion(avion),AvionZonaDTO.class);
     }
 
     @Override

@@ -7,6 +7,7 @@ package org.una.aeropuerto.repositories;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.una.aeropuerto.entities.AvionZona;
 
@@ -16,7 +17,8 @@ import org.una.aeropuerto.entities.AvionZona;
  */
 public interface IAvionZonaRepository extends JpaRepository<AvionZona, Long>{
     
-    public List<AvionZona> findByAvionId(Long avion);
-
+    //@Query("SELECT u FROM Vuelo u LEFT JOIN u.avionId d WHERE  d.id=:id")
+    public List<AvionZona> findByAvion(Long avion);
+    //@Query("SELECT u FROM Vuelo u LEFT JOIN u.avionId d WHERE  d.id=:id")
     public List<AvionZona> findByZonaId(Long zona);
 }

@@ -115,7 +115,7 @@ public class AvionZonaController {
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByAvionId(@PathVariable(value = "id") Long id) {
         try {
-            return new ResponseEntity(AvionZonaService.findByAvionId(id), HttpStatus.OK);
+            return new ResponseEntity(AvionZonaService.findByAvion(id), HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);

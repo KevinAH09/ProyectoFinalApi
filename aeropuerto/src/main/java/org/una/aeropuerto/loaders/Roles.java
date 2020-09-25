@@ -15,6 +15,7 @@ public enum Roles {
     ROL_GERENTE("ROLE_GERENTE"),
     ROL_AUDITOR("ROLE_AUDITOR"),
     ROL_GESTOR("ROLE_GESTOR");
+    
 
     private String codigo;
 
