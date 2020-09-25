@@ -48,11 +48,11 @@ public class AvionZona implements Serializable{
     
     @ManyToOne
     @JoinColumn(name = "zona_id")
-    private BitacoraVuelo zona;
+    private Zona zona;
     
     @ManyToOne
     @JoinColumn(name = "avion_id")
-    private BitacoraVuelo avion;
+    private Avion avion;
     
     private static final long serialVersionUID = 1L;
 

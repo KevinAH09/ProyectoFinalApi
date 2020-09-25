@@ -22,6 +22,6 @@ import lombok.ToString;
 public class AvionZonaDTO {
     private Long id;
     private Date fechaIngreso;
-    private BitacoraVueloDTO zona;
-    private BitacoraVueloDTO avion;
+    private ZonaDTO zona;
+    private AvionDTO avion;
 }

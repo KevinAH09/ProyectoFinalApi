@@ -32,7 +32,7 @@ import org.una.aeropuerto.service.IDetalleControlGastoService;
  */
 @RestController
 @RequestMapping("/Detalle_control_gasto")
-@Api(tags = {"Detalle de control de gastos por mantenimiento"})
+@Api(tags = {"Detalle de control de gastos de mantenimiento"})
 public class DetalleControlGastoController {
     
     
@@ -43,7 +43,7 @@ public class DetalleControlGastoController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todos los detalle de gastos por mantenimento", response = DetalleControlGastoDTO.class, responseContainer = "List", tags = "Detalle de control de gastos por mantenimiento")
+    @ApiOperation(value = "Obtiene una lista de todos los detalle de gastos por mantenimento", response = DetalleControlGastoDTO.class, responseContainer = "List", tags = "Detalle de control de gastos de mantenimiento")
     public @ResponseBody
     @PreAuthorize("hasRole('ROLE_GERENTE_GAST_MANT') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
     ResponseEntity<?> findAll() {
@@ -56,7 +56,7 @@ public class DetalleControlGastoController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene un detalle de gasto por mantenimento ", response = DetalleControlGastoDTO.class, tags = "Detalle de control de gastos por mantenimiento")
+    @ApiOperation(value = "Obtiene un detalle de gasto por mantenimento ", response = DetalleControlGastoDTO.class, tags = "Detalle de control de gastos de mantenimiento")
     @PreAuthorize("hasRole('ROLE_GERENTE_GAST_MANT') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
@@ -69,7 +69,7 @@ public class DetalleControlGastoController {
     
 
     @GetMapping("/tipoServicio/{term}")
-    @ApiOperation(value = "Obtiene una lista de datalles de gastos de mantenimento por tipo de servicio", response = DetalleControlGastoDTO.class, responseContainer = "List", tags = "Detalle de control de gastos por mantenimiento")
+    @ApiOperation(value = "Obtiene una lista de datalles de gastos de mantenimento por tipo de servicio", response = DetalleControlGastoDTO.class, responseContainer = "List", tags = "Detalle de control de gastos de mantenimiento")
     @PreAuthorize("hasRole('ROLE_GERENTE_GAST_MANT') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
     public ResponseEntity<?> findByTipoServicio(@PathVariable(value = "term") String term) {
         try {
@@ -82,7 +82,7 @@ public class DetalleControlGastoController {
 
     
     @PostMapping("/")
-    @ApiOperation(value = "Permite crear un detalle de control de gastos de mantenimiento", response = DetalleControlGastoDTO.class, tags = "Detalle de control de gastos por mantenimiento")
+    @ApiOperation(value = "Permite crear un detalle de control de gastos de mantenimiento", response = DetalleControlGastoDTO.class, tags = "Detalle de control de gastos de mantenimiento")
     @PreAuthorize("hasRole('ROLE_GESTOR_GAST_MANT')")
     public ResponseEntity<?> create(@Valid @RequestBody DetalleControlGastoDTO detallecontrolGastoDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
@@ -98,7 +98,7 @@ public class DetalleControlGastoController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    @ApiOperation(value = "Modifica un detalle de control de gastos de mantenimiento ", response = DetalleControlGastoDTO.class, tags = "Detalle de control de gastos por mantenimiento")
+    @ApiOperation(value = "Modifica un detalle de control de gastos de mantenimiento ", response = DetalleControlGastoDTO.class, tags = "Detalle de control de gastos de mantenimiento")
     @PreAuthorize("hasRole('ROLE_GESTOR_GAST_MANT')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody DetalleControlGastoDTO detallecontrolGastoDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {

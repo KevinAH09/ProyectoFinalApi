@@ -22,7 +22,7 @@ public interface IAvionZonaService {
 
     public Optional<AvionZonaDTO> update(AvionZonaDTO avionZona, Long id);
     
-    public Optional<List<AvionZonaDTO>> findByAvionId(Long avion);
+    public Optional<List<AvionZonaDTO>> findByAvion(Long avion);
     
     public Optional<List<AvionZonaDTO>> findByZonaId(Long zona);
     
