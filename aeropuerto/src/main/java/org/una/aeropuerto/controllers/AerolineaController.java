@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +41,7 @@ public class AerolineaController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de Aerolineas por id", response = AerolineaDTO.class, tags = "Aerolineas")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AerolineaService.findById(id), HttpStatus.OK);
@@ -51,7 +52,7 @@ public class AerolineaController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todas las aerolineas", response = AerolineaDTO.class, responseContainer = "List", tags = "Aerolineas")
-    //@PreAuthorize("hasAuthority('ARCHIVO_CONSULTAR_TODO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -65,7 +66,7 @@ public class AerolineaController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_CREAR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> create(@Valid @RequestBody AerolineaDTO AerolineaDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -80,7 +81,7 @@ public class AerolineaController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    //@PreAuthorize("hasAuthority('ARCHIVO_MODIFICAR')")
+    @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody AerolineaDTO AerolineaDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -100,7 +101,7 @@ public class AerolineaController {
 
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las aerolineas por estado", response = AerolineaDTO.class, responseContainer = "List", tags = "Aerolineas")
-    //@PreAuthorize("hasAuthority('USUARIO_INACTIVAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByEstado(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(AerolineaService.findByEstado(term), HttpStatus.OK);
@@ -111,7 +112,7 @@ public class AerolineaController {
 
     @GetMapping("/nombre_aerolinea/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las aerolineas por nombre de la aerolinea", response = AerolineaDTO.class, responseContainer = "List", tags = "Aerolineas")
-    //@PreAuthorize("hasAuthority('USUARIO_CONSULTAR','USUARIO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByNombreAerolineaContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(AerolineaService.findByNombreAerolineaContainingIgnoreCase(term), HttpStatus.OK);
@@ -121,9 +122,9 @@ public class AerolineaController {
 
     }
     
-    @GetMapping("/nombre_responsable/{value}")//Puede que aqui sea nombreCompleto
+    @GetMapping("/nombre_responsable/{value}")
     @ApiOperation(value = "Obtiene una lista de todas las aerolineas por el nombre del responsable", response = AerolineaDTO.class, responseContainer = "List", tags = "Aerolineas")
-    //@PreAuthorize("hasAuthority('PERMISO_CONSULTAR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByNombreResponsableContainingIgnoreCase(@PathVariable(value = "value") String value) {
         try {
             return new ResponseEntity<>(AerolineaService.findByNombreResponsableContainingIgnoreCase(value), HttpStatus.OK);

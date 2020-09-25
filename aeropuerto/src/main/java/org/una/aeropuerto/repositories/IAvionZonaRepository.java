@@ -17,8 +17,8 @@ import org.una.aeropuerto.entities.AvionZona;
  */
 public interface IAvionZonaRepository extends JpaRepository<AvionZona, Long>{
     
-    //@Query("SELECT u FROM Vuelo u LEFT JOIN u.avionId d WHERE  d.id=:id")
-    public List<AvionZona> findByAvion(Long avion);
-    //@Query("SELECT u FROM Vuelo u LEFT JOIN u.avionId d WHERE  d.id=:id")
-    public List<AvionZona> findByZonaId(Long zona);
+    @Query("SELECT u FROM AvionZona u LEFT JOIN u.avion d WHERE  d.id=:id")
+    public List<AvionZona> findByAvion(Long id);
+    @Query("SELECT u FROM AvionZona u LEFT JOIN u.zona d WHERE  d.id=:id")
+    public List<AvionZona> findByZonaId(Long id);
 }
