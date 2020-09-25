@@ -63,6 +63,7 @@ public class UsuarioServiceImplementation implements IUsuarioService {
     public Optional<UsuarioDTO> update(UsuarioDTO usuario, Long id) {
         if (usuarioRepository.findById(id).isPresent()) {
             Usuario user = MapperUtils.EntityFromDto(usuario, Usuario.class);
+            System.out.println(user.getId());
             user = usuarioRepository.save(user);
             return Optional.ofNullable(MapperUtils.DtoFromEntity(user, UsuarioDTO.class));
         } else {

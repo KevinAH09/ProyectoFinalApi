@@ -102,7 +102,7 @@ public class DataLoader implements ApplicationRunner {
             rolDTO = rolBuscado.get();
         }
 
-        createRoles();
+//        createRoles();
 
     }
     void bucarAreaTrabajo() {
@@ -118,7 +118,7 @@ public class DataLoader implements ApplicationRunner {
             areaTrabajoDTO = areaBuscada.get();
         }
 
-        createAreas();
+//        createAreas();
 
     }
 }
