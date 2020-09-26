@@ -79,6 +79,7 @@ public class DataLoader implements ApplicationRunner {
             rolService.create(nuevoPermiso);
         }
     }
+
     private void createAreas() {
         for (AreasTrabajo are : AreasTrabajo.values()) {
             AreaTrabajoDTO nuevoArea = new AreaTrabajoDTO();
@@ -97,14 +98,13 @@ public class DataLoader implements ApplicationRunner {
             rolDTO.setCodigo(codigo);
             rolDTO.setDescripcion("ROL_GESTOR");
             rolDTO = rolService.create(rolDTO);
-
+            createRoles();
         } else {
             rolDTO = rolBuscado.get();
         }
 
-//        createRoles();
-
     }
+
     void bucarAreaTrabajo() {
         final String nombre = "_RRHH";
         Optional<AreaTrabajoDTO> areaBuscada = areaTrabajoService.findByNombreAreaTrabajo(nombre);
@@ -113,12 +113,10 @@ public class DataLoader implements ApplicationRunner {
             areaTrabajoDTO.setNombreAreaTrabajo(nombre);
             areaTrabajoDTO.setDescripcion("AREA_TRABAJO_GERENTE_RECURSOS_HUMANOS");
             areaTrabajoDTO = areaTrabajoService.create(areaTrabajoDTO);
-
+            createAreas();
         } else {
             areaTrabajoDTO = areaBuscada.get();
         }
-
-//        createAreas();
 
     }
 }
