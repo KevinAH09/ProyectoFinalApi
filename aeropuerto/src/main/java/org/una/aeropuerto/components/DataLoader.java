@@ -111,7 +111,7 @@ public class DataLoader implements ApplicationRunner {
         if (areaBuscada.isEmpty()) {
             areaTrabajoDTO = new AreaTrabajoDTO();
             areaTrabajoDTO.setNombreAreaTrabajo(nombre);
-            areaTrabajoDTO.setDescripcion("AREA_TRABAJO_GERENTE_RECURSOS_HUMANOS");
+            areaTrabajoDTO.setDescripcion("AREA_TRABAJO_RECURSOS_HUMANOS");
             areaTrabajoDTO = areaTrabajoService.create(areaTrabajoDTO);
             createAreas();
         } else {
