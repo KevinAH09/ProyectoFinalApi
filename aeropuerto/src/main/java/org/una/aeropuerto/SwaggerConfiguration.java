@@ -70,7 +70,7 @@ public class SwaggerConfiguration {
                 },
                         new Tag("Vuelos", "Metodos de vuelos") {
                 },
-                        new Tag("Bitacora de vuelos", "Metodos de bitacores de vuelos") {
+                        new Tag("Bitacora de vuelos", "Metodos de bitacoras de vuelos") {
                 },
                         new Tag("Area de trabajo", "Metodos de area de trabajo") {
                 },
