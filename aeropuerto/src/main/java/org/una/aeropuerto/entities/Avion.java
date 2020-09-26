@@ -52,9 +52,6 @@ public class Avion implements Serializable{
     @JoinColumn(name = "aerolinea_id")
     private Aerolinea aerolineaId;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "avionId")
-    private List<Vuelo> vuelo = new ArrayList<>();
-    
     @Column
     private boolean estado;
     

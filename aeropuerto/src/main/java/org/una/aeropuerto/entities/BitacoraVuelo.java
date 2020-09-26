@@ -50,9 +50,6 @@ public class BitacoraVuelo {
     @Column
     private boolean autorizacionTorreControl;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bitacoraVueloId")
-    private List<Vuelo> vuelo = new ArrayList<>();
-    
     private static final long serialVersionUID = 1L;
     
     @PrePersist
