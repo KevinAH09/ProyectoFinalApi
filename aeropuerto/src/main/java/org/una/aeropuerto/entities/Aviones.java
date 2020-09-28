@@ -29,12 +29,12 @@ import lombok.ToString;
  * @author Bosco
  */
 @Entity
-@Table(name = "Avion")
+@Table(name = "Aviones")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Avion implements Serializable{
+public class Aviones implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -50,7 +50,7 @@ public class Avion implements Serializable{
     
     @ManyToOne
     @JoinColumn(name = "aerolinea_id")
-    private Aerolinea aerolineaId;
+    private Aerolineas aerolineaId;
     
     @Column
     private boolean estado;

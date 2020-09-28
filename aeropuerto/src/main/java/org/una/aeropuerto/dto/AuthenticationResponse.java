@@ -22,7 +22,6 @@ import lombok.ToString;
 public class AuthenticationResponse {
 
     private String jwt;
-    private UsuarioDTO usuario;
-//    private List<PermisoOtorgadoDTO> permisos;
+    private UsuariosDTO usuario;
 
 }

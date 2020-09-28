@@ -11,8 +11,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.una.aeropuerto.dto.RegistroAccionDTO;
-import org.una.aeropuerto.entities.RegistroAccion;
+import org.una.aeropuerto.dto.RegistrosAccionesDTO;
+import org.una.aeropuerto.entities.RegistrosAcciones;
 import org.una.aeropuerto.repositories.IRegistroAccionRepository;
 import org.una.aeropuerto.utils.ConversionLista;
 import org.una.aeropuerto.utils.MapperUtils;
@@ -29,31 +29,31 @@ public class RegistroAccionServiceImplementation implements IRegistroAccionServi
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<List<RegistroAccionDTO>> findAll() {
-        return (Optional<List<RegistroAccionDTO>>) ConversionLista.findList(RegistroAccionRepository.findAll(), RegistroAccionDTO.class);
+    public Optional<List<RegistrosAccionesDTO>> findAll() {
+        return (Optional<List<RegistrosAccionesDTO>>) ConversionLista.findList(RegistroAccionRepository.findAll(), RegistrosAccionesDTO.class);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<RegistroAccionDTO> findById(Long id) {
-        return (Optional<RegistroAccionDTO>) ConversionLista.oneToDto(RegistroAccionRepository.findById(id), RegistroAccionDTO.class);
+    public Optional<RegistrosAccionesDTO> findById(Long id) {
+        return (Optional<RegistrosAccionesDTO>) ConversionLista.oneToDto(RegistroAccionRepository.findById(id), RegistrosAccionesDTO.class);
     }
 
     @Override
     @Transactional
-    public RegistroAccionDTO create(RegistroAccionDTO registroAccion) {
-        RegistroAccion user = MapperUtils.EntityFromDto(registroAccion, RegistroAccion.class);
+    public RegistrosAccionesDTO create(RegistrosAccionesDTO registroAccion) {
+        RegistrosAcciones user = MapperUtils.EntityFromDto(registroAccion, RegistrosAcciones.class);
         user = RegistroAccionRepository.save(user);
-        return MapperUtils.DtoFromEntity(user, RegistroAccionDTO.class);
+        return MapperUtils.DtoFromEntity(user, RegistrosAccionesDTO.class);
     }
 
     @Override
     @Transactional
-    public Optional<RegistroAccionDTO> update(RegistroAccionDTO registroAccion, Long id) {
+    public Optional<RegistrosAccionesDTO> update(RegistrosAccionesDTO registroAccion, Long id) {
         if (RegistroAccionRepository.findById(id).isPresent()) {
-            RegistroAccion user = MapperUtils.EntityFromDto(registroAccion, RegistroAccion.class);
+            RegistrosAcciones user = MapperUtils.EntityFromDto(registroAccion, RegistrosAcciones.class);
             user = RegistroAccionRepository.save(user);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, RegistroAccionDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, RegistrosAccionesDTO.class));
         } else {
             return null;
         }
@@ -61,20 +61,20 @@ public class RegistroAccionServiceImplementation implements IRegistroAccionServi
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<List<RegistroAccionDTO>> findByUsuarioId(Long id) {
-        return (Optional<List<RegistroAccionDTO>>) ConversionLista.findList(RegistroAccionRepository.findByUsuarioId(id), RegistroAccionDTO.class);
+    public Optional<List<RegistrosAccionesDTO>> findByUsuarioId(Long id) {
+        return (Optional<List<RegistrosAccionesDTO>>) ConversionLista.findList(RegistroAccionRepository.findByUsuarioId(id), RegistrosAccionesDTO.class);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<List<RegistroAccionDTO>> findByFechaRegistro(Date fecha) {
-        return (Optional<List<RegistroAccionDTO>>)ConversionLista.findList(Optional.ofNullable(RegistroAccionRepository.findByFechaRegistro(fecha)),RegistroAccionDTO.class);
+    public Optional<List<RegistrosAccionesDTO>> findByFechaRegistro(Date fecha) {
+        return (Optional<List<RegistrosAccionesDTO>>)ConversionLista.findList(Optional.ofNullable(RegistroAccionRepository.findByFechaRegistro(fecha)),RegistrosAccionesDTO.class);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<List<RegistroAccionDTO>> findByFechaRegistroBetween(Date startDate, Date endDate) {
-        return (Optional<List<RegistroAccionDTO>>)ConversionLista.findList(Optional.ofNullable(RegistroAccionRepository.findByFechaRegistroBetween(startDate, endDate)),RegistroAccionDTO.class);
+    public Optional<List<RegistrosAccionesDTO>> findByFechaRegistroBetween(Date startDate, Date endDate) {
+        return (Optional<List<RegistrosAccionesDTO>>)ConversionLista.findList(Optional.ofNullable(RegistroAccionRepository.findByFechaRegistroBetween(startDate, endDate)),RegistrosAccionesDTO.class);
     }
 
 }

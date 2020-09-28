@@ -9,21 +9,21 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.una.aeropuerto.entities.Avion;
+import org.una.aeropuerto.entities.Aviones;
 
 /**
  *
  * @author Bosco
  */
-public interface IAvionRepository extends JpaRepository<Avion, Long>{
+public interface IAvionRepository extends JpaRepository<Aviones, Long>{
     
-    public List<Avion> findByEstadoContaining(boolean estado);
+    public List<Aviones> findByEstadoContaining(boolean estado);
     
-    public List<Avion> findByMatriculaContainingIgnoreCase(@Param("Matricula") String matricula);
+    public List<Aviones> findByMatriculaContainingIgnoreCase(@Param("Matricula") String matricula);
 
-    public List<Avion> findBytipoAvionContainingIgnoreCase(@Param("tipoAvion") String tipoAvion);
+    public List<Aviones> findBytipoAvionContainingIgnoreCase(@Param("tipoAviones") String tipoAviones);
     
-    @Query("SELECT u FROM Avion u LEFT JOIN u.aerolineaId d WHERE  d.id=:id")
-    public List<Avion> findByAerolineaId(Long id);
+    @Query("SELECT u FROM Aviones u LEFT JOIN u.aerolineaId d WHERE  d.id=:id")
+    public List<Aviones> findByAerolineaId(Long id);
     
 }

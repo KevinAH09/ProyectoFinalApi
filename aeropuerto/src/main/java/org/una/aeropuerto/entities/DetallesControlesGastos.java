@@ -29,12 +29,12 @@ import lombok.ToString;
  * @author colo7
  */
 @Entity
-@Table(name = "Detalle_control_gasto")
+@Table(name = "Detalles_controles_gastos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class DetalleControlGasto {
+public class DetallesControlesGastos {
     
     private static final long serialVersionUID = 1L;
 
@@ -54,6 +54,15 @@ public class DetalleControlGasto {
     @Column
     private Long periodicidad;
     
+    @Column(length = 50)
+    private String estado;
+    
+    @Column(length = 50,name="estado_pago")
+    private String estadoPago;
+    
+    @ManyToOne
+    @JoinColumn(name = "area_trabajo_id")
+    private AreasTrabajos areaTrabajoId;
     
   
     

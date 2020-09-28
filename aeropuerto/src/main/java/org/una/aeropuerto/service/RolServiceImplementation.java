@@ -10,8 +10,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.una.aeropuerto.dto.RolDTO;
-import org.una.aeropuerto.entities.Rol;
+import org.una.aeropuerto.dto.RolesDTO;
+import org.una.aeropuerto.entities.Roles;
 import org.una.aeropuerto.repositories.IRolRepository;
 import org.una.aeropuerto.utils.ConversionLista;
 import org.una.aeropuerto.utils.MapperUtils;
@@ -28,31 +28,31 @@ public class RolServiceImplementation implements IRolService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<List<RolDTO>> findAll() {
-        return (Optional<List<RolDTO>>) ConversionLista.findList((RolRepository.findAll()), RolDTO.class);
+    public Optional<List<RolesDTO>> findAll() {
+        return (Optional<List<RolesDTO>>) ConversionLista.findList((RolRepository.findAll()), RolesDTO.class);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<RolDTO> findById(Long id) {
-        return (Optional<RolDTO>) ConversionLista.oneToDto(RolRepository.findById(id), RolDTO.class);
+    public Optional<RolesDTO> findById(Long id) {
+        return (Optional<RolesDTO>) ConversionLista.oneToDto(RolRepository.findById(id), RolesDTO.class);
     }
 
     @Override
     @Transactional
-    public RolDTO create(RolDTO rol) {
-        Rol user = MapperUtils.EntityFromDto(rol, Rol.class);
+    public RolesDTO create(RolesDTO rol) {
+        Roles user = MapperUtils.EntityFromDto(rol, Roles.class);
         user = RolRepository.save(user);
-        return MapperUtils.DtoFromEntity(user, RolDTO.class);
+        return MapperUtils.DtoFromEntity(user, RolesDTO.class);
     }
 
     @Override
     @Transactional
-    public Optional<RolDTO> update(RolDTO rol, Long id) {
+    public Optional<RolesDTO> update(RolesDTO rol, Long id) {
         if (RolRepository.findById(id).isPresent()) {
-            Rol user = MapperUtils.EntityFromDto(rol, Rol.class);
+            Roles user = MapperUtils.EntityFromDto(rol, Roles.class);
             user = RolRepository.save(user);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, RolDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, RolesDTO.class));
         } else {
             return null;
         }
@@ -60,14 +60,14 @@ public class RolServiceImplementation implements IRolService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<List<RolDTO>> findByEstado(boolean estado) {
-        return (Optional<List<RolDTO>>) ConversionLista.findList(Optional.ofNullable(RolRepository.findByEstado(estado)), RolDTO.class);
+    public Optional<List<RolesDTO>> findByEstado(boolean estado) {
+        return (Optional<List<RolesDTO>>) ConversionLista.findList(Optional.ofNullable(RolRepository.findByEstado(estado)), RolesDTO.class);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<RolDTO> findByCodigo(String codigo) {
-        return (Optional<RolDTO>) ConversionLista.oneToDto(Optional.ofNullable(RolRepository.findByCodigo(codigo)), RolDTO.class);
+    public Optional<RolesDTO> findByCodigo(String codigo) {
+        return (Optional<RolesDTO>) ConversionLista.oneToDto(Optional.ofNullable(RolRepository.findByCodigo(codigo)), RolesDTO.class);
     }
 
 }

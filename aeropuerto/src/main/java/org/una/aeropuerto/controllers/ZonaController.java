@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.una.aeropuerto.dto.ZonaDTO;
+import org.una.aeropuerto.dto.ZonasDTO;
 import org.una.aeropuerto.service.IZonaService;
 
 /**
@@ -40,7 +40,7 @@ public class ZonaController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
     
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene una lista de la zonas por id", response = ZonaDTO.class, tags = "Zonas")
+    @ApiOperation(value = "Obtiene una lista de la zonas por id", response = ZonasDTO.class, tags = "Zonas")
     @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
@@ -51,7 +51,7 @@ public class ZonaController {
     }
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todas las zonas", response = ZonaDTO.class, responseContainer = "List", tags = "Zonas")
+    @ApiOperation(value = "Obtiene una lista de todas las zonas", response = ZonasDTO.class, responseContainer = "List", tags = "Zonas")
     @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
@@ -67,10 +67,10 @@ public class ZonaController {
     @PostMapping("/")
     @ResponseBody
     @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
-    public ResponseEntity<?> create(@Valid @RequestBody ZonaDTO ZonaDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> create(@Valid @RequestBody ZonasDTO ZonasDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                return new ResponseEntity(ZonaService.create(ZonaDTO), HttpStatus.CREATED);
+                return new ResponseEntity(ZonaService.create(ZonasDTO), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -82,10 +82,10 @@ public class ZonaController {
     @PutMapping("/{id}")
     @ResponseBody
     @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
-    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody ZonaDTO ZonaDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody ZonasDTO ZonasDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                Optional<ZonaDTO> ZonaUpdated = ZonaService.update(ZonaDTO, id);
+                Optional<ZonasDTO> ZonaUpdated = ZonaService.update(ZonasDTO, id);
                 if (ZonaUpdated.isPresent()) {
                     return new ResponseEntity(ZonaUpdated, HttpStatus.OK);
                 } else {
@@ -100,7 +100,7 @@ public class ZonaController {
     }
     
     @GetMapping("/estado/{term}")
-    @ApiOperation(value = "Obtiene una lista de todas las zonas por estado", response = ZonaDTO.class, responseContainer = "List", tags = "Zonas")
+    @ApiOperation(value = "Obtiene una lista de todas las zonas por estado", response = ZonasDTO.class, responseContainer = "List", tags = "Zonas")
    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
@@ -111,7 +111,7 @@ public class ZonaController {
     }
     
     @GetMapping("/nombre_zona/{term}")
-    @ApiOperation(value = "Obtiene una lista de todas las zonas por nombre de la zona", response = ZonaDTO.class, responseContainer = "List", tags = "Zonas")
+    @ApiOperation(value = "Obtiene una lista de todas las zonas por nombre de la zona", response = ZonasDTO.class, responseContainer = "List", tags = "Zonas")
     @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByNombreZonaContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
@@ -123,7 +123,7 @@ public class ZonaController {
     }
     
     @GetMapping("/codigo/{term}")
-    @ApiOperation(value = "Obtiene una lista de todas las zonas por codigo de la zona", response = ZonaDTO.class, responseContainer = "List", tags = "Zonas")
+    @ApiOperation(value = "Obtiene una lista de todas las zonas por codigo de la zona", response = ZonasDTO.class, responseContainer = "List", tags = "Zonas")
     @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByCodigo(@PathVariable(value = "term") String term) {
         try {

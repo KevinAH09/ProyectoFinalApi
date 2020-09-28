@@ -9,28 +9,27 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.una.aeropuerto.entities.BitacoraVuelo;
-import org.una.aeropuerto.entities.Vuelo;
+import org.una.aeropuerto.entities.Vuelos;
 
 /**
  *
  * @author Bosco
  */
-public interface IVueloRepository extends JpaRepository<Vuelo, Long>{
+public interface IVueloRepository extends JpaRepository<Vuelos, Long>{
     
-    public List<Vuelo> findByEstado(boolean estado);
+    public List<Vuelos> findByEstado(boolean estado);
     
-    public List<Vuelo> findByDestino(@Param("destino") String destino);
+    public List<Vuelos> findByDestino(@Param("destino") String destino);
     
-    public List<Vuelo> findByOrigen(@Param("origen") String origen);
+    public List<Vuelos> findByOrigen(@Param("origen") String origen);
     
-    @Query("SELECT u FROM Vuelo u LEFT JOIN u.avionId d WHERE  d.id=:id")
-    public List<Vuelo> findByAvionId(Long id);
+    @Query("SELECT u FROM Vuelos u LEFT JOIN u.avionId d WHERE  d.id=:id")
+    public List<Vuelos> findByAvionId(Long id);
     
-    @Query("SELECT u FROM Vuelo u LEFT JOIN u.bitacoraVueloId d WHERE  d.id=:id")
-    public List<Vuelo> findBybitacoraVueloId(Long id);
+    @Query("SELECT u FROM Vuelos u LEFT JOIN u.bitacoraVueloId d WHERE  d.id=:id")
+    public List<Vuelos> findBybitacoraVueloId(Long id);
     
     
 
-//    public List<Vuelo> findByZonaId(@Param("zona") Long zona);
+//    public List<Vuelos> findByZonaId(@Param("zona") Long zona);
 }

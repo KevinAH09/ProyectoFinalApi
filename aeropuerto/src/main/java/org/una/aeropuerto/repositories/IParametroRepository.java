@@ -9,25 +9,24 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
-import org.una.aeropuerto.entities.Avion;
-import org.una.aeropuerto.entities.Parametro;
+import org.una.aeropuerto.entities.Parametros;
 
 /**
  *
  * @author Bosco
  */
-public interface IParametroRepository extends JpaRepository<Parametro, Long>{
+public interface IParametroRepository extends JpaRepository<Parametros, Long>{
     
-    public List<Parametro> findByEstado(boolean estado);
+    public List<Parametros> findByEstado(boolean estado);
 
 
-    public List<Parametro> findByNombreParametro(@Param("nombreParametro") String nombreParametro);
+    public List<Parametros> findByNombreParametro(@Param("nombreParametros") String nombreParametros);
 
-    //public List<Parametro> findByNombreValor(@Param("valor") String valor);
+    //public List<Parametros> findByNombreValor(@Param("valor") String valor);
 
-    //public Parametro findByCedula(@Param("cedula") String cedula);
+    //public Parametros findByCedula(@Param("cedula") String cedula);
     
-    //public List<Parametro> findByFechaRegistro(Date fechaRegistro);//arreglar
+    //public List<Parametros> findByFechaRegistro(Date fechaRegistro);//arreglar
 
     
     

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.una.aeropuerto.dto.ParametroDTO;
-import org.una.aeropuerto.entities.Parametro;
+import org.una.aeropuerto.dto.ParametrosDTO;
+import org.una.aeropuerto.entities.Parametros;
 import org.una.aeropuerto.repositories.IParametroRepository;
 import org.una.aeropuerto.utils.ConversionLista;
 import org.una.aeropuerto.utils.MapperUtils;
@@ -26,40 +26,40 @@ public class ParametroServiceImplementation implements IParametroService {
     private IParametroRepository ParametroRepository;
 
     @Override
-    public Optional<List<ParametroDTO>> findAll() {
-        return (Optional<List<ParametroDTO>>) ConversionLista.findList((ParametroRepository.findAll()), ParametroDTO.class);
+    public Optional<List<ParametrosDTO>> findAll() {
+        return (Optional<List<ParametrosDTO>>) ConversionLista.findList((ParametroRepository.findAll()), ParametrosDTO.class);
     }
 
     @Override
-    public Optional<ParametroDTO> findById(Long id) {
-        return (Optional<ParametroDTO>) ConversionLista.oneToDto(ParametroRepository.findById(id), ParametroDTO.class);
+    public Optional<ParametrosDTO> findById(Long id) {
+        return (Optional<ParametrosDTO>) ConversionLista.oneToDto(ParametroRepository.findById(id), ParametrosDTO.class);
     }
 
     @Override
-    public ParametroDTO create(ParametroDTO parametro) {
-        Parametro user = MapperUtils.EntityFromDto(parametro, Parametro.class);
+    public ParametrosDTO create(ParametrosDTO parametro) {
+        Parametros user = MapperUtils.EntityFromDto(parametro, Parametros.class);
         user = ParametroRepository.save(user);
-        return MapperUtils.DtoFromEntity(user, ParametroDTO.class);
+        return MapperUtils.DtoFromEntity(user, ParametrosDTO.class);
     }
 
     @Override
-    public Optional<ParametroDTO> update(ParametroDTO parametro, Long id) {
+    public Optional<ParametrosDTO> update(ParametrosDTO parametro, Long id) {
 if (ParametroRepository.findById(id).isPresent()) {
-            Parametro user = MapperUtils.EntityFromDto(parametro, Parametro.class);
+            Parametros user = MapperUtils.EntityFromDto(parametro, Parametros.class);
             user = ParametroRepository.save(user);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, ParametroDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, ParametrosDTO.class));
         } else {
             return null;
         }    }
 
     @Override
-    public Optional<List<ParametroDTO>> findByEstado(boolean estado) {
-        return (Optional<List<ParametroDTO>>)ConversionLista.findList(Optional.ofNullable(ParametroRepository.findByEstado(estado)),ParametroDTO.class);
+    public Optional<List<ParametrosDTO>> findByEstado(boolean estado) {
+        return (Optional<List<ParametrosDTO>>)ConversionLista.findList(Optional.ofNullable(ParametroRepository.findByEstado(estado)),ParametrosDTO.class);
     }
 
     @Override
-    public Optional<List<ParametroDTO>> findByNombreParametro(String nombreParametro) {
-        return (Optional<List<ParametroDTO>>) ConversionLista.findList(ParametroRepository.findByNombreParametro(nombreParametro),ParametroDTO.class);
+    public Optional<List<ParametrosDTO>> findByNombreParametro(String nombreParametro) {
+        return (Optional<List<ParametrosDTO>>) ConversionLista.findList(ParametroRepository.findByNombreParametro(nombreParametro),ParametrosDTO.class);
     }
 
 }

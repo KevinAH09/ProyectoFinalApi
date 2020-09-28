@@ -7,7 +7,7 @@ package org.una.aeropuerto.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.aeropuerto.dto.AreaTrabajoDTO;
+import org.una.aeropuerto.dto.AreasTrabajosDTO;
 
 /**
  *
@@ -15,19 +15,19 @@ import org.una.aeropuerto.dto.AreaTrabajoDTO;
  */
 public interface IAreaTrabajoService {
     
-    public Optional<List<AreaTrabajoDTO>> findAll();
+    public Optional<List<AreasTrabajosDTO>> findAll();
 
-    public Optional<AreaTrabajoDTO> findById(Long id);
+    public Optional<AreasTrabajosDTO> findById(Long id);
     
-    public Optional<List<AreaTrabajoDTO>> findByEstado(boolean estado);
+    public Optional<List<AreasTrabajosDTO>> findByEstado(boolean estado);
     
-    public Optional<List<AreaTrabajoDTO>> findByNombreAreaTrabajoContainingIgnoreCase(String nombreAreaTrabajo);
+    public Optional<List<AreasTrabajosDTO>> findByNombreAreaTrabajoContainingIgnoreCase(String nombreAreaTrabajo);
     
-    public Optional<AreaTrabajoDTO> findByNombreAreaTrabajo(String nombreAreaTrabajo);
+    public Optional<AreasTrabajosDTO> findByNombreAreaTrabajo(String nombreAreaTrabajo);
     
-    public AreaTrabajoDTO create(AreaTrabajoDTO areaTrabajo);
+    public AreasTrabajosDTO create(AreasTrabajosDTO areaTrabajo);
 
-    public Optional<AreaTrabajoDTO> update(AreaTrabajoDTO areaTrabajo, Long id);
+    public Optional<AreasTrabajosDTO> update(AreasTrabajosDTO areaTrabajo, Long id);
 
 //    public void delete(Long id);
 //

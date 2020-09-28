@@ -19,9 +19,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AvionZonaDTO {
+public class VuelosDTO {
     private Long id;
-    private Date fechaIngreso;
-    private ZonaDTO zona;
-    private AvionDTO avion;
+    private String origen;
+    private String destino;
+    private Date fechaInicio;
+    private Date fechaFinal;
+    private boolean estado;
+    private AvionesDTO avionId;
+    private BitacorasVuelosDTO bitacoraVueloId;
 }

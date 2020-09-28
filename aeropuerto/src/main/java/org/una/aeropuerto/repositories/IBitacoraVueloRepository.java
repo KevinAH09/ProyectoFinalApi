@@ -8,23 +8,22 @@ package org.una.aeropuerto.repositories;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
-import org.una.aeropuerto.entities.AvionZona;
-import org.una.aeropuerto.entities.BitacoraVuelo;
+import org.una.aeropuerto.entities.BitacorasVuelos;
 
 /**
  *
  * @author Bosco
  */
-public interface IBitacoraVueloRepository extends JpaRepository<BitacoraVuelo, Long>{
+public interface IBitacoraVueloRepository extends JpaRepository<BitacorasVuelos, Long>{
     
-    public List<BitacoraVuelo> findByTipoBitacoraContainingIgnoreCase(@Param("TipoBitacora") String tipoBitacora);
+    public List<BitacorasVuelos> findByTipoBitacoraContainingIgnoreCase(@Param("TipoBitacora") String tipoBitacora);
     
-    public List<BitacoraVuelo> findByCargaPasajero(boolean cargaPasajero);
+    public List<BitacorasVuelos> findByCargaPasajero(boolean cargaPasajero);
     
-    public List<BitacoraVuelo> findByCargaCombustible(boolean cargaCombustible);
+    public List<BitacorasVuelos> findByCargaCombustible(boolean cargaCombustible);
     
-    public List<BitacoraVuelo> findByZonaDescarga(boolean zonaDescarga);
+    public List<BitacorasVuelos> findByZonaDescarga(boolean zonaDescarga);
     
-    public List<BitacoraVuelo> findByAutorizacionTorreControl(boolean autorizacionTorreControl);
+    public List<BitacorasVuelos> findByAutorizacionTorreControl(boolean autorizacionTorreControl);
     
 }

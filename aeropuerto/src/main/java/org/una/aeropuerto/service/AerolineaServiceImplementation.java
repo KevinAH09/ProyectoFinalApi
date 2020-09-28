@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.una.aeropuerto.dto.AerolineaDTO;
-import org.una.aeropuerto.entities.Aerolinea;
+import org.una.aeropuerto.dto.AerolineasDTO;
+import org.una.aeropuerto.entities.Aerolineas;
 import org.una.aeropuerto.repositories.IAerolineaRepository;
 import org.una.aeropuerto.utils.ConversionLista;
 import org.una.aeropuerto.utils.MapperUtils;
@@ -26,45 +26,45 @@ public class AerolineaServiceImplementation implements IAerolineaService {
     private IAerolineaRepository aerolineaRepository;
 
     @Override
-    public Optional<List<AerolineaDTO>> findAll() {
-        return (Optional<List<AerolineaDTO>>) ConversionLista.findList((aerolineaRepository.findAll()), AerolineaDTO.class);
+    public Optional<List<AerolineasDTO>> findAll() {
+        return (Optional<List<AerolineasDTO>>) ConversionLista.findList((aerolineaRepository.findAll()), AerolineasDTO.class);
     }
 
     @Override
-    public Optional<AerolineaDTO> findById(Long id) {
-        return (Optional<AerolineaDTO>) ConversionLista.oneToDto(aerolineaRepository.findById(id), AerolineaDTO.class);
+    public Optional<AerolineasDTO> findById(Long id) {
+        return (Optional<AerolineasDTO>) ConversionLista.oneToDto(aerolineaRepository.findById(id), AerolineasDTO.class);
     }
 
     @Override
-    public Optional<List<AerolineaDTO>> findByEstado(boolean estado) {
-        return (Optional<List<AerolineaDTO>>) ConversionLista.findList(Optional.ofNullable(aerolineaRepository.findByEstado(estado)), AerolineaDTO.class);
-
-    }
-
-    @Override
-    public Optional<List<AerolineaDTO>> findByNombreAerolineaContainingIgnoreCase(String nombreAerolinea) {
-        return (Optional<List<AerolineaDTO>>) ConversionLista.findList(aerolineaRepository.findByNombreAerolineaContainingIgnoreCase(nombreAerolinea), AerolineaDTO.class);
+    public Optional<List<AerolineasDTO>> findByEstado(boolean estado) {
+        return (Optional<List<AerolineasDTO>>) ConversionLista.findList(Optional.ofNullable(aerolineaRepository.findByEstado(estado)), AerolineasDTO.class);
 
     }
 
     @Override
-    public Optional<List<AerolineaDTO>> findByNombreResponsableContainingIgnoreCase(String nombreResponsable) {
-        return (Optional<List<AerolineaDTO>>) ConversionLista.findList(aerolineaRepository.findByNombreResponsableContainingIgnoreCase(nombreResponsable), AerolineaDTO.class);
+    public Optional<List<AerolineasDTO>> findByNombreAerolineaContainingIgnoreCase(String nombreAerolinea) {
+        return (Optional<List<AerolineasDTO>>) ConversionLista.findList(aerolineaRepository.findByNombreAerolineaContainingIgnoreCase(nombreAerolinea), AerolineasDTO.class);
+
     }
 
     @Override
-    public AerolineaDTO create(AerolineaDTO aerolinea) {
-        Aerolinea user = MapperUtils.EntityFromDto(aerolinea, Aerolinea.class);
+    public Optional<List<AerolineasDTO>> findByNombreResponsableContainingIgnoreCase(String nombreResponsable) {
+        return (Optional<List<AerolineasDTO>>) ConversionLista.findList(aerolineaRepository.findByNombreResponsableContainingIgnoreCase(nombreResponsable), AerolineasDTO.class);
+    }
+
+    @Override
+    public AerolineasDTO create(AerolineasDTO aerolinea) {
+        Aerolineas user = MapperUtils.EntityFromDto(aerolinea, Aerolineas.class);
         user = aerolineaRepository.save(user);
-        return MapperUtils.DtoFromEntity(user, AerolineaDTO.class);
+        return MapperUtils.DtoFromEntity(user, AerolineasDTO.class);
     }
 
     @Override
-    public Optional<AerolineaDTO> update(AerolineaDTO aerolinea, Long id) {
+    public Optional<AerolineasDTO> update(AerolineasDTO aerolinea, Long id) {
         if (aerolineaRepository.findById(id).isPresent()) {
-            Aerolinea user = MapperUtils.EntityFromDto(aerolinea, Aerolinea.class);
+            Aerolineas user = MapperUtils.EntityFromDto(aerolinea, Aerolineas.class);
             user = aerolineaRepository.save(user);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, AerolineaDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, AerolineasDTO.class));
         } else {
             return null;
         }

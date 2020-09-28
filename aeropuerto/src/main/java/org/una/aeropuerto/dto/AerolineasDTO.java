@@ -5,8 +5,6 @@
  */
 package org.una.aeropuerto.dto;
 
-import org.una.aeropuerto.entities.*;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,26 +12,15 @@ import lombok.ToString;
 
 /**
  *
- * @author colo7
+ * @author Bosco
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
-public class UsuarioDTO {
-
+public class AerolineasDTO {
     private Long id;
-    private String nombreCompleto;
-    private String contrasenaEncriptada;
-    private String cedula;
-    private String correo;
+    private String nombreAerolinea;
+    private String nombreResponsable;
     private boolean estado;
-    private Rol rolId;
-    private AreaTrabajo areaTrabajoId;
-    private Date fechaRegistro;
-    private boolean jefeId;
-
-    
-    
 }
-

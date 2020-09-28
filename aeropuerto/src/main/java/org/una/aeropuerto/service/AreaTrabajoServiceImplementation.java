@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.una.aeropuerto.dto.AreaTrabajoDTO;
-import org.una.aeropuerto.entities.AreaTrabajo;
+import org.una.aeropuerto.dto.AreasTrabajosDTO;
+import org.una.aeropuerto.entities.AreasTrabajos;
 import org.una.aeropuerto.repositories.IAreaTrabajoRepository;
 import org.una.aeropuerto.utils.ConversionLista;
 import org.una.aeropuerto.utils.MapperUtils;
@@ -26,46 +26,46 @@ public class AreaTrabajoServiceImplementation implements IAreaTrabajoService {
     private IAreaTrabajoRepository AreaTrabajoRepository;
 
     @Override
-    public Optional<List<AreaTrabajoDTO>> findAll() {
-        return (Optional<List<AreaTrabajoDTO>>) ConversionLista.findList((AreaTrabajoRepository.findAll()), AreaTrabajoDTO.class);
+    public Optional<List<AreasTrabajosDTO>> findAll() {
+        return (Optional<List<AreasTrabajosDTO>>) ConversionLista.findList((AreaTrabajoRepository.findAll()), AreasTrabajosDTO.class);
     }
 
     @Override
-    public Optional<AreaTrabajoDTO> findById(Long id) {
-        return (Optional<AreaTrabajoDTO>) ConversionLista.oneToDto(AreaTrabajoRepository.findById(id), AreaTrabajoDTO.class);
+    public Optional<AreasTrabajosDTO> findById(Long id) {
+        return (Optional<AreasTrabajosDTO>) ConversionLista.oneToDto(AreaTrabajoRepository.findById(id), AreasTrabajosDTO.class);
     }
 
     @Override
-    public Optional<List<AreaTrabajoDTO>> findByEstado(boolean estado) {
-        return (Optional<List<AreaTrabajoDTO>>) ConversionLista.findList(AreaTrabajoRepository.findByEstado(estado), AreaTrabajoDTO.class);
+    public Optional<List<AreasTrabajosDTO>> findByEstado(boolean estado) {
+        return (Optional<List<AreasTrabajosDTO>>) ConversionLista.findList(AreaTrabajoRepository.findByEstado(estado), AreasTrabajosDTO.class);
     }
 
     @Override
-    public Optional<List<AreaTrabajoDTO>> findByNombreAreaTrabajoContainingIgnoreCase(String nombreAreaTrabajo) {
-        return (Optional<List<AreaTrabajoDTO>>) ConversionLista.findList(AreaTrabajoRepository.findByNombreAreaTrabajoContainingIgnoreCase(nombreAreaTrabajo), AreaTrabajoDTO.class);
+    public Optional<List<AreasTrabajosDTO>> findByNombreAreaTrabajoContainingIgnoreCase(String nombreAreaTrabajo) {
+        return (Optional<List<AreasTrabajosDTO>>) ConversionLista.findList(AreaTrabajoRepository.findByNombreAreaTrabajoContainingIgnoreCase(nombreAreaTrabajo), AreasTrabajosDTO.class);
     }
 
     @Override
-    public AreaTrabajoDTO create(AreaTrabajoDTO areaTrabajo) {
-        AreaTrabajo user = MapperUtils.EntityFromDto(areaTrabajo, AreaTrabajo.class);
+    public AreasTrabajosDTO create(AreasTrabajosDTO areaTrabajo) {
+        AreasTrabajos user = MapperUtils.EntityFromDto(areaTrabajo, AreasTrabajos.class);
         user = AreaTrabajoRepository.save(user);
-        return MapperUtils.DtoFromEntity(user, AreaTrabajoDTO.class);
+        return MapperUtils.DtoFromEntity(user, AreasTrabajosDTO.class);
     }
 
     @Override
-    public Optional<AreaTrabajoDTO> update(AreaTrabajoDTO areaTrabajo, Long id) {
+    public Optional<AreasTrabajosDTO> update(AreasTrabajosDTO areaTrabajo, Long id) {
         if (AreaTrabajoRepository.findById(id).isPresent()) {
-            AreaTrabajo user = MapperUtils.EntityFromDto(areaTrabajo, AreaTrabajo.class);
+            AreasTrabajos user = MapperUtils.EntityFromDto(areaTrabajo, AreasTrabajos.class);
             user = AreaTrabajoRepository.save(user);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, AreaTrabajoDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, AreasTrabajosDTO.class));
         } else {
             return null;
         }
     }
 
     @Override
-    public Optional<AreaTrabajoDTO> findByNombreAreaTrabajo(String nombreAreaTrabajo) {
-        return (Optional<AreaTrabajoDTO>) ConversionLista.oneToDto(Optional.ofNullable(AreaTrabajoRepository.findByNombreAreaTrabajo(nombreAreaTrabajo)), AreaTrabajoDTO.class);
+    public Optional<AreasTrabajosDTO> findByNombreAreaTrabajo(String nombreAreaTrabajo) {
+        return (Optional<AreasTrabajosDTO>) ConversionLista.oneToDto(Optional.ofNullable(AreaTrabajoRepository.findByNombreAreaTrabajo(nombreAreaTrabajo)), AreasTrabajosDTO.class);
     }
 
 }

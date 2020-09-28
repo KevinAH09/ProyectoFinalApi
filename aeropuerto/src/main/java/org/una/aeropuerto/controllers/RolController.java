@@ -23,8 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.una.aeropuerto.dto.RolDTO;
-import org.una.aeropuerto.dto.UsuarioDTO;
+import org.una.aeropuerto.dto.RolesDTO;
 import org.una.aeropuerto.service.IRolService;
 import org.una.aeropuerto.service.IUsuarioService;
 
@@ -43,7 +42,7 @@ public class RolController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todos los Roles", response = RolDTO.class, responseContainer = "List", tags = "Roles")
+    @ApiOperation(value = "Obtiene una lista de todos los Roles", response = RolesDTO.class, responseContainer = "List", tags = "Roles")
     public @ResponseBody
     @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
     ResponseEntity<?> findAll() {
@@ -56,7 +55,7 @@ public class RolController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene un Rol", response = RolDTO.class, tags = "Roles")
+    @ApiOperation(value = "Obtiene un Rol", response = RolesDTO.class, tags = "Roles")
     @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
@@ -68,7 +67,7 @@ public class RolController {
     }
 
     @GetMapping("/codigo/{codigo}")
-    @ApiOperation(value = "Obtiene un Rol por codigo", response = RolDTO.class, tags = "Roles")
+    @ApiOperation(value = "Obtiene un Rol por codigo", response = RolesDTO.class, tags = "Roles")
     @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findByCodigo(@PathVariable(value = "codigo") String codigo) {
         try {
@@ -80,7 +79,7 @@ public class RolController {
     }
 
     @GetMapping("/estado/{term}")
-    @ApiOperation(value = "Obtiene una lista de todos los roles por estado", response = RolDTO.class, responseContainer = "List", tags = "Roles")
+    @ApiOperation(value = "Obtiene una lista de todos los roles por estado", response = RolesDTO.class, responseContainer = "List", tags = "Roles")
     @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findByEstado(@PathVariable(value = "term") boolean term) {
         try {
@@ -91,12 +90,12 @@ public class RolController {
     }
 
     @PostMapping("/")
-    @ApiOperation(value = "Permite crear un rol", response = RolDTO.class, tags = "Roles")
+    @ApiOperation(value = "Permite crear un rol", response = RolesDTO.class, tags = "Roles")
     @PreAuthorize("hasRole('ROLE_GESTOR_RRHH')")
-    public ResponseEntity<?> create(@Valid @RequestBody RolDTO rolDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> create(@Valid @RequestBody RolesDTO rolesDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                return new ResponseEntity(rolService.create(rolDTO), HttpStatus.CREATED);
+                return new ResponseEntity(rolService.create(rolesDTO), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -107,12 +106,12 @@ public class RolController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    @ApiOperation(value = "Modifica un rol", response = RolDTO.class, tags = "Roles")
+    @ApiOperation(value = "Modifica un rol", response = RolesDTO.class, tags = "Roles")
     @PreAuthorize("hasRole('ROLE_GESTOR_RRHH')")
-    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody RolDTO rolDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody RolesDTO rolesDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                Optional<RolDTO> rolUpdated = rolService.update(rolDTO, id);
+                Optional<RolesDTO> rolUpdated = rolService.update(rolesDTO, id);
                 if (rolUpdated.isPresent()) {
                     return new ResponseEntity(rolUpdated, HttpStatus.OK);
                 } else {

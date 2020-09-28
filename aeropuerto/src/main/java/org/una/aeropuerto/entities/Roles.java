@@ -5,15 +5,12 @@
  */
 package org.una.aeropuerto.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,42 +20,37 @@ import lombok.ToString;
 
 /**
  *
- * @author Bosco
+ * @author colo7
  */
 @Entity
-@Table(name = "Bitacora_vuelo")
+@Table(name = "Roles")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class BitacoraVuelo {
+public class Roles implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "tipo_bitacora", length = 50)
-    private String tipoBitacora;
+    @Column(name = "codigo", length = 50)
+    private String codigo;
+
+    @Column(length = 150)
+    private String descripcion;
+
+    @Column
+    private boolean estado;
     
-    @Column
-    private boolean cargaPasajero;
-    @Column
-    private boolean cargaCombustible;
-    @Column
-    private boolean horasVuelo;
-    @Column
-    private boolean zonaDescarga;
-    @Column
-    private boolean autorizacionTorreControl;
     
-    private static final long serialVersionUID = 1L;
-    
-    @PrePersist
+     @PrePersist
     public void prePersist() {
-        cargaPasajero = true;
-        cargaCombustible = true;
-        horasVuelo = true;
-        zonaDescarga = true;
-        autorizacionTorreControl = true;
+        estado = true;
     }
+    
     
 }

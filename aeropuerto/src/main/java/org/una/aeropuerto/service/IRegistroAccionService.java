@@ -8,7 +8,7 @@ package org.una.aeropuerto.service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import org.una.aeropuerto.dto.RegistroAccionDTO;
+import org.una.aeropuerto.dto.RegistrosAccionesDTO;
 
 /**
  *
@@ -16,17 +16,17 @@ import org.una.aeropuerto.dto.RegistroAccionDTO;
  */
 public interface IRegistroAccionService {
     
-    public Optional<List<RegistroAccionDTO>> findAll();
+    public Optional<List<RegistrosAccionesDTO>> findAll();
 
-    public Optional<RegistroAccionDTO> findById(Long id);
+    public Optional<RegistrosAccionesDTO> findById(Long id);
     
-    public RegistroAccionDTO create(RegistroAccionDTO registroAccion);
+    public RegistrosAccionesDTO create(RegistrosAccionesDTO registroAccion);
 
-    public Optional<RegistroAccionDTO> update(RegistroAccionDTO registroAccion, Long id);
+    public Optional<RegistrosAccionesDTO> update(RegistrosAccionesDTO registroAccion, Long id);
     
-    public Optional<List<RegistroAccionDTO>> findByUsuarioId(Long id);
+    public Optional<List<RegistrosAccionesDTO>> findByUsuarioId(Long id);
 
-    public Optional<List<RegistroAccionDTO>> findByFechaRegistro(Date fecha);
+    public Optional<List<RegistrosAccionesDTO>> findByFechaRegistro(Date fecha);
 
-    public Optional<List<RegistroAccionDTO>> findByFechaRegistroBetween(Date startDate,Date endDate);
+    public Optional<List<RegistrosAccionesDTO>> findByFechaRegistroBetween(Date startDate,Date endDate);
 }

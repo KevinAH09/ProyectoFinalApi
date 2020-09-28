@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.aeropuerto.dto.AuthenticationRequest;
 import org.una.aeropuerto.dto.AuthenticationResponse;
-import org.una.aeropuerto.dto.UsuarioDTO;
+import org.una.aeropuerto.dto.UsuariosDTO;
 import org.una.aeropuerto.service.IAutenticacionLoginService;
 
 /**
@@ -84,7 +84,7 @@ public class AutenticacionLoginController {
 ////    }
     @PostMapping("/login")
     @ResponseBody
-    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuarioDTO.class, tags = "Seguridad")
+    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuariosDTO.class, tags = "Seguridad")
     public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequest authenticationRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

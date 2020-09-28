@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.una.aeropuerto.dto.ControlGastoDTO;
-import org.una.aeropuerto.entities.ControlGasto;
+import org.una.aeropuerto.dto.ControlesGastosDTO;
+import org.una.aeropuerto.entities.ControlesGastos;
 import org.una.aeropuerto.repositories.IControlGastoRepository;
 import org.una.aeropuerto.utils.ConversionLista;
 import org.una.aeropuerto.utils.MapperUtils;
@@ -27,70 +27,57 @@ public class ControlGastoServiceImplementation implements IControlGastoService {
     private IControlGastoRepository ControlGastoRepository;
 
     @Override
-    public Optional<List<ControlGastoDTO>> findAll() {
-        return (Optional<List<ControlGastoDTO>>) ConversionLista.findList((ControlGastoRepository.findAll()), ControlGastoDTO.class);
+    public Optional<List<ControlesGastosDTO>> findAll() {
+        return (Optional<List<ControlesGastosDTO>>) ConversionLista.findList((ControlGastoRepository.findAll()), ControlesGastosDTO.class);
     }
 
     @Override
-    public Optional<ControlGastoDTO> findById(Long id) {
-        return (Optional<ControlGastoDTO>) ConversionLista.oneToDto(ControlGastoRepository.findById(id), ControlGastoDTO.class);
+    public Optional<ControlesGastosDTO> findById(Long id) {
+        return (Optional<ControlesGastosDTO>) ConversionLista.oneToDto(ControlGastoRepository.findById(id), ControlesGastosDTO.class);
     }
 
     @Override
-    public ControlGastoDTO create(ControlGastoDTO controlGasto) {
-        ControlGasto user = MapperUtils.EntityFromDto(controlGasto, ControlGasto.class);
+    public ControlesGastosDTO create(ControlesGastosDTO controlGasto) {
+        ControlesGastos user = MapperUtils.EntityFromDto(controlGasto, ControlesGastos.class);
         user = ControlGastoRepository.save(user);
-        return MapperUtils.DtoFromEntity(user, ControlGastoDTO.class);
+        return MapperUtils.DtoFromEntity(user, ControlesGastosDTO.class);
     }
 
     @Override
-    public Optional<ControlGastoDTO> update(ControlGastoDTO controlGasto, Long id) {
+    public Optional<ControlesGastosDTO> update(ControlesGastosDTO controlGasto, Long id) {
         if (ControlGastoRepository.findById(id).isPresent()) {
-            ControlGasto user = MapperUtils.EntityFromDto(controlGasto, ControlGasto.class);
+            ControlesGastos user = MapperUtils.EntityFromDto(controlGasto, ControlesGastos.class);
             user = ControlGastoRepository.save(user);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, ControlGastoDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, ControlesGastosDTO.class));
         } else {
             return null;
         }
     }
 
     @Override
-    public Optional<List<ControlGastoDTO>> findByEmpresaContratanteContainingIgnoreCase(String empresa) {
-        return (Optional<List<ControlGastoDTO>>)ConversionLista.findList(ControlGastoRepository.findByEmpresaContratanteContainingIgnoreCase(empresa),ControlGastoDTO.class);
+    public Optional<List<ControlesGastosDTO>> findByEmpresaContratanteContainingIgnoreCase(String empresa) {
+        return (Optional<List<ControlesGastosDTO>>)ConversionLista.findList(ControlGastoRepository.findByEmpresaContratanteContainingIgnoreCase(empresa),ControlesGastosDTO.class);
     }
 
     @Override
-    public Optional<ControlGastoDTO> findByNumeroContrato(String numeroContrato) {
-return (Optional<ControlGastoDTO>) ConversionLista.oneToDto(Optional.ofNullable(ControlGastoRepository.findByNumeroContrato(numeroContrato)), ControlGastoDTO.class);    }
+    public Optional<ControlesGastosDTO> findByNumeroContrato(String numeroContrato) {
+return (Optional<ControlesGastosDTO>) ConversionLista.oneToDto(Optional.ofNullable(ControlGastoRepository.findByNumeroContrato(numeroContrato)), ControlesGastosDTO.class);    }
+
+   
 
     @Override
-    public Optional<List<ControlGastoDTO>> findByEstado(String estado) {
-        return (Optional<List<ControlGastoDTO>>)ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByEstado(estado)),ControlGastoDTO.class);
+    public Optional<List<ControlesGastosDTO>> findByFechaRegistro(Date fecha) {
+        return (Optional<List<ControlesGastosDTO>>)ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByFechaRegistro(fecha)),ControlesGastosDTO.class);
     }
 
     @Override
-    public Optional<List<ControlGastoDTO>> findByAreaTrabajoId(Long id) {
-        return (Optional<List<ControlGastoDTO>>) ConversionLista.findList(ControlGastoRepository.findByAreaTrabajoId(id),ControlGastoDTO.class);
+    public Optional<List<ControlesGastosDTO>> findByFechaRegistroBetween(Date startDate, Date endDate) {
+        return (Optional<List<ControlesGastosDTO>>)ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByFechaRegistroBetween(startDate, endDate)),ControlesGastosDTO.class);
     }
 
     @Override
-    public Optional<List<ControlGastoDTO>> findByFechaRegistro(Date fecha) {
-        return (Optional<List<ControlGastoDTO>>)ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByFechaRegistro(fecha)),ControlGastoDTO.class);
-    }
-
-    @Override
-    public Optional<List<ControlGastoDTO>> findByFechaRegistroBetween(Date startDate, Date endDate) {
-        return (Optional<List<ControlGastoDTO>>)ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByFechaRegistroBetween(startDate, endDate)),ControlGastoDTO.class);
-    }
-
-    @Override
-    public Optional<List<ControlGastoDTO>> findByEstadoPago(String estado) {
-        return (Optional<List<ControlGastoDTO>>)ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByEstadoPago(estado)),ControlGastoDTO.class);
-    }
-
-    @Override
-    public Optional<ControlGastoDTO> findByDetalleControlGastoId(Long id) {
-       return (Optional<ControlGastoDTO>)ConversionLista.oneToDto(Optional.ofNullable(ControlGastoRepository.findByDetalleControlGastoId(id)),ControlGastoDTO.class);
+    public Optional<ControlesGastosDTO> findByDetalleControlGastoId(Long id) {
+       return (Optional<ControlesGastosDTO>)ConversionLista.oneToDto(Optional.ofNullable(ControlGastoRepository.findByDetalleControlGastoId(id)),ControlesGastosDTO.class);
     }
 
 }

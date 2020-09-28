@@ -5,57 +5,53 @@
  */
 package org.una.aeropuerto.entities;
 
-import java.util.Date;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+
 /**
  *
- * @author colo7
+ * @author Bosco
  */
 @Entity
-@Table(name = "Registro_accion")
+@Table(name = "Zonas")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class RegistroAccion {
-
-    private static final long serialVersionUID = 1L;
-
+public class Zonas implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuarioId;
+    @Column(name = "nombre_zona", length = 50)
+    private String nombreZona;
+    
+    @Column
+    private boolean estado;
 
-    @Column(length = 50)
-    private String accion;
+    @Column(length = 10, name = "codigo")
+    private String codigo;
 
-    @Column(name = "fecha_registro", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @Setter(AccessLevel.NONE)
-    private Date fechaRegistro;
+    
+    
+    @Column(length = 150, name = "descripcion")
+    private String descripcion;
+    
+    private static final long serialVersionUID = 1L;
 
     @PrePersist
     public void prePersist() {
-        fechaRegistro = new Date();
+        estado = true;
     }
-
+    
 }

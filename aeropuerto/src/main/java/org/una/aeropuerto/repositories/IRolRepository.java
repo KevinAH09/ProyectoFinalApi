@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
-import org.una.aeropuerto.entities.Rol;
+import org.una.aeropuerto.entities.Roles;
 
 /**
  *
  * @author colo7
  */
-public interface IRolRepository  extends JpaRepository<Rol, Long>{
+public interface IRolRepository  extends JpaRepository<Roles, Long>{
     
     
     
-    public List<Rol> findByEstado(boolean estado);
+    public List<Roles> findByEstado(boolean estado);
     
-    public Rol findByCodigo(@Param("codigo")String nombreRol);
+    public Roles findByCodigo(@Param("codigo")String nombreRoles);
     
 }

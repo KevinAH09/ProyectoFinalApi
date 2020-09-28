@@ -5,6 +5,7 @@
  */
 package org.una.aeropuerto.dto;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,12 +19,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class BitacoraVueloDTO {
+public class AvionesZonasDTO {
     private Long id;
-    private String tipoBitacora;
-    private boolean cargaPasajero;
-    private boolean cargaCombustible;
-    private boolean horasVuelo;
-    private boolean zonaDescarga;
-    private boolean autorizacionTorreControl;
+    private Date fechaIngreso;
+    private ZonasDTO zona;
+    private AvionesDTO avion;
 }

@@ -6,15 +6,11 @@
 package org.una.aeropuerto.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -24,39 +20,37 @@ import lombok.ToString;
 
 /**
  *
- * @author Bosco
+ * @author colo7
  */
 @Entity
-@Table(name = "Aerolinea")
+@Table(name = "Areas_trabajos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Aerolinea implements Serializable{
+public class AreasTrabajos implements Serializable {
+     
+    private static final long serialVersionUID = 1L;
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre_aerolinea", length = 50)
-    private String nombreAerolinea;
+    @Column(name = "nombre_area_trabajo", length = 50, unique=true)
+    private String nombreAreaTrabajo;
 
-    @Column(length = 50, name = "nombre_responsable")
-    private String nombreResponsable;
+    @Column(length = 150)
+    private String descripcion;
 
     @Column
     private boolean estado;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "aerolineaId")
-    private List<Avion> avion = new ArrayList<>();
     
     
-    private static final long serialVersionUID = 1L;
-
-    @PrePersist
+     @PrePersist
     public void prePersist() {
         estado = true;
     }
-
+    
     
 }
-

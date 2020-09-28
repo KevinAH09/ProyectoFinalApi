@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.una.aeropuerto.dto.ZonaDTO;
-import org.una.aeropuerto.entities.Zona;
+import org.una.aeropuerto.dto.ZonasDTO;
+import org.una.aeropuerto.entities.Zonas;
 import org.una.aeropuerto.repositories.IZonaRepository;
 import org.una.aeropuerto.utils.ConversionLista;
 import org.una.aeropuerto.utils.MapperUtils;
@@ -26,46 +26,46 @@ public class ZonaServiceImplementation implements IZonaService {
     private IZonaRepository ZonaRepository;
 
     @Override
-    public Optional<List<ZonaDTO>> findAll() {
-        return (Optional<List<ZonaDTO>>) ConversionLista.findList((ZonaRepository.findAll()), ZonaDTO.class);
+    public Optional<List<ZonasDTO>> findAll() {
+        return (Optional<List<ZonasDTO>>) ConversionLista.findList((ZonaRepository.findAll()), ZonasDTO.class);
     }
 
     @Override
-    public Optional<ZonaDTO> findById(Long id) {
-        return (Optional<ZonaDTO>) ConversionLista.oneToDto(ZonaRepository.findById(id), ZonaDTO.class);
+    public Optional<ZonasDTO> findById(Long id) {
+        return (Optional<ZonasDTO>) ConversionLista.oneToDto(ZonaRepository.findById(id), ZonasDTO.class);
     }
 
     @Override
-    public ZonaDTO create(ZonaDTO zona) {
-        Zona user = MapperUtils.EntityFromDto(zona, Zona.class);
+    public ZonasDTO create(ZonasDTO zona) {
+        Zonas user = MapperUtils.EntityFromDto(zona, Zonas.class);
         user = ZonaRepository.save(user);
-        return MapperUtils.DtoFromEntity(user, ZonaDTO.class);
+        return MapperUtils.DtoFromEntity(user, ZonasDTO.class);
     }
 
     @Override
-    public Optional<ZonaDTO> update(ZonaDTO zona, Long id) {
+    public Optional<ZonasDTO> update(ZonasDTO zona, Long id) {
         if (ZonaRepository.findById(id).isPresent()) {
-            Zona user = MapperUtils.EntityFromDto(zona, Zona.class);
+            Zonas user = MapperUtils.EntityFromDto(zona, Zonas.class);
             user = ZonaRepository.save(user);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, ZonaDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, ZonasDTO.class));
         } else {
             return null;
         }
     }
 
     @Override
-    public Optional<List<ZonaDTO>> findByEstado(boolean estado) {
-        return (Optional<List<ZonaDTO>>) ConversionLista.findList(Optional.ofNullable(ZonaRepository.findByEstado(estado)), ZonaDTO.class);
+    public Optional<List<ZonasDTO>> findByEstado(boolean estado) {
+        return (Optional<List<ZonasDTO>>) ConversionLista.findList(Optional.ofNullable(ZonaRepository.findByEstado(estado)), ZonasDTO.class);
     }
 
     @Override
-    public Optional<List<ZonaDTO>> findByNombreZonaContainingIgnoreCase(String nombreZona) {
-        return (Optional<List<ZonaDTO>>) ConversionLista.findList(ZonaRepository.findByNombreZonaContainingIgnoreCase(nombreZona), ZonaDTO.class);
+    public Optional<List<ZonasDTO>> findByNombreZonaContainingIgnoreCase(String nombreZona) {
+        return (Optional<List<ZonasDTO>>) ConversionLista.findList(ZonaRepository.findByNombreZonaContainingIgnoreCase(nombreZona), ZonasDTO.class);
     }
 
     @Override
-    public Optional<List<ZonaDTO>> findByCodigo(String codigo) {
-        return (Optional<List<ZonaDTO>>) ConversionLista.findList(ZonaRepository.findByCodigo(codigo), ZonaDTO.class);
+    public Optional<List<ZonasDTO>> findByCodigo(String codigo) {
+        return (Optional<List<ZonasDTO>>) ConversionLista.findList(ZonaRepository.findByCodigo(codigo), ZonasDTO.class);
     }
 
 }

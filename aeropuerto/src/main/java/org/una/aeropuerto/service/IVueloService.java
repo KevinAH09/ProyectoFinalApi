@@ -7,28 +7,28 @@ package org.una.aeropuerto.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.aeropuerto.dto.VueloDTO;
+import org.una.aeropuerto.dto.VuelosDTO;
 
 /**
  *
  * @author Bosco
  */
 public interface IVueloService {
-    public Optional<List<VueloDTO>> findAll();
+    public Optional<List<VuelosDTO>> findAll();
 
-    public Optional<VueloDTO> findById(Long id);
+    public Optional<VuelosDTO> findById(Long id);
     
-    public VueloDTO create(VueloDTO vuelo);
+    public VuelosDTO create(VuelosDTO vuelo);
 
-    public Optional<VueloDTO> update(VueloDTO vuelo, Long id);
+    public Optional<VuelosDTO> update(VuelosDTO vuelo, Long id);
     
-    public Optional<List<VueloDTO>> findByEstado(boolean estado);
+    public Optional<List<VuelosDTO>> findByEstado(boolean estado);
     
-    public Optional<List<VueloDTO>> findByDestino(String destino);
+    public Optional<List<VuelosDTO>> findByDestino(String destino);
     
-    public Optional<List<VueloDTO>> findByOrigen(String origen);
+    public Optional<List<VuelosDTO>> findByOrigen(String origen);
     
-    public Optional<List<VueloDTO>> findByAvionId(Long avion);
+    public Optional<List<VuelosDTO>> findByAvionId(Long avion);
     
-    public Optional<List<VueloDTO>> findBybitacoraVueloId(Long bitacora);
+    public Optional<List<VuelosDTO>> findBybitacoraVueloId(Long bitacora);
 }

@@ -23,8 +23,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.una.aeropuerto.dto.AuthenticationRequest;
 import org.una.aeropuerto.dto.AuthenticationResponse;
-import org.una.aeropuerto.dto.UsuarioDTO;
-import org.una.aeropuerto.entities.Usuario;
+import org.una.aeropuerto.dto.UsuariosDTO;
+import org.una.aeropuerto.entities.Usuarios;
 import org.una.aeropuerto.jwt.JwtProvider;
 import org.una.aeropuerto.repositories.IUsuarioRepository;
 
@@ -54,11 +54,11 @@ public class AutenticacionLoginServiceImplementation implements UserDetailsServi
         SecurityContextHolder.getContext().setAuthentication(authentication);
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();
 
-        Optional<UsuarioDTO> usuario = usuarioService.findByCedula(authenticationRequest.getCedula());
+        Optional<UsuariosDTO> usuario = usuarioService.findByCedula(authenticationRequest.getCedula());
 
         if (usuario.isPresent()) {
             authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
-            UsuarioDTO usuarioDto = usuario.get();
+            UsuariosDTO usuarioDto = usuario.get();
             authenticationResponse.setUsuario(usuarioDto);
 
             return authenticationResponse;
@@ -70,7 +70,7 @@ public class AutenticacionLoginServiceImplementation implements UserDetailsServi
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuarioBuscado = usuarioRepository.findByCedula(username);
+        Usuarios usuarioBuscado = usuarioRepository.findByCedula(username);
         if (usuarioBuscado != null) {
             List<GrantedAuthority> roles = new ArrayList<>();
             roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRolId().getCodigo() + usuarioBuscado.getAreaTrabajoId().getNombreAreaTrabajo()));

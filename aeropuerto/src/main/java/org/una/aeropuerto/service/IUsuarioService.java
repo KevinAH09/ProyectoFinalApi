@@ -7,7 +7,8 @@ package org.una.aeropuerto.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.aeropuerto.dto.UsuarioDTO;
+import org.una.aeropuerto.dto.UsuariosDTO;
+import org.una.aeropuerto.entities.Usuarios;
 
 /**
  *
@@ -16,23 +17,23 @@ import org.una.aeropuerto.dto.UsuarioDTO;
 public interface IUsuarioService {
     
     
-    public Optional<List<UsuarioDTO>> findAll();
+    public Optional<List<UsuariosDTO>> findAll();
 
-    public Optional<UsuarioDTO> findById(Long id);
+    public Optional<UsuariosDTO> findById(Long id);
 
-    public Optional<List<UsuarioDTO>> findByEstado(boolean estado);
+    public Optional<List<UsuariosDTO>> findByEstado(boolean estado);
 
-    public Optional<UsuarioDTO> findByCedulaAndContrasenaEncriptado(String cedula, String password);
+    public Optional<UsuariosDTO> findByCedulaAndContrasenaEncriptado(String cedula, String password);
 
-//    public Optional<List<UsuarioDTO>> findByCedulaAproximate(String cedula);
+//    public Optional<List<UsuariosDTO>> findByCedulaAproximate(String cedula);
     
-    public Optional<UsuarioDTO> findByCedula(String cedula);
+    public Optional<UsuariosDTO> findByCedula(String cedula);
 
-    public Optional<List<UsuarioDTO>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto);
+    public Optional<List<UsuariosDTO>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto);
 
-    public UsuarioDTO create(UsuarioDTO usuario);
+    public UsuariosDTO create(UsuariosDTO usuario);
 
-    public Optional<UsuarioDTO> update(UsuarioDTO usuario, Long id);
+    public Optional<UsuariosDTO> update(Usuarios usuario, Long id);
 
     public void delete(Long id);
 
@@ -42,8 +43,8 @@ public interface IUsuarioService {
     
 //    public  login(Usuario usuario); 
 
-    public Optional<List<UsuarioDTO>> findByRolId(Long id);
+    public Optional<List<UsuariosDTO>> findByRolId(Long id);
 
-    public Optional<List<UsuarioDTO>>  findByAreaTrabajoId(Long id);
+    public Optional<List<UsuariosDTO>>  findByAreaTrabajoId(Long id);
     
 }

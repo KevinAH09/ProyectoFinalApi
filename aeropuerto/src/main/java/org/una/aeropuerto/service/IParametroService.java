@@ -7,7 +7,7 @@ package org.una.aeropuerto.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.aeropuerto.dto.ParametroDTO;
+import org.una.aeropuerto.dto.ParametrosDTO;
 
 /**
  *
@@ -15,17 +15,17 @@ import org.una.aeropuerto.dto.ParametroDTO;
  */
 public interface IParametroService {
     
-    public Optional<List<ParametroDTO>> findAll();
+    public Optional<List<ParametrosDTO>> findAll();
 
-    public Optional<ParametroDTO> findById(Long id);
+    public Optional<ParametrosDTO> findById(Long id);
     
-    public ParametroDTO create(ParametroDTO parametro);
+    public ParametrosDTO create(ParametrosDTO parametro);
 
-    public Optional<ParametroDTO> update(ParametroDTO parametro, Long id);
+    public Optional<ParametrosDTO> update(ParametrosDTO parametro, Long id);
     
-    public Optional<List<ParametroDTO>> findByEstado(boolean estado);
+    public Optional<List<ParametrosDTO>> findByEstado(boolean estado);
     
-    public Optional<List<ParametroDTO>> findByNombreParametro(String nombreParametro);
+    public Optional<List<ParametrosDTO>> findByNombreParametro(String nombreParametro);
     
     //FALTA MAS
 }

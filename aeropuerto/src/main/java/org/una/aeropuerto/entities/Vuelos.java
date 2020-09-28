@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,54 +27,58 @@ import lombok.ToString;
 
 /**
  *
- * @author colo7
+ * @author Bosco
  */
 @Entity
-@Table(name = "Control_gasto")
+@Table(name = "Vuelos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ControlGasto {
-    
-    
-    private static final long serialVersionUID = 1L;
-
+public class Vuelos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "origen", length = 50)
+    private String origen;
     
-    @Column(length = 50)
-    private String responsable;
+    @Column(name = "destino", length = 50)
+    private String destino;
     
-    @Column(length = 50,name="empresa_contratante")
-    private String empresaContratante;
-    
-    @Column(length = 50,name="numero_contrato")
-    private String numeroContrato;
-    
-    @Column(length = 50)
-    private String estado;
-    
-    @Column(length = 50,name="estado_pago")
-    private String estadoPago;
-    
-    @ManyToOne
-    @JoinColumn(name = "area_trabajo_id")
-    private AreaTrabajo areaTrabajoId;
-    
-    @Column(name = "fecha_registro", updatable = false)
+    @Column(name = "fecha_inical", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @Setter(AccessLevel.NONE)
-    private Date fechaRegistro;
+    private Date fechaInicio;
+
+    @Column(name = "fecha_final")
+    @Setter(AccessLevel.NONE)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaFinal;
+    
+    @Column
+    private boolean estado;
     
     @ManyToOne
-    @JoinColumn(name = "detalle_control_gasto_id")
-    private DetalleControlGasto detalleControlGastoId;
+    @JoinColumn(name = "avion_Id")
+    private Aviones avionId;
+    
+    @ManyToOne
+    @JoinColumn(name = "bitacora_vuelo_id")
+    private BitacorasVuelos bitacoraVueloId;
+    
+    private static final long serialVersionUID = 1L;
 
     @PrePersist
     public void prePersist() {
-        fechaRegistro = new Date();
+        estado = true;
+        fechaInicio = new Date();
+        fechaFinal = new Date();
     }
-    
+
+    @PreUpdate
+    public void preUpdate() {
+        fechaInicio = new Date();//no estoy seguro si va
+        fechaFinal = new Date();
+    }
 }

@@ -11,11 +11,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import org.una.aeropuerto.dto.AreaTrabajoDTO;
-import org.una.aeropuerto.dto.RolDTO;
-import org.una.aeropuerto.dto.UsuarioDTO;
-import org.una.aeropuerto.entities.AreaTrabajo;
-import org.una.aeropuerto.entities.Rol;
+import org.una.aeropuerto.dto.AreasTrabajosDTO;
+import org.una.aeropuerto.dto.RolesDTO;
+import org.una.aeropuerto.dto.UsuariosDTO;
+import org.una.aeropuerto.entities.AreasTrabajos;
 import org.una.aeropuerto.loaders.AreasTrabajo;
 import org.una.aeropuerto.loaders.Roles;
 import org.una.aeropuerto.service.IAreaTrabajoService;
@@ -44,22 +43,20 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     private IAreaTrabajoService areaTrabajoService;
 
-    RolDTO rolDTO;
-    AreaTrabajoDTO areaTrabajoDTO;
+    RolesDTO rolDTO;
+    AreasTrabajosDTO areaTrabajoDTO;
 
     @Override
     public void run(ApplicationArguments args) {
         if (usuarioService.findByCedula(cedula).isEmpty()) {
             bucarRol();
             bucarAreaTrabajo();
-            UsuarioDTO usuario = new UsuarioDTO();
-            Rol rol = MapperUtils.EntityFromDto(rolDTO, Rol.class);
-            AreaTrabajo areaTrabajo = MapperUtils.EntityFromDto(areaTrabajoDTO, AreaTrabajo.class);
+            UsuariosDTO usuario = new UsuariosDTO();
             usuario.setNombreCompleto("Usuario Inicial");
             usuario.setCedula(cedula);
             usuario.setContrasenaEncriptada(password);
-            usuario.setRolId(rol);
-            usuario.setAreaTrabajoId(areaTrabajo);
+            usuario.setRolId(rolDTO);
+            usuario.setAreaTrabajoId(areaTrabajoDTO);
             usuario = usuarioService.create(usuario);
 
 //         
@@ -73,7 +70,7 @@ public class DataLoader implements ApplicationRunner {
 
     private void createRoles() {
         for (Roles rol : Roles.values()) {
-            RolDTO nuevoPermiso = new RolDTO();
+            RolesDTO nuevoPermiso = new RolesDTO();
             nuevoPermiso.setCodigo(rol.getCodigo());
             nuevoPermiso.setDescripcion(rol.name());
             rolService.create(nuevoPermiso);
@@ -82,7 +79,7 @@ public class DataLoader implements ApplicationRunner {
 
     private void createAreas() {
         for (AreasTrabajo are : AreasTrabajo.values()) {
-            AreaTrabajoDTO nuevoArea = new AreaTrabajoDTO();
+            AreasTrabajosDTO nuevoArea = new AreasTrabajosDTO();
             nuevoArea.setNombreAreaTrabajo(are.getCodigo());
             nuevoArea.setDescripcion(are.name());
             areaTrabajoService.create(nuevoArea);
@@ -91,10 +88,10 @@ public class DataLoader implements ApplicationRunner {
 
     void bucarRol() {
         final String codigo = "ROLE_GESTOR";
-        Optional<RolDTO> rolBuscado = rolService.findByCodigo(codigo);
+        Optional<RolesDTO> rolBuscado = rolService.findByCodigo(codigo);
 
         if (rolBuscado.isEmpty()) {
-            rolDTO = new RolDTO();
+            rolDTO = new RolesDTO();
             rolDTO.setCodigo(codigo);
             rolDTO.setDescripcion("ROL_GESTOR");
             rolDTO = rolService.create(rolDTO);
@@ -107,9 +104,9 @@ public class DataLoader implements ApplicationRunner {
 
     void bucarAreaTrabajo() {
         final String nombre = "_RRHH";
-        Optional<AreaTrabajoDTO> areaBuscada = areaTrabajoService.findByNombreAreaTrabajo(nombre);
+        Optional<AreasTrabajosDTO> areaBuscada = areaTrabajoService.findByNombreAreaTrabajo(nombre);
         if (areaBuscada.isEmpty()) {
-            areaTrabajoDTO = new AreaTrabajoDTO();
+            areaTrabajoDTO = new AreasTrabajosDTO();
             areaTrabajoDTO.setNombreAreaTrabajo(nombre);
             areaTrabajoDTO.setDescripcion("AREA_TRABAJO_RECURSOS_HUMANOS");
             areaTrabajoDTO = areaTrabajoService.create(areaTrabajoDTO);

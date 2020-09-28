@@ -7,24 +7,24 @@ package org.una.aeropuerto.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.aeropuerto.dto.ZonaDTO;
+import org.una.aeropuerto.dto.ZonasDTO;
 
 /**
  *
  * @author Bosco
  */
 public interface IZonaService {
-    public Optional<List<ZonaDTO>> findAll();
+    public Optional<List<ZonasDTO>> findAll();
 
-    public Optional<ZonaDTO> findById(Long id);
+    public Optional<ZonasDTO> findById(Long id);
     
-    public ZonaDTO create(ZonaDTO zona);
+    public ZonasDTO create(ZonasDTO zona);
 
-    public Optional<ZonaDTO> update(ZonaDTO zona, Long id);
+    public Optional<ZonasDTO> update(ZonasDTO zona, Long id);
     
-    public Optional<List<ZonaDTO>> findByEstado(boolean estado);
+    public Optional<List<ZonasDTO>> findByEstado(boolean estado);
     
-    public Optional<List<ZonaDTO>> findByNombreZonaContainingIgnoreCase(String nombreZona);
+    public Optional<List<ZonasDTO>> findByNombreZonaContainingIgnoreCase(String nombreZona);
 
-    public Optional<List<ZonaDTO>> findByCodigo(String codigo);
+    public Optional<List<ZonasDTO>> findByCodigo(String codigo);
 }

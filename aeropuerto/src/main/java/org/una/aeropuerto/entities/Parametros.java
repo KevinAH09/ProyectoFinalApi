@@ -5,14 +5,13 @@
  */
 package org.una.aeropuerto.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -30,55 +29,49 @@ import lombok.ToString;
  * @author Bosco
  */
 @Entity
-@Table(name = "Vuelo")
+@Table(name = "Parametros")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Vuelo {
+public class Parametros implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "origen", length = 50)
-    private String origen;
     
-    @Column(name = "destino", length = 50)
-    private String destino;
+    @Column(name = "nombre_parametro", length = 50)
+    private String nombreParametro;
     
-    @Column(name = "fecha_inical", updatable = false)
+    @Column(name = "descripcion", length = 150)
+    private String descripcion;
+    
+    @Column(name = "valor", length = 50)
+    private String valor;
+    
+    @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @Setter(AccessLevel.NONE)
-    private Date fechaInicio;
+    private Date fechaRegistro;
 
-    @Column(name = "fecha_final")
+    @Column(name = "fecha_modificacion")
     @Setter(AccessLevel.NONE)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaFinal;
+    private Date fechaModificacion;
     
     @Column
     private boolean estado;
-    
-    @ManyToOne
-    @JoinColumn(name = "avion_Id")
-    private Avion avionId;
-    
-    @ManyToOne
-    @JoinColumn(name = "bitacora_vuelo_id")
-    private BitacoraVuelo bitacoraVueloId;
     
     private static final long serialVersionUID = 1L;
 
     @PrePersist
     public void prePersist() {
         estado = true;
-        fechaInicio = new Date();
-        fechaFinal = new Date();
+        fechaRegistro = new Date();
+        fechaModificacion = new Date();
     }
 
     @PreUpdate
     public void preUpdate() {
-        fechaInicio = new Date();//no estoy seguro si va
-        fechaFinal = new Date();
+        fechaModificacion = new Date();
     }
 }

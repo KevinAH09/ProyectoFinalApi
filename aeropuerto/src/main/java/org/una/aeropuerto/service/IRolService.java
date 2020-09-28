@@ -7,7 +7,7 @@ package org.una.aeropuerto.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.aeropuerto.dto.RolDTO;
+import org.una.aeropuerto.dto.RolesDTO;
 
 /**
  *
@@ -15,15 +15,15 @@ import org.una.aeropuerto.dto.RolDTO;
  */
 public interface IRolService {
     
-    public Optional<List<RolDTO>> findAll();
+    public Optional<List<RolesDTO>> findAll();
 
-    public Optional<RolDTO> findById(Long id);
+    public Optional<RolesDTO> findById(Long id);
     
-    public RolDTO create(RolDTO rol);
+    public RolesDTO create(RolesDTO rol);
 
-    public Optional<RolDTO> update(RolDTO rol, Long id);
+    public Optional<RolesDTO> update(RolesDTO rol, Long id);
     
-    public Optional<List<RolDTO>> findByEstado(boolean estado);
+    public Optional<List<RolesDTO>> findByEstado(boolean estado);
     
-    public Optional<RolDTO> findByCodigo(String nombreRol);
+    public Optional<RolesDTO> findByCodigo(String nombreRol);
 }

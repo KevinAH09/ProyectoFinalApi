@@ -10,19 +10,19 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.una.aeropuerto.entities.RegistroAccion;
+import org.una.aeropuerto.entities.RegistrosAcciones;
 
 /**
  *
  * @author colo7
  */
-public interface IRegistroAccionRepository extends JpaRepository<RegistroAccion, Long> {
+public interface IRegistroAccionRepository extends JpaRepository<RegistrosAcciones, Long> {
     
-    @Query("SELECT u FROM RegistroAccion u LEFT JOIN u.usuarioId d WHERE  d.id=:id")
-    public List<RegistroAccion> findByUsuarioId(Long id);
+    @Query("SELECT u FROM RegistrosAcciones u LEFT JOIN u.usuarioId d WHERE  d.id=:id")
+    public List<RegistrosAcciones> findByUsuarioId(Long id);
 
-    public List<RegistroAccion> findByFechaRegistro(@Param("fechaRegistro") Date fecha);
+    public List<RegistrosAcciones> findByFechaRegistro(@Param("fechaRegistro") Date fecha);
 
-    public List<RegistroAccion> findByFechaRegistroBetween(@Param("fechaRegistro") Date startDate, @Param("fechaRegistro1") Date endDate);
+    public List<RegistrosAcciones> findByFechaRegistroBetween(@Param("fechaRegistro") Date startDate, @Param("fechaRegistro1") Date endDate);
 
 }

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.una.aeropuerto.dto.BitacoraVueloDTO;
-import org.una.aeropuerto.entities.BitacoraVuelo;
+import org.una.aeropuerto.dto.BitacorasVuelosDTO;
+import org.una.aeropuerto.entities.BitacorasVuelos;
 import org.una.aeropuerto.repositories.IBitacoraVueloRepository;
 import org.una.aeropuerto.utils.ConversionLista;
 import org.una.aeropuerto.utils.MapperUtils;
@@ -26,56 +26,56 @@ public class BitacoraVueloServiceImplementation implements IBitacoraVueloService
     private IBitacoraVueloRepository BitacoraVueloRepository;
 
     @Override
-    public Optional<List<BitacoraVueloDTO>> findAll() {
-        return (Optional<List<BitacoraVueloDTO>>) ConversionLista.findList((BitacoraVueloRepository.findAll()), BitacoraVueloDTO.class);
+    public Optional<List<BitacorasVuelosDTO>> findAll() {
+        return (Optional<List<BitacorasVuelosDTO>>) ConversionLista.findList((BitacoraVueloRepository.findAll()), BitacorasVuelosDTO.class);
     }
 
     @Override
-    public Optional<BitacoraVueloDTO> findById(Long id) {
-        return (Optional<BitacoraVueloDTO>) ConversionLista.oneToDto(BitacoraVueloRepository.findById(id), BitacoraVueloDTO.class);
+    public Optional<BitacorasVuelosDTO> findById(Long id) {
+        return (Optional<BitacorasVuelosDTO>) ConversionLista.oneToDto(BitacoraVueloRepository.findById(id), BitacorasVuelosDTO.class);
     }
 
     @Override
-    public Optional<List<BitacoraVueloDTO>> findByTipoBitacoraContainingIgnoreCase(String tipoBitacora) {
-        return (Optional<List<BitacoraVueloDTO>>) ConversionLista.findList(BitacoraVueloRepository.findByTipoBitacoraContainingIgnoreCase(tipoBitacora), BitacoraVueloDTO.class);
+    public Optional<List<BitacorasVuelosDTO>> findByTipoBitacoraContainingIgnoreCase(String tipoBitacora) {
+        return (Optional<List<BitacorasVuelosDTO>>) ConversionLista.findList(BitacoraVueloRepository.findByTipoBitacoraContainingIgnoreCase(tipoBitacora), BitacorasVuelosDTO.class);
     }
 
     @Override
-    public BitacoraVueloDTO create(BitacoraVueloDTO bitacora) {
-        BitacoraVuelo user = MapperUtils.EntityFromDto(bitacora, BitacoraVuelo.class);
+    public BitacorasVuelosDTO create(BitacorasVuelosDTO bitacora) {
+        BitacorasVuelos user = MapperUtils.EntityFromDto(bitacora, BitacorasVuelos.class);
         user = BitacoraVueloRepository.save(user);
-        return MapperUtils.DtoFromEntity(user, BitacoraVueloDTO.class);
+        return MapperUtils.DtoFromEntity(user, BitacorasVuelosDTO.class);
     }
 
     @Override
-    public Optional<BitacoraVueloDTO> update(BitacoraVueloDTO bitacora, Long id) {
+    public Optional<BitacorasVuelosDTO> update(BitacorasVuelosDTO bitacora, Long id) {
         if (BitacoraVueloRepository.findById(id).isPresent()) {
-            BitacoraVuelo user = MapperUtils.EntityFromDto(bitacora, BitacoraVuelo.class);
+            BitacorasVuelos user = MapperUtils.EntityFromDto(bitacora, BitacorasVuelos.class);
             user = BitacoraVueloRepository.save(user);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, BitacoraVueloDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, BitacorasVuelosDTO.class));
         } else {
             return null;
         }
     }
 
     @Override
-    public Optional<List<BitacoraVueloDTO>> findByCargaPasajero(boolean cargaPasajero) {
-        return (Optional<List<BitacoraVueloDTO>>)ConversionLista.findList(Optional.ofNullable(BitacoraVueloRepository.findByCargaPasajero(cargaPasajero)),BitacoraVueloDTO.class);
+    public Optional<List<BitacorasVuelosDTO>> findByCargaPasajero(boolean cargaPasajero) {
+        return (Optional<List<BitacorasVuelosDTO>>)ConversionLista.findList(Optional.ofNullable(BitacoraVueloRepository.findByCargaPasajero(cargaPasajero)),BitacorasVuelosDTO.class);
     }
 
     @Override
-    public Optional<List<BitacoraVueloDTO>> findByCargaCombustible(boolean cargaCombustible) {
-        return (Optional<List<BitacoraVueloDTO>>)ConversionLista.findList(Optional.ofNullable(BitacoraVueloRepository.findByCargaCombustible(cargaCombustible)),BitacoraVueloDTO.class);
+    public Optional<List<BitacorasVuelosDTO>> findByCargaCombustible(boolean cargaCombustible) {
+        return (Optional<List<BitacorasVuelosDTO>>)ConversionLista.findList(Optional.ofNullable(BitacoraVueloRepository.findByCargaCombustible(cargaCombustible)),BitacorasVuelosDTO.class);
     }
 
     @Override
-    public Optional<List<BitacoraVueloDTO>> findByZonaDescarga(boolean zonaDescarga) {
-        return (Optional<List<BitacoraVueloDTO>>)ConversionLista.findList(Optional.ofNullable(BitacoraVueloRepository.findByZonaDescarga(zonaDescarga)),BitacoraVueloDTO.class);
+    public Optional<List<BitacorasVuelosDTO>> findByZonaDescarga(boolean zonaDescarga) {
+        return (Optional<List<BitacorasVuelosDTO>>)ConversionLista.findList(Optional.ofNullable(BitacoraVueloRepository.findByZonaDescarga(zonaDescarga)),BitacorasVuelosDTO.class);
     }
 
     @Override
-    public Optional<List<BitacoraVueloDTO>> findByAutorizacionTorreControl(boolean autorizacionTorreControl) {
-        return (Optional<List<BitacoraVueloDTO>>)ConversionLista.findList(Optional.ofNullable(BitacoraVueloRepository.findByAutorizacionTorreControl(autorizacionTorreControl)),BitacoraVueloDTO.class);
+    public Optional<List<BitacorasVuelosDTO>> findByAutorizacionTorreControl(boolean autorizacionTorreControl) {
+        return (Optional<List<BitacorasVuelosDTO>>)ConversionLista.findList(Optional.ofNullable(BitacoraVueloRepository.findByAutorizacionTorreControl(autorizacionTorreControl)),BitacorasVuelosDTO.class);
     }
 
 }

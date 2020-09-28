@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.una.aeropuerto.dto.AvionDTO;
-import org.una.aeropuerto.entities.Avion;
+import org.una.aeropuerto.dto.AvionesDTO;
+import org.una.aeropuerto.entities.Aviones;
 import org.una.aeropuerto.repositories.IAvionRepository;
 import org.una.aeropuerto.utils.ConversionLista;
 import org.una.aeropuerto.utils.MapperUtils;
@@ -26,46 +26,46 @@ public class AvionServiceImplementation implements IAvionService {
     private IAvionRepository AvionRepository;
 
     @Override
-    public Optional<List<AvionDTO>> findAll() {
-        return (Optional<List<AvionDTO>>) ConversionLista.findList((AvionRepository.findAll()), AvionDTO.class);
+    public Optional<List<AvionesDTO>> findAll() {
+        return (Optional<List<AvionesDTO>>) ConversionLista.findList((AvionRepository.findAll()), AvionesDTO.class);
     }
 
     @Override
-    public Optional<AvionDTO> findById(Long id) {
-        return (Optional<AvionDTO>) ConversionLista.oneToDto(AvionRepository.findById(id), AvionDTO.class);
+    public Optional<AvionesDTO> findById(Long id) {
+        return (Optional<AvionesDTO>) ConversionLista.oneToDto(AvionRepository.findById(id), AvionesDTO.class);
     }
 
     @Override
-    public AvionDTO create(AvionDTO avion) {
-        Avion user = MapperUtils.EntityFromDto(avion, Avion.class);
+    public AvionesDTO create(AvionesDTO avion) {
+        Aviones user = MapperUtils.EntityFromDto(avion, Aviones.class);
         user = AvionRepository.save(user);
-        return MapperUtils.DtoFromEntity(user, AvionDTO.class);
+        return MapperUtils.DtoFromEntity(user, AvionesDTO.class);
     }
 
     @Override
-    public Optional<AvionDTO> update(AvionDTO avion, Long id) {
+    public Optional<AvionesDTO> update(AvionesDTO avion, Long id) {
         if (AvionRepository.findById(id).isPresent()) {
-            Avion user = MapperUtils.EntityFromDto(avion, Avion.class);
+            Aviones user = MapperUtils.EntityFromDto(avion, Aviones.class);
             user = AvionRepository.save(user);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, AvionDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(user, AvionesDTO.class));
         } else {
             return null;
         }
     }
 
     @Override
-    public Optional<List<AvionDTO>> findByMatriculaContainingIgnoreCase(String matricula) {
-        return (Optional<List<AvionDTO>>) ConversionLista.findList(AvionRepository.findByMatriculaContainingIgnoreCase(matricula), AvionDTO.class);
+    public Optional<List<AvionesDTO>> findByMatriculaContainingIgnoreCase(String matricula) {
+        return (Optional<List<AvionesDTO>>) ConversionLista.findList(AvionRepository.findByMatriculaContainingIgnoreCase(matricula), AvionesDTO.class);
     }
 
     @Override
-    public Optional<List<AvionDTO>> findBytipoAvionContainingIgnoreCase(String tipoAvion) {
-        return (Optional<List<AvionDTO>>) ConversionLista.findList(AvionRepository.findBytipoAvionContainingIgnoreCase(tipoAvion), AvionDTO.class);
+    public Optional<List<AvionesDTO>> findBytipoAvionContainingIgnoreCase(String tipoAvion) {
+        return (Optional<List<AvionesDTO>>) ConversionLista.findList(AvionRepository.findBytipoAvionContainingIgnoreCase(tipoAvion), AvionesDTO.class);
     }
 
     @Override
-    public Optional<List<AvionDTO>> findByAerolineaId(Long id) {
-        return (Optional<List<AvionDTO>>) ConversionLista.findList(AvionRepository.findByAerolineaId(id),AvionDTO.class);
+    public Optional<List<AvionesDTO>> findByAerolineaId(Long id) {
+        return (Optional<List<AvionesDTO>>) ConversionLista.findList(AvionRepository.findByAerolineaId(id),AvionesDTO.class);
     }
 
 }

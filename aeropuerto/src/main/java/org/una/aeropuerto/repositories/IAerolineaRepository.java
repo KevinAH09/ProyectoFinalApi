@@ -8,19 +8,19 @@ package org.una.aeropuerto.repositories;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
-import org.una.aeropuerto.entities.Aerolinea;
+import org.una.aeropuerto.entities.Aerolineas;
 
 /**
  *
  * @author Bosco
  */
-public interface IAerolineaRepository  extends JpaRepository<Aerolinea, Long> {
+public interface IAerolineaRepository  extends JpaRepository<Aerolineas, Long> {
     
-    public List<Aerolinea> findByEstado(boolean estado);
+    public List<Aerolineas> findByEstado(boolean estado);
     
-    public List<Aerolinea> findByNombreAerolineaContainingIgnoreCase(@Param("nombreAerolinea") String nombreAerolinea);
+    public List<Aerolineas> findByNombreAerolineaContainingIgnoreCase(@Param("nombreAerolinea") String nombreAerolinea);
 
-    public List<Aerolinea> findByNombreResponsableContainingIgnoreCase(@Param("nombreResponsable") String nombreResponsable);
+    public List<Aerolineas> findByNombreResponsableContainingIgnoreCase(@Param("nombreResponsable") String nombreResponsable);
    
 
 

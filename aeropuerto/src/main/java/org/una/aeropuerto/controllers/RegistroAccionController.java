@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.una.aeropuerto.dto.RegistroAccionDTO;
+import org.una.aeropuerto.dto.RegistrosAccionesDTO;
 import org.una.aeropuerto.service.IRegistroAccionService;
 
 /**
@@ -42,7 +42,7 @@ public class RegistroAccionController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todos registros de acciones", response = RegistroAccionDTO.class, responseContainer = "List", tags = "Registro de acciones")
+    @ApiOperation(value = "Obtiene una lista de todos registros de acciones", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
     public @ResponseBody ResponseEntity<?> findAll() {
         try {
@@ -54,7 +54,7 @@ public class RegistroAccionController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene un registro de accion", response = RegistroAccionDTO.class, tags = "Registro de acciones")
+    @ApiOperation(value = "Obtiene un registro de accion", response = RegistrosAccionesDTO.class, tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
@@ -67,12 +67,12 @@ public class RegistroAccionController {
    
     
     @PostMapping("/")
-    @ApiOperation(value = "Permite crear un registro de accion", response = RegistroAccionDTO.class, tags = "Registro de acciones")
+    @ApiOperation(value = "Permite crear un registro de accion", response = RegistrosAccionesDTO.class, tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR') or hasRole('ROLE_GERENTE')")
-    public ResponseEntity<?> create(@Valid @RequestBody RegistroAccionDTO registroAccionDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> create(@Valid @RequestBody RegistrosAccionesDTO registrosAccionesDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                return new ResponseEntity(registroAccionService.create(registroAccionDTO), HttpStatus.CREATED);
+                return new ResponseEntity(registroAccionService.create(registrosAccionesDTO), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -82,7 +82,7 @@ public class RegistroAccionController {
     }
     
     @GetMapping("/fechaRegistro/{date}")
-    @ApiOperation(value = "Obtiene una lista de todos los registros accion por fecha de registro", response = RegistroAccionDTO.class, responseContainer = "List", tags = "Registro de acciones")
+    @ApiOperation(value = "Obtiene una lista de todos los registros accion por fecha de registro", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findByFechaRegistro(@PathVariable(value = "date") Date fecha) {
         try {
@@ -93,7 +93,7 @@ public class RegistroAccionController {
     }
     
     @GetMapping("/usuarioId/{id}")
-    @ApiOperation(value = "Obtiene una lista de todos los registros accion por usuario", response = RegistroAccionDTO.class, responseContainer = "List", tags = "Registro de acciones")
+    @ApiOperation(value = "Obtiene una lista de todos los registros accion por usuario", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findByUsuarioId(@PathVariable(value = "id") Long id) {
         try {
@@ -104,7 +104,7 @@ public class RegistroAccionController {
     }
     
     @GetMapping("/fechaRegistroStar/{dateStar}/fechaRegistroEnd/{dateEnd}")
-    @ApiOperation(value = "Obtiene una lista de todos los registros de acciones por rango de fechas de registro", response = RegistroAccionDTO.class, responseContainer = "List", tags = "Registro de acciones")
+    @ApiOperation(value = "Obtiene una lista de todos los registros de acciones por rango de fechas de registro", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
     public ResponseEntity<?> findByFechaRegistroBetween(@PathVariable(value = "dateStar") Date fechaStar,@PathVariable(value = "dateEnd") Date fechaEnd) {
         try {

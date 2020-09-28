@@ -5,6 +5,7 @@
  */
 package org.una.aeropuerto.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,17 +13,21 @@ import lombok.ToString;
 
 /**
  *
- * @author Bosco
+ * @author colo7
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor 
 @ToString
-public class AvionDTO {
+public class AreasTrabajosDTO {
+     
+    
+    
     private Long id;
-    private String matricula;
-    private String tipoAvion;
-    private String horasVuelo;
-    private AerolineaDTO aerolineaId;
+    private String nombreAreaTrabajo;
+    private String descripcion;
     private boolean estado;
+    
+   
+    
 }

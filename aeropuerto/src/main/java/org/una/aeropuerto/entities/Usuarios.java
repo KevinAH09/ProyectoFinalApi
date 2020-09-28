@@ -6,7 +6,10 @@
 package org.una.aeropuerto.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -28,42 +32,64 @@ import lombok.ToString;
 
 /**
  *
- * @author Bosco
+ * @author colo7
  */
 @Entity
-@Table(name = "Avion_zona")
+@Table(name = "Usuarios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AvionZona implements Serializable{
+public class Usuarios implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "nombre_completo", length = 50)
+    private String nombreCompleto;
+
+    @Column(length = 100, name = "contrasena_encriptada")
+    private String contrasenaEncriptada;
+
+    @Column(length = 10, unique = true)
+    private String cedula;
     
-    @Column(name = "fecha_ingreso")
-    @Setter(AccessLevel.NONE)
+    @Column(length = 50, unique = true)
+    private String correo;
+ 
+    @Column
+    private boolean estado;
+    
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Roles rolId;
+    
+    @ManyToOne
+    @JoinColumn(name = "area_trabajo_id")
+    private AreasTrabajos areaTrabajoId;
+    
+    @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaIngreso;
-    
-    @ManyToOne
-    @JoinColumn(name = "zona_id")
-    private Zona zona;
-    
-    @ManyToOne
-    @JoinColumn(name = "avion_id")
-    private Avion avion;
+    @Setter(AccessLevel.NONE)
+    private Date fechaRegistro;
+
+
+    @Column(name = "jefe_id")
+    private boolean jefeId;
+
     
     private static final long serialVersionUID = 1L;
 
     @PrePersist
     public void prePersist() {
-        fechaIngreso = new Date();
+        estado = true;
+//        esJefe = false;
+        fechaRegistro = new Date();
+//        fechaModificacion = new Date();
     }
 
-    @PreUpdate
-    public void preUpdate() {
-        fechaIngreso = new Date();//no estoy seguro si va
-    }
+    
     
 }
+

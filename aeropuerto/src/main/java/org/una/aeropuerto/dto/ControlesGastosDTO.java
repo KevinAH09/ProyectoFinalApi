@@ -13,18 +13,18 @@ import lombok.ToString;
 
 /**
  *
- * @author Bosco
+ * @author colo7
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ParametroDTO {
+public class ControlesGastosDTO {
+
     private Long id;
-    private String nombreParametro;
-    private String descripcion;
-    private String valor;
+    private String responsable;
+    private String empresaContratante;
+    private String numeroContrato;
     private Date fechaRegistro;
-    private Date fechaModificacion;
-    private boolean estado;
+
 }

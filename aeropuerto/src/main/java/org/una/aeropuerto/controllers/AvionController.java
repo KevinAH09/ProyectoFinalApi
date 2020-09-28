@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.una.aeropuerto.dto.AvionDTO;
+import org.una.aeropuerto.dto.AvionesDTO;
 import org.una.aeropuerto.service.IAvionService;
 
 /**
@@ -40,7 +40,7 @@ public class AvionController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
     
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene una lista de aviones por id", response = AvionDTO.class, tags = "Aviones")
+    @ApiOperation(value = "Obtiene una lista de aviones por id", response = AvionesDTO.class, tags = "Aviones")
     @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
@@ -51,7 +51,7 @@ public class AvionController {
     }
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todos los aviones", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
+    @ApiOperation(value = "Obtiene una lista de todos los aviones", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
     @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
@@ -67,10 +67,10 @@ public class AvionController {
     @PostMapping("/")
     @ResponseBody
     @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
-    public ResponseEntity<?> create(@Valid @RequestBody AvionDTO AvionDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> create(@Valid @RequestBody AvionesDTO AvionesDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                return new ResponseEntity(AvionService.create(AvionDTO), HttpStatus.CREATED);
+                return new ResponseEntity(AvionService.create(AvionesDTO), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -82,10 +82,10 @@ public class AvionController {
     @PutMapping("/{id}")
     @ResponseBody
     @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
-    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody AvionDTO AvionDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody AvionesDTO AvionesDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                Optional<AvionDTO> AvionUpdated = AvionService.update(AvionDTO, id);
+                Optional<AvionesDTO> AvionUpdated = AvionService.update(AvionesDTO, id);
                 if (AvionUpdated.isPresent()) {
                     return new ResponseEntity(AvionUpdated, HttpStatus.OK);
                 } else {
@@ -100,7 +100,7 @@ public class AvionController {
     }
     
     @GetMapping("/matricula/{term}")
-    @ApiOperation(value = "Obtiene una lista de todos los aviones por matricula", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
+    @ApiOperation(value = "Obtiene una lista de todos los aviones por matricula", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
     @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByMatriculaContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
@@ -112,7 +112,7 @@ public class AvionController {
     }
     
     @GetMapping("/tipo_avion/{term}")
-    @ApiOperation(value = "Obtiene una lista de todos los aviones por tipo de avion", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
+    @ApiOperation(value = "Obtiene una lista de todos los aviones por tipo de avion", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
     @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findBytipoAvionContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
@@ -124,7 +124,7 @@ public class AvionController {
     }
     
     @GetMapping("/aerolinea/{id}")
-    @ApiOperation(value = "Obtiene una lista de aviones por Id de la aerolinea", response = AvionDTO.class, responseContainer = "List", tags = "Aviones")
+    @ApiOperation(value = "Obtiene una lista de aviones por Id de la aerolinea", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
     @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
     public ResponseEntity<?> findByAerolinea(@PathVariable(value = "id") Long id) {
         try {

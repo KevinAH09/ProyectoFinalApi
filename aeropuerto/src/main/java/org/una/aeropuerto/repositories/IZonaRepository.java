@@ -8,17 +8,17 @@ package org.una.aeropuerto.repositories;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
-import org.una.aeropuerto.entities.Zona;
+import org.una.aeropuerto.entities.Zonas;
 
 /**
  *
  * @author Bosco
  */
-public interface IZonaRepository extends JpaRepository<Zona, Long>{
+public interface IZonaRepository extends JpaRepository<Zonas, Long>{
     
-    public List<Zona> findByEstado(boolean estado);
+    public List<Zonas> findByEstado(boolean estado);
     
-    public List<Zona> findByNombreZonaContainingIgnoreCase(@Param("nombreZona") String nombreZona);
+    public List<Zonas> findByNombreZonaContainingIgnoreCase(@Param("nombreZonas") String nombreZonas);
 
-    public List<Zona> findByCodigo(@Param("codigo") String codigo);
+    public List<Zonas> findByCodigo(@Param("codigo") String codigo);
 }

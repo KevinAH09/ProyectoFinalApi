@@ -7,22 +7,31 @@ package org.una.aeropuerto.service;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.aeropuerto.dto.DetalleControlGastoDTO;
+import org.una.aeropuerto.dto.ControlesGastosDTO;
+import org.una.aeropuerto.dto.DetallesControlesGastosDTO;
 
 /**
  *
  * @author Bosco
  */
 public interface IDetalleControlGastoService {
-     public Optional<List<DetalleControlGastoDTO>> findAll();
+     public Optional<List<DetallesControlesGastosDTO>> findAll();
 
-    public Optional<DetalleControlGastoDTO> findById(Long id);
+    public Optional<DetallesControlesGastosDTO> findById(Long id);
     
-    public DetalleControlGastoDTO create(DetalleControlGastoDTO controlGastoDetalle);
+    public DetallesControlesGastosDTO create(DetallesControlesGastosDTO controlGastoDetalle);
 
-    public Optional<DetalleControlGastoDTO> update(DetalleControlGastoDTO controlGastoDetalle, Long id);
+    public Optional<DetallesControlesGastosDTO> update(DetallesControlesGastosDTO controlGastoDetalle, Long id);
 
-    public Optional<List<DetalleControlGastoDTO>> findByTipoServicio(String tipoServicio);
+    public Optional<List<DetallesControlesGastosDTO>> findByTipoServicio(String tipoServicio);
     
-    public Optional<List<DetalleControlGastoDTO>>  findByDuracion(Long duracion);
+    public Optional<List<DetallesControlesGastosDTO>>  findByDuracion(Long duracion);
+    
+    public Optional<List<ControlesGastosDTO>> findByEstado(String estado);
+    
+    public Optional<List<ControlesGastosDTO>> findByEstadoPago(String estado);
+    
+    public Optional<List<ControlesGastosDTO>> findByAreaTrabajoId(Long id);
+    
+    
 }
