@@ -31,7 +31,7 @@ import org.una.aeropuerto.service.IRegistroAccionService;
  * @author colo7
  */
 @RestController
-@RequestMapping("/Registro_accion")
+@RequestMapping("/registroAccion")
 @Api(tags = {"Registro de acciones"})
 public class RegistroAccionController {
     

@@ -32,7 +32,7 @@ import org.una.aeropuerto.service.IUsuarioService;
  * @author colo7
  */
 @RestController
-@RequestMapping("/Usuario")
+@RequestMapping("/usuario")
 @Api(tags = {"Usuarios"})
 public class UsuarioController {
 
@@ -132,7 +132,7 @@ public class UsuarioController {
     @ResponseBody
     @ApiOperation(value = "Modifica un usuario", response = UsuariosDTO.class, tags = "Usuarios")
     @PreAuthorize("hasRole('ROLE_GESTOR_RRHH')")
-    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody Usuarios usuarios, BindingResult bindingResult) {
+    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody UsuariosDTO usuarios, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
                 Optional<UsuariosDTO> usuarioUpdated = usuarioService.update(usuarios, id);

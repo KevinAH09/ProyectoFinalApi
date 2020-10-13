@@ -30,7 +30,7 @@ import org.una.aeropuerto.service.IAreaTrabajoService;
  * @author colo7
  */
 @RestController
-@RequestMapping("/Area_trabajo")
+@RequestMapping("/areaTrabajo")
 @Api(tags = {"Area de trabajo"})
 public class AreaTrabajoController {
 

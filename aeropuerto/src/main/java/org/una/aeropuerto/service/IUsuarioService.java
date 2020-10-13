@@ -8,7 +8,6 @@ package org.una.aeropuerto.service;
 import java.util.List;
 import java.util.Optional;
 import org.una.aeropuerto.dto.UsuariosDTO;
-import org.una.aeropuerto.entities.Usuarios;
 
 /**
  *
@@ -33,7 +32,7 @@ public interface IUsuarioService {
 
     public UsuariosDTO create(UsuariosDTO usuario);
 
-    public Optional<UsuariosDTO> update(Usuarios usuario, Long id);
+    public Optional<UsuariosDTO> update(UsuariosDTO usuario, Long id);
 
     public void delete(Long id);
 

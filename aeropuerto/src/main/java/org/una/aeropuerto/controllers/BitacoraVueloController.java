@@ -31,7 +31,7 @@ import org.una.aeropuerto.service.IBitacoraVueloService;
  * @author Bosco
  */
 @RestController
-@RequestMapping("/bitacora_vuelo")
+@RequestMapping("/bitacoraVuelo")
 @Api(tags = {"Bitacora de vuelos"})
 public class BitacoraVueloController {
     

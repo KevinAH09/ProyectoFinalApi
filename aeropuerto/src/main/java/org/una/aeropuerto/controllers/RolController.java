@@ -32,7 +32,7 @@ import org.una.aeropuerto.service.IUsuarioService;
  * @author colo7
  */
 @RestController
-@RequestMapping("/Rol")
+@RequestMapping("/rol")
 @Api(tags = {"Roles"})
 public class RolController {
 

@@ -26,27 +26,26 @@ public class UsuarioServiceImplementation implements IUsuarioService {
 
     @Autowired
     private IUsuarioRepository usuarioRepository;
-    
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     @Transactional(readOnly = true)
     public Optional<List<UsuariosDTO>> findAll() {
-        return (Optional<List<UsuariosDTO>>) ConversionLista.findList((usuarioRepository.findAll()),UsuariosDTO.class);
+        return (Optional<List<UsuariosDTO>>) ConversionLista.findList((usuarioRepository.findAll()), UsuariosDTO.class);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<UsuariosDTO> findById(Long id) {
-        return (Optional<UsuariosDTO>)ConversionLista.oneToDto(usuarioRepository.findById(id),UsuariosDTO.class);
+        return (Optional<UsuariosDTO>) ConversionLista.oneToDto(usuarioRepository.findById(id), UsuariosDTO.class);
     }
-
 
     @Override
     @Transactional(readOnly = true)
     public Optional<List<UsuariosDTO>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto) {
-        return (Optional<List<UsuariosDTO>>)ConversionLista.findList(usuarioRepository.findByNombreCompletoContainingIgnoreCase(nombreCompleto),UsuariosDTO.class);
+        return (Optional<List<UsuariosDTO>>) ConversionLista.findList(usuarioRepository.findByNombreCompletoContainingIgnoreCase(nombreCompleto), UsuariosDTO.class);
     }
 
     @Override
@@ -60,10 +59,9 @@ public class UsuarioServiceImplementation implements IUsuarioService {
 
     @Override
     @Transactional
-    public Optional<UsuariosDTO> update(Usuarios usuario, Long id) {
+    public Optional<UsuariosDTO> update(UsuariosDTO usuario, Long id) {
         if (usuarioRepository.findById(id).isPresent()) {
-            usuario.setId(id);
-            return Optional.ofNullable(MapperUtils.DtoFromEntity(usuarioRepository.save(usuario), UsuariosDTO.class));
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(usuarioRepository.save(MapperUtils.EntityFromDto(usuario, Usuarios.class)), UsuariosDTO.class));
         } else {
             return null;
         }
@@ -105,18 +103,16 @@ public class UsuarioServiceImplementation implements IUsuarioService {
 //            return null;
 //        }
 //    }
-    
-
     @Override
     @Transactional(readOnly = true)
     public Optional<List<UsuariosDTO>> findByEstado(boolean estado) {
-        return (Optional<List<UsuariosDTO>>)ConversionLista.findList(Optional.ofNullable(usuarioRepository.findByEstado(estado)),UsuariosDTO.class);
+        return (Optional<List<UsuariosDTO>>) ConversionLista.findList(Optional.ofNullable(usuarioRepository.findByEstado(estado)), UsuariosDTO.class);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<UsuariosDTO> findByCedula(String cedula) {
-        return (Optional<UsuariosDTO>)ConversionLista.oneToDto(Optional.ofNullable(usuarioRepository.findByCedula(cedula)),UsuariosDTO.class);
+        return (Optional<UsuariosDTO>) ConversionLista.oneToDto(Optional.ofNullable(usuarioRepository.findByCedula(cedula)), UsuariosDTO.class);
     }
 
     private UsuariosDTO encriptarPassword(UsuariosDTO usuario) {
@@ -129,17 +125,17 @@ public class UsuarioServiceImplementation implements IUsuarioService {
 
     @Override
     public Optional<UsuariosDTO> findByCedulaAndContrasenaEncriptado(String cedula, String password) {
-        return (Optional<UsuariosDTO>)ConversionLista.oneToDto(Optional.ofNullable(usuarioRepository.findByCedulaAndContrasenaEncriptada(cedula, bCryptPasswordEncoder.encode(password))),UsuariosDTO.class);
+        return (Optional<UsuariosDTO>) ConversionLista.oneToDto(Optional.ofNullable(usuarioRepository.findByCedulaAndContrasenaEncriptada(cedula, bCryptPasswordEncoder.encode(password))), UsuariosDTO.class);
     }
 
     @Override
     public Optional<List<UsuariosDTO>> findByRolId(Long id) {
-        return (Optional<List<UsuariosDTO>>) ConversionLista.findList(usuarioRepository.findByRolId(id),UsuariosDTO.class);
+        return (Optional<List<UsuariosDTO>>) ConversionLista.findList(usuarioRepository.findByRolId(id), UsuariosDTO.class);
     }
 
     @Override
     public Optional<List<UsuariosDTO>> findByAreaTrabajoId(Long id) {
-        return (Optional<List<UsuariosDTO>>) ConversionLista.findList(usuarioRepository.findByAreaTrabajoId(id),UsuariosDTO.class);
+        return (Optional<List<UsuariosDTO>>) ConversionLista.findList(usuarioRepository.findByAreaTrabajoId(id), UsuariosDTO.class);
     }
 
 }

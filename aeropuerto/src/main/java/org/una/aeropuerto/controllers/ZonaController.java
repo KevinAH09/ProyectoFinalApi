@@ -31,7 +31,7 @@ import org.una.aeropuerto.service.IZonaService;
  * @author Bosco
  */
 @RestController
-@RequestMapping("/zonas")
+@RequestMapping("/zona")
 @Api(tags = {"Zonas"})
 public class ZonaController {
     

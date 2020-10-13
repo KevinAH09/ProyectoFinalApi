@@ -31,7 +31,7 @@ import org.una.aeropuerto.service.IAvionService;
  * @author Bosco
  */
 @RestController
-@RequestMapping("/aviones")
+@RequestMapping("/avion")
 @Api(tags = {"Aviones"})
 public class AvionController {
     

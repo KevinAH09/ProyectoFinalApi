@@ -31,7 +31,7 @@ import org.una.aeropuerto.service.IAvionZonaService;
  * @author Bosco
  */
 @RestController
-@RequestMapping("/avion_zona")
+@RequestMapping("/avionZona")
 @Api(tags = {"Zonas y Aviones"})
 public class AvionZonaController {
     

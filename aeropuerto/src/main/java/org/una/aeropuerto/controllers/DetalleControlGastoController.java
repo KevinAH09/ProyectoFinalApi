@@ -32,7 +32,7 @@ import org.una.aeropuerto.service.IDetalleControlGastoService;
  * @author colo7
  */
 @RestController
-@RequestMapping("/Detalle_control_gasto")
+@RequestMapping("/detalleControlGasto")
 @Api(tags = {"Detalle de control de gastos de mantenimiento"})
 public class DetalleControlGastoController {
     
