@@ -33,20 +33,20 @@ import org.una.aeropuerto.repositories.IUsuarioRepository;
  * @author Bosco
  */
 @Service
-public class AutenticacionLoginServiceImplementation implements UserDetailsService,IAutenticacionLoginService{
-    
+public class AutenticacionLoginServiceImplementation implements UserDetailsService, IAutenticacionLoginService {
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
     private JwtProvider jwtProvider;
-    
+
     @Autowired
     private IUsuarioService usuarioService;
-    
+
     @Autowired
     private IUsuarioRepository usuarioRepository;
-    
+
     @Override
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
 
@@ -73,8 +73,13 @@ public class AutenticacionLoginServiceImplementation implements UserDetailsServi
         Usuarios usuarioBuscado = usuarioRepository.findByCedula(username);
         if (usuarioBuscado != null) {
             List<GrantedAuthority> roles = new ArrayList<>();
-            roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRolId().getCodigo() + usuarioBuscado.getAreaTrabajoId().getNombreAreaTrabajo()));
-            System.out.println("org.una.aeropuerto.service.AutenticacionLoginServiceImplementation.loadUserByUsername() "+ roles.toString());
+            if (usuarioBuscado.getRolId().getCodigo() != "ROLE_AUDITOR" || usuarioBuscado.getRolId().getCodigo() != "ROLE_ADMIN") {
+
+                roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRolId().getCodigo() + usuarioBuscado.getAreaTrabajoId().getNombreAreaTrabajo()));
+            } else {
+                roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRolId().getCodigo()));
+                System.out.println("org.una.aeropuerto.service.AutenticacionLoginServiceImplementation.loadUserByUsername()" +roles);
+            }
             UserDetails userDetails = new User(usuarioBuscado.getCedula(), usuarioBuscado.getContrasenaEncriptada(), roles);
             return userDetails;
         } else {
