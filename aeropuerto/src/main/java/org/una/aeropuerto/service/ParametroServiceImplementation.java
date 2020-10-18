@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.una.aeropuerto.dto.ParametrosDTO;
 import org.una.aeropuerto.entities.Parametros;
 import org.una.aeropuerto.repositories.IParametroRepository;
@@ -26,16 +27,19 @@ public class ParametroServiceImplementation implements IParametroService {
     private IParametroRepository ParametroRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<ParametrosDTO>> findAll() {
         return (Optional<List<ParametrosDTO>>) ConversionLista.findList((ParametroRepository.findAll()), ParametrosDTO.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<ParametrosDTO> findById(Long id) {
         return (Optional<ParametrosDTO>) ConversionLista.oneToDto(ParametroRepository.findById(id), ParametrosDTO.class);
     }
 
     @Override
+    @Transactional
     public ParametrosDTO create(ParametrosDTO parametro) {
         Parametros user = MapperUtils.EntityFromDto(parametro, Parametros.class);
         user = ParametroRepository.save(user);
@@ -43,23 +47,27 @@ public class ParametroServiceImplementation implements IParametroService {
     }
 
     @Override
+    @Transactional
     public Optional<ParametrosDTO> update(ParametrosDTO parametro, Long id) {
-if (ParametroRepository.findById(id).isPresent()) {
+        if (ParametroRepository.findById(id).isPresent()) {
             Parametros user = MapperUtils.EntityFromDto(parametro, Parametros.class);
             user = ParametroRepository.save(user);
             return Optional.ofNullable(MapperUtils.DtoFromEntity(user, ParametrosDTO.class));
         } else {
             return null;
-        }    }
-
-    @Override
-    public Optional<List<ParametrosDTO>> findByEstado(boolean estado) {
-        return (Optional<List<ParametrosDTO>>)ConversionLista.findList(Optional.ofNullable(ParametroRepository.findByEstado(estado)),ParametrosDTO.class);
+        }
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Optional<List<ParametrosDTO>> findByEstado(boolean estado) {
+        return (Optional<List<ParametrosDTO>>) ConversionLista.findList(Optional.ofNullable(ParametroRepository.findByEstado(estado)), ParametrosDTO.class);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Optional<List<ParametrosDTO>> findByNombreParametro(String nombreParametro) {
-        return (Optional<List<ParametrosDTO>>) ConversionLista.findList(ParametroRepository.findByNombreParametro(nombreParametro),ParametrosDTO.class);
+        return (Optional<List<ParametrosDTO>>) ConversionLista.findList(ParametroRepository.findByNombreParametro(nombreParametro), ParametrosDTO.class);
     }
 
 }

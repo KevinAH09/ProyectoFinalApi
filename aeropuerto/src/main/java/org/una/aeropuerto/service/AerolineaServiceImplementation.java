@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.una.aeropuerto.dto.AerolineasDTO;
 import org.una.aeropuerto.entities.Aerolineas;
 import org.una.aeropuerto.repositories.IAerolineaRepository;
@@ -26,11 +27,13 @@ public class AerolineaServiceImplementation implements IAerolineaService {
     private IAerolineaRepository aerolineaRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AerolineasDTO>> findAll() {
         return (Optional<List<AerolineasDTO>>) ConversionLista.findList((aerolineaRepository.findAll()), AerolineasDTO.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<AerolineasDTO> findById(Long id) {
         return (Optional<AerolineasDTO>) ConversionLista.oneToDto(aerolineaRepository.findById(id), AerolineasDTO.class);
     }
@@ -42,17 +45,20 @@ public class AerolineaServiceImplementation implements IAerolineaService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AerolineasDTO>> findByNombreAerolineaContainingIgnoreCase(String nombreAerolinea) {
         return (Optional<List<AerolineasDTO>>) ConversionLista.findList(aerolineaRepository.findByNombreAerolineaContainingIgnoreCase(nombreAerolinea), AerolineasDTO.class);
 
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AerolineasDTO>> findByNombreResponsableContainingIgnoreCase(String nombreResponsable) {
         return (Optional<List<AerolineasDTO>>) ConversionLista.findList(aerolineaRepository.findByNombreResponsableContainingIgnoreCase(nombreResponsable), AerolineasDTO.class);
     }
 
     @Override
+    @Transactional
     public AerolineasDTO create(AerolineasDTO aerolinea) {
         Aerolineas user = MapperUtils.EntityFromDto(aerolinea, Aerolineas.class);
         user = aerolineaRepository.save(user);
@@ -60,6 +66,7 @@ public class AerolineaServiceImplementation implements IAerolineaService {
     }
 
     @Override
+    @Transactional
     public Optional<AerolineasDTO> update(AerolineasDTO aerolinea, Long id) {
         if (aerolineaRepository.findById(id).isPresent()) {
             Aerolineas user = MapperUtils.EntityFromDto(aerolinea, Aerolineas.class);

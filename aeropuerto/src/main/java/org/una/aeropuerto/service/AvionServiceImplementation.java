@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.una.aeropuerto.dto.AvionesDTO;
 import org.una.aeropuerto.entities.Aviones;
 import org.una.aeropuerto.repositories.IAvionRepository;
@@ -26,16 +27,19 @@ public class AvionServiceImplementation implements IAvionService {
     private IAvionRepository AvionRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AvionesDTO>> findAll() {
         return (Optional<List<AvionesDTO>>) ConversionLista.findList((AvionRepository.findAll()), AvionesDTO.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<AvionesDTO> findById(Long id) {
         return (Optional<AvionesDTO>) ConversionLista.oneToDto(AvionRepository.findById(id), AvionesDTO.class);
     }
 
     @Override
+    @Transactional
     public AvionesDTO create(AvionesDTO avion) {
         Aviones user = MapperUtils.EntityFromDto(avion, Aviones.class);
         user = AvionRepository.save(user);
@@ -43,6 +47,7 @@ public class AvionServiceImplementation implements IAvionService {
     }
 
     @Override
+    @Transactional
     public Optional<AvionesDTO> update(AvionesDTO avion, Long id) {
         if (AvionRepository.findById(id).isPresent()) {
             Aviones user = MapperUtils.EntityFromDto(avion, Aviones.class);
@@ -54,18 +59,21 @@ public class AvionServiceImplementation implements IAvionService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AvionesDTO>> findByMatriculaContainingIgnoreCase(String matricula) {
         return (Optional<List<AvionesDTO>>) ConversionLista.findList(AvionRepository.findByMatriculaContainingIgnoreCase(matricula), AvionesDTO.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AvionesDTO>> findBytipoAvionContainingIgnoreCase(String tipoAvion) {
         return (Optional<List<AvionesDTO>>) ConversionLista.findList(AvionRepository.findBytipoAvionContainingIgnoreCase(tipoAvion), AvionesDTO.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AvionesDTO>> findByAerolineaId(Long id) {
-        return (Optional<List<AvionesDTO>>) ConversionLista.findList(AvionRepository.findByAerolineaId(id),AvionesDTO.class);
+        return (Optional<List<AvionesDTO>>) ConversionLista.findList(AvionRepository.findByAerolineaId(id), AvionesDTO.class);
     }
 
 }

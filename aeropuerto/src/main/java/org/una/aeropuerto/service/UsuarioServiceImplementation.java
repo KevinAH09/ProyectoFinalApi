@@ -124,16 +124,19 @@ public class UsuarioServiceImplementation implements IUsuarioService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<UsuariosDTO> findByCedulaAndContrasenaEncriptado(String cedula, String password) {
         return (Optional<UsuariosDTO>) ConversionLista.oneToDto(Optional.ofNullable(usuarioRepository.findByCedulaAndContrasenaEncriptada(cedula, bCryptPasswordEncoder.encode(password))), UsuariosDTO.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<UsuariosDTO>> findByRolId(Long id) {
         return (Optional<List<UsuariosDTO>>) ConversionLista.findList(usuarioRepository.findByRolId(id), UsuariosDTO.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<UsuariosDTO>> findByAreaTrabajoId(Long id) {
         return (Optional<List<UsuariosDTO>>) ConversionLista.findList(usuarioRepository.findByAreaTrabajoId(id), UsuariosDTO.class);
     }

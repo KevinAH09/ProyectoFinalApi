@@ -69,6 +69,7 @@ public class AutenticacionLoginServiceImplementation implements UserDetailsServi
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuarios usuarioBuscado = usuarioRepository.findByCedula(username);
         if (usuarioBuscado != null) {

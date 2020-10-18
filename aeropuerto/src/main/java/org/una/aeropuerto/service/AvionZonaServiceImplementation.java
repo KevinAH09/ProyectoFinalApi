@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.una.aeropuerto.dto.AvionesZonasDTO;
 import org.una.aeropuerto.entities.AvionesZonas;
 import org.una.aeropuerto.repositories.IAvionZonaRepository;
@@ -26,16 +27,19 @@ public class AvionZonaServiceImplementation implements IAvionZonaService {
     private IAvionZonaRepository AvionRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AvionesZonasDTO>> findAll() {
         return (Optional<List<AvionesZonasDTO>>) ConversionLista.findList((AvionRepository.findAll()), AvionesZonasDTO.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<AvionesZonasDTO> findById(Long id) {
         return (Optional<AvionesZonasDTO>) ConversionLista.oneToDto(AvionRepository.findById(id), AvionesZonasDTO.class);
     }
 
     @Override
+    @Transactional
     public AvionesZonasDTO create(AvionesZonasDTO avionZona) {
         AvionesZonas user = MapperUtils.EntityFromDto(avionZona, AvionesZonas.class);
         user = AvionRepository.save(user);
@@ -43,6 +47,7 @@ public class AvionZonaServiceImplementation implements IAvionZonaService {
     }
 
     @Override
+    @Transactional
     public Optional<AvionesZonasDTO> update(AvionesZonasDTO avionZona, Long id) {
         if (AvionRepository.findById(id).isPresent()) {
             AvionesZonas user = MapperUtils.EntityFromDto(avionZona, AvionesZonas.class);
@@ -54,11 +59,13 @@ public class AvionZonaServiceImplementation implements IAvionZonaService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AvionesZonasDTO>> findByAvion(Long avion) {
         return (Optional<List<AvionesZonasDTO>>) ConversionLista.findList(AvionRepository.findByAvion(avion),AvionesZonasDTO.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<List<AvionesZonasDTO>> findByZonaId(Long zona) {
         return (Optional<List<AvionesZonasDTO>>) ConversionLista.findList(AvionRepository.findByZonaId(zona),AvionesZonasDTO.class);
     }
