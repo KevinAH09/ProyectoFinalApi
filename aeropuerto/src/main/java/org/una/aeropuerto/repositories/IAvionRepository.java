@@ -17,7 +17,7 @@ import org.una.aeropuerto.entities.Aviones;
  */
 public interface IAvionRepository extends JpaRepository<Aviones, Long>{
     
-    public List<Aviones> findByEstadoContaining(boolean estado);
+    public List<Aviones> findByEstado(boolean estado);
     
     public List<Aviones> findByMatriculaContainingIgnoreCase(@Param("Matricula") String matricula);
 

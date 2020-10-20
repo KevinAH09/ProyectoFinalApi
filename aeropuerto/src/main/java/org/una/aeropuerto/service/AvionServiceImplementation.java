@@ -76,4 +76,10 @@ public class AvionServiceImplementation implements IAvionService {
         return (Optional<List<AvionesDTO>>) ConversionLista.findList(AvionRepository.findByAerolineaId(id), AvionesDTO.class);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<List<AvionesDTO>> findByEstado(boolean estado) {
+        return (Optional<List<AvionesDTO>>) ConversionLista.findList(Optional.ofNullable(AvionRepository.findByEstado(estado)), AvionesDTO.class);
+    }
+
 }

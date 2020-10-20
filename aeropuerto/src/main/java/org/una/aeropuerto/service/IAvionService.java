@@ -28,6 +28,8 @@ public interface IAvionService {
     public Optional<List<AvionesDTO>> findBytipoAvionContainingIgnoreCase(String tipoAvion);
     
     public Optional<List<AvionesDTO>> findByAerolineaId(Long id);
+    
+    public Optional<List<AvionesDTO>> findByEstado(boolean estado);
 
 //    public void delete(Long id);
 //

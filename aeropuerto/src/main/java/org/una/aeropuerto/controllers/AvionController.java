@@ -135,4 +135,15 @@ public class AvionController {
         }
     }
     
+    @GetMapping("/estado/{term}")
+    @ApiOperation(value = "Obtiene una lista de todos los aviones por estado", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    public ResponseEntity<?> findByEstado(@PathVariable(value = "term") boolean term) {
+        try {
+            return new ResponseEntity<>(AvionService.findByEstado(term), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
 }
