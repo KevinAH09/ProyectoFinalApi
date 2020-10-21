@@ -7,6 +7,8 @@ package org.una.aeropuerto.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +119,22 @@ public class AvionZonaController {
     public ResponseEntity<?> findByAvionId(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AvionZonaService.findByAvion(id), HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/avionZonaReciente/{id}")
+    @ApiOperation(value = "Obtiene una lista de zonas por Id del avion y fecha reciente", response = AvionesZonasDTO.class, tags = "Zonas y Aviones")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    public ResponseEntity<?> findByAvionIdANDFechaReciente(@PathVariable(value = "id") Long id) {
+        try {
+            Optional<List<AvionesZonasDTO>> avionesZonasDTO = AvionZonaService.findByAvion(id);
+            if (avionesZonasDTO.isPresent()) {
+                return new ResponseEntity(avionesZonasDTO.get().stream().max(Comparator.comparing(x -> x.getFechaIngreso())).get(), HttpStatus.OK);
+            }else {
+                return new ResponseEntity(avionesZonasDTO, HttpStatus.OK);
+            }
 
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
