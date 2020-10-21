@@ -42,7 +42,7 @@ public class ParametroController {
     
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de parametros por id", response = ParametrosDTO.class, tags = "Parametros del sistema")
-    @PreAuthorize("hasRole('ROLE_ADMIN')or hasRole('ROLE_GESTOR_RRHH')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(ParametroService.findById(id), HttpStatus.OK);
@@ -53,7 +53,7 @@ public class ParametroController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los parametros", response = ParametrosDTO.class, responseContainer = "List", tags = "Parametros del sistema")
-    @PreAuthorize("hasRole('ROLE_ADMIN')or hasRole('ROLE_GESTOR_RRHH')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -67,7 +67,7 @@ public class ParametroController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
-    @PreAuthorize("hasRole('ROLE_ADMIN')or hasRole('ROLE_GESTOR_RRHH')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> create(@Valid @RequestBody ParametrosDTO ParametrosDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -82,7 +82,7 @@ public class ParametroController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    @PreAuthorize("hasRole('ROLE_ADMIN')or hasRole('ROLE_GESTOR_RRHH')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody ParametrosDTO ParametrosDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
@@ -102,7 +102,7 @@ public class ParametroController {
     
     @GetMapping("/nombre_parametro/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los parametros por nombre del parametro", response = ParametrosDTO.class, responseContainer = "List", tags = "Parametros del sistema")
-    @PreAuthorize("hasRole('ROLE_ADMIN')or hasRole('ROLE_GESTOR_RRHH')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByNombreParametro(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(ParametroService.findByNombreParametro(term), HttpStatus.OK);
@@ -114,7 +114,7 @@ public class ParametroController {
     
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los parametros por estado", response = ParametrosDTO.class, responseContainer = "List", tags = "Parametros del sistema")
-    @PreAuthorize("hasRole('ROLE_ADMIN')or hasRole('ROLE_GESTOR_RRHH')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(ParametroService.findByEstado(term), HttpStatus.OK);

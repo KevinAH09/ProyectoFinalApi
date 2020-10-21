@@ -74,7 +74,8 @@ public class AutenticacionLoginServiceImplementation implements UserDetailsServi
         Usuarios usuarioBuscado = usuarioRepository.findByCedula(username);
         if (usuarioBuscado != null) {
             List<GrantedAuthority> roles = new ArrayList<>();
-            if (usuarioBuscado.getRolId().getCodigo() != "ROLE_AUDITOR" || usuarioBuscado.getRolId().getCodigo() != "ROLE_ADMIN") {
+            System.out.println(usuarioBuscado.getRolId().getCodigo());
+            if (!usuarioBuscado.getRolId().getCodigo().equals("ROLE_AUDITOR") && !usuarioBuscado.getRolId().getCodigo().equals("ROLE_ADMIN")) {
 
                 roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRolId().getCodigo() + usuarioBuscado.getAreaTrabajoId().getNombreAreaTrabajo()));
             } else {
