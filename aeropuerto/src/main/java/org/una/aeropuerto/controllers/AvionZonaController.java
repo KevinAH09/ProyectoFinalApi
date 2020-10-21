@@ -133,7 +133,7 @@ public class AvionZonaController {
             if (avionesZonasDTO.isPresent()) {
                 return new ResponseEntity(avionesZonasDTO.get().stream().max(Comparator.comparing(x -> x.getFechaIngreso())).get(), HttpStatus.OK);
             }else {
-                return new ResponseEntity(avionesZonasDTO, HttpStatus.OK);
+                return new ResponseEntity(avionesZonasDTO, HttpStatus.NOT_FOUND);
             }
 
         } catch (Exception e) {
