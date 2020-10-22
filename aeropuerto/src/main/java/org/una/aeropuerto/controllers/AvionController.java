@@ -49,6 +49,16 @@ public class AvionController {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/matriculaUnica/{matricula}")
+    @ApiOperation(value = "Obtiene un avion por matricula", response = AvionesDTO.class, tags = "Aviones")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    public ResponseEntity<?> findByIdMatricula(@PathVariable(value = "matricula") String matricula) {
+        try {
+            return new ResponseEntity(AvionService.findByMatricula(matricula), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los aviones", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")

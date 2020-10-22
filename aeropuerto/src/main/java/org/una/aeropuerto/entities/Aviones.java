@@ -39,7 +39,7 @@ public class Aviones implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "matricula", length = 50)
+    @Column(name = "matricula", length = 50,unique = true)
     private String matricula;
 
     @Column(length = 50, name = "tipo_avion")

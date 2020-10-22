@@ -23,6 +23,8 @@ public interface IAvionService {
 
     public Optional<AvionesDTO> update(AvionesDTO avion, Long id);
     
+    public Optional<AvionesDTO> findByMatricula(String matricula);
+    
     public Optional<List<AvionesDTO>> findByMatriculaContainingIgnoreCase(String matricula);
     
     public Optional<List<AvionesDTO>> findBytipoAvionContainingIgnoreCase(String tipoAvion);
