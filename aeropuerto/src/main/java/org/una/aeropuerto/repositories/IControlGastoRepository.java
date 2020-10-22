@@ -17,15 +17,17 @@ import org.una.aeropuerto.entities.ControlesGastos;
  * @author colo7
  */
 public interface IControlGastoRepository extends JpaRepository<ControlesGastos, Long> {
-    
+
     public List<ControlesGastos> findByEmpresaContratanteContainingIgnoreCase(@Param("empresaContratante") String empresa);
-    
+
+    @Query("select u from ControlesGastos u where u.fechaRegistro=fechaRegistro")
     public List<ControlesGastos> findByFechaRegistro(@Param("fechaRegistro") Date fecha);
 
-    public List<ControlesGastos> findByFechaRegistroBetween(@Param("fechaRegistro") Date startDate, @Param("fechaRegistro1") Date endDate);
+    @Query("select u from ControlesGastos u where u.fechaRegistro between fechaRegistro1 and fechaRegistro2")
+    public List<ControlesGastos> findByFechaRegistroBetween(@Param("fechaRegistro1") Date fechaRegistro1, @Param("fechaRegistro2") Date fechaRegistro2);
 
     public ControlesGastos findByNumeroContrato(@Param("numeroContrato") String numeroContrato);
-    
+
     @Query("SELECT u FROM ControlesGastos u LEFT JOIN u.detalleControlGastoId d WHERE  d.id=:id")
-    public ControlesGastos  findByDetalleControlGastoId(Long id);
+    public ControlesGastos findByDetalleControlGastoId(Long id);
 }
