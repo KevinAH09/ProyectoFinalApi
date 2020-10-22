@@ -26,5 +26,6 @@ public class ControlesGastosDTO {
     private String empresaContratante;
     private String numeroContrato;
     private Date fechaRegistro;
+    private DetallesControlesGastosDTO detalleControlGastoId;
 
 }
