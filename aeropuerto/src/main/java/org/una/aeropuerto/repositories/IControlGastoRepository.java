@@ -30,4 +30,10 @@ public interface IControlGastoRepository extends JpaRepository<ControlesGastos, 
 
     @Query("SELECT u FROM ControlesGastos u LEFT JOIN u.detalleControlGastoId d WHERE  d.id=:id")
     public ControlesGastos findByDetalleControlGastoId(Long id);
+
+    @Query("SELECT u FROM ControlesGastos u LEFT JOIN u.detalleControlGastoId d WHERE  d.tipoServicio=:tipo")
+    public List<ControlesGastos> findByTipoServicio(@Param("tipo") String tipo);
+
+    @Query("SELECT u FROM ControlesGastos u LEFT JOIN u.detalleControlGastoId d WHERE  d.estadoPago=:estado")
+    public List<ControlesGastos> findByEstadoPago(@Param("estado") String estado);
 }

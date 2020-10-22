@@ -79,6 +79,17 @@ public class ControlGastoServiceImplementation implements IControlGastoService {
 
     @Override
     @Transactional(readOnly = true)
+    public Optional<List<ControlesGastosDTO>> findByEstadoPago(String estado) {
+        return (Optional<List<ControlesGastosDTO>>) ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByEstadoPago(estado)), ControlesGastosDTO.class);
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<List<ControlesGastosDTO>> findByTipoServicio(String tipo) {
+        return (Optional<List<ControlesGastosDTO>>) ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByTipoServicio(tipo)), ControlesGastosDTO.class);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Optional<List<ControlesGastosDTO>> findByFechaRegistroBetween(Date startDate, Date endDate) {
         return (Optional<List<ControlesGastosDTO>>) ConversionLista.findList(Optional.ofNullable(ControlGastoRepository.findByFechaRegistroBetween(startDate, endDate)), ControlesGastosDTO.class);
     }
