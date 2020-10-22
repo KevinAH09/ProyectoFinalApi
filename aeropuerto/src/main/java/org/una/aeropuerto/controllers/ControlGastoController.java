@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.aeropuerto.dto.ControlesGastosDTO;
 import org.una.aeropuerto.service.IControlGastoService;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -163,20 +164,23 @@ public class ControlGastoController {
     @GetMapping("/fechaRegistro/{date}")
     @ApiOperation(value = "Obtiene una lista de todos los control de gastos de mantenimiento por fecha de registro", response = ControlesGastosDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
     @PreAuthorize("hasRole('ROLE_GERENTE_GAST_MANT') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
-    public ResponseEntity<?> findByFechaRegistro(@PathVariable(value = "date") Date fecha) {
+    public ResponseEntity<?> findByFechaRegistro(@PathVariable(value = "date") String fecha) {
         try {
-            return new ResponseEntity<>(controlGastoService.findByFechaRegistro(fecha), HttpStatus.OK);
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+            return new ResponseEntity<>(controlGastoService.findByFechaRegistro(date), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/fechaRegistroStar/{dateStar}/fechaRegistroEnd/{dateEnd}")
+    @GetMapping("/fechaRegistroBetween/{dateStar}/and/{dateEnd}")
     @ApiOperation(value = "Obtiene una lista de todos los control de gastos de mantenimiento por rango de fechas de registro", response = ControlesGastosDTO.class, responseContainer = "List", tags = "Control de gastos de mantenimiento")
     @PreAuthorize("hasRole('ROLE_GERENTE_GAST_MANT') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
-    public ResponseEntity<?> findByFechaRegistroBetween(@PathVariable(value = "dateStar") Date fechaStar, @PathVariable(value = "dateEnd") Date fechaEnd) {
+    public ResponseEntity<?> findByFechaRegistroBetween(@PathVariable(value = "dateStar") String fechaStar, @PathVariable(value = "dateEnd") String fechaEnd) {
         try {
-            return new ResponseEntity<>(controlGastoService.findByFechaRegistroBetween(fechaStar, fechaEnd), HttpStatus.OK);
+            Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(fechaStar);
+            Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fechaEnd);
+            return new ResponseEntity<>(controlGastoService.findByFechaRegistroBetween(date1, date2), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
