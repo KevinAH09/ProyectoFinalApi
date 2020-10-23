@@ -93,7 +93,7 @@ public class DataLoader implements ApplicationRunner {
         if (rolBuscado.isEmpty()) {
             rolDTO = new RolesDTO();
             rolDTO.setCodigo(codigo);
-            rolDTO.setDescripcion("ROL_GESTOR");
+            rolDTO.setDescripcion("GESTOR");
             rolDTO = rolService.create(rolDTO);
             createRoles();
         } else {
@@ -108,7 +108,7 @@ public class DataLoader implements ApplicationRunner {
         if (areaBuscada.isEmpty()) {
             areaTrabajoDTO = new AreasTrabajosDTO();
             areaTrabajoDTO.setNombreAreaTrabajo(nombre);
-            areaTrabajoDTO.setDescripcion("AREA_TRABAJO_RECURSOS_HUMANOS");
+            areaTrabajoDTO.setDescripcion("RECURSOS_HUMANOS");
             areaTrabajoDTO = areaTrabajoService.create(areaTrabajoDTO);
             createAreas();
         } else {

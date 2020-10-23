@@ -12,8 +12,8 @@ package org.una.aeropuerto.loaders;
 public enum AreasTrabajo {
     
     
-    AREA_TRABAJO_OPERACIONES_AEROLINEAS("_OPER_AERO"),
-    AREA_TRABAJO_GASTOS_MANTENIMENTO("_GAST_MANT");
+    OPERACIONES_AEROLINEAS("_OPER_AERO"),
+    GASTOS_MANTENIMENTO("_GAST_MANT");
 
     private String nombre;
 
