@@ -41,6 +41,7 @@ public class VueloServiceImplementation implements IVueloService {
     @Override
     @Transactional
     public VuelosDTO create(VuelosDTO vuelo) {
+        System.out.println(vuelo);
         Vuelos user = MapperUtils.EntityFromDto(vuelo, Vuelos.class);
         user = VueloRepository.save(user);
         return MapperUtils.DtoFromEntity(user, VuelosDTO.class);

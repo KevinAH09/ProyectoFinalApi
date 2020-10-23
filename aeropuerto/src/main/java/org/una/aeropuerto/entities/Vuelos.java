@@ -36,16 +36,17 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Vuelos {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "origen", length = 50)
     private String origen;
-    
+
     @Column(name = "destino", length = 50)
     private String destino;
-    
+
     @Column(name = "fecha_inical", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @Setter(AccessLevel.NONE)
@@ -55,30 +56,35 @@ public class Vuelos {
     @Setter(AccessLevel.NONE)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFinal;
-    
+
     @Column
     private boolean estado;
-    
+
     @ManyToOne
     @JoinColumn(name = "avion_Id")
     private Aviones avionId;
-    
+
     @ManyToOne
     @JoinColumn(name = "bitacora_vuelo_id")
     private BitacorasVuelos bitacoraVueloId;
-    
+
     private static final long serialVersionUID = 1L;
 
     @PrePersist
     public void prePersist() {
         estado = true;
-        fechaInicio = new Date();
-        fechaFinal = new Date();
     }
 
     @PreUpdate
     public void preUpdate() {
-        fechaInicio = new Date();//no estoy seguro si va
-        fechaFinal = new Date();
+
+    }
+
+    public void setFechaInicio(Date facheInicio) {
+        this.fechaInicio = facheInicio;
+    }
+
+    public void setFechaFinal(Date fechaFinal) {
+        this.fechaFinal = fechaFinal;
     }
 }

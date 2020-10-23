@@ -66,10 +66,11 @@ public class VueloController {
     @PostMapping("/")
     @ResponseBody
     @PreAuthorize("hasRole('ROLE_GESTOR_OPER_AERO')")
-    public ResponseEntity<?> create(@Valid @RequestBody VuelosDTO VuelosDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> create(@Valid @RequestBody VuelosDTO vuelosDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
-                return new ResponseEntity(VueloService.create(VuelosDTO), HttpStatus.CREATED);
+                System.out.println(vuelosDTO);
+                return new ResponseEntity(VueloService.create(vuelosDTO), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
             }
