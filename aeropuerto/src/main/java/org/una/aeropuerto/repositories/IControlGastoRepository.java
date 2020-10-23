@@ -11,6 +11,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.una.aeropuerto.entities.ControlesGastos;
+import javax.persistence.TemporalType;
+import org.springframework.data.jpa.repository.Temporal;
 
 /**
  *
@@ -23,8 +25,7 @@ public interface IControlGastoRepository extends JpaRepository<ControlesGastos, 
     @Query("select u from ControlesGastos u where u.fechaRegistro=fechaRegistro")
     public List<ControlesGastos> findByFechaRegistro(@Param("fechaRegistro") Date fecha);
 
-    @Query("select u from ControlesGastos u where u.fechaRegistro between fechaRegistro1 and fechaRegistro2")
-    public List<ControlesGastos> findByFechaRegistroBetween(@Param("fechaRegistro1") Date fechaRegistro1, @Param("fechaRegistro2") Date fechaRegistro2);
+    public List<ControlesGastos> findByFechaRegistroBetween(@Temporal(TemporalType.DATE) Date fechaRegistro1, @Temporal(TemporalType.DATE) Date fechaRegistro2);
 
     public ControlesGastos findByNumeroContrato(@Param("numeroContrato") String numeroContrato);
 
