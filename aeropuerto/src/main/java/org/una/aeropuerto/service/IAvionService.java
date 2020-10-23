@@ -32,6 +32,8 @@ public interface IAvionService {
     public Optional<List<AvionesDTO>> findByAerolineaId(Long id);
     
     public Optional<List<AvionesDTO>> findByEstado(boolean estado);
+    
+   // public Optional<List<AvionesDTO>> findByAerolineaIdMatricula(Long id,String Matricula);
 
 //    public void delete(Long id);
 //

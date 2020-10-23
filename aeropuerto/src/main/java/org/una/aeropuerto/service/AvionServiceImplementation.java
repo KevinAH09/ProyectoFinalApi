@@ -88,4 +88,9 @@ public class AvionServiceImplementation implements IAvionService {
         return (Optional<AvionesDTO>) ConversionLista.oneToDto(Optional.ofNullable(AvionRepository.findByMatricula(matricula)), AvionesDTO.class);
     }
 
+//    @Override
+//    public Optional<List<AvionesDTO>> findByAerolineaIdMatricula(Long id, String Matricula) {
+//        return (Optional<List<AvionesDTO>>) ConversionLista.findList(Optional.ofNullable(AvionRepository.findByAerolineaIdMatricula(id,Matricula)), AvionesDTO.class);
+//    }
+
 }

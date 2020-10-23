@@ -156,4 +156,15 @@ public class AvionController {
         }
     }
     
+//    @GetMapping("/aerolinea/{id}/matricula/{term}")
+//    @ApiOperation(value = "Obtiene una lista de todos los aviones por matricula y id", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
+//    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+//    public ResponseEntity<?> findByAerolineaMatricula(@PathVariable(value = "id") Long id, @PathVariable(value = "matricula") String matricula) {
+//        try {
+//            return new ResponseEntity<>(AvionService.findByAerolineaIdMatricula(id, matricula), HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+    
 }

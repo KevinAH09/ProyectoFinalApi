@@ -27,5 +27,9 @@ public interface IAvionRepository extends JpaRepository<Aviones, Long>{
     
     @Query("SELECT u FROM Aviones u LEFT JOIN u.aerolineaId d WHERE  d.id=:id")
     public List<Aviones> findByAerolineaId(Long id);
+//    
+//    @Query("SELECT u FROM Aviones u LEFT JOIN u.aerolineaId d WHERE  d.aerolineaId=:aerolineaId and u.matricula=:matricula")
+//    public List<Aviones> findByAerolineaIdMatricula(@Param("aerolineaId") Long aerolineaId,@Param("matricula") String matricula);
     
+   
 }
