@@ -79,30 +79,6 @@ public class UsuarioServiceImplementation implements IUsuarioService {
     public void deleteAll() {
         usuarioRepository.deleteAll();
     }
-
-//    @Override
-//    @Transactional(readOnly = true)
-//    public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
-//   
-//
-//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getPassword()));
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-//
-//        Optional<Usuario> usuario = findByCedula(authenticationRequest.getCedula());
-//
-//        if (usuario.isPresent()) {
-//            authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
-//            UsuariosDTO usuariosDto = MapperUtils.DtoFromEntity(usuario.get(), UsuariosDTO.class);
-//            authenticationResponse.setUsuario(usuariosDto);
-//            List<PermisoOtorgadoDTO> permisosOtorgadosDto = MapperUtils.DtoListFromEntityList(usuario.get().getPermisoOtorgado(), PermisoOtorgadoDTO.class);
-//            authenticationResponse.setPermisos(permisosOtorgadosDto);
-//
-//            return authenticationResponse;
-//        } else {
-//            return null;
-//        }
-//    }
     @Override
     @Transactional(readOnly = true)
     public Optional<List<UsuariosDTO>> findByEstado(boolean estado) {
@@ -139,6 +115,17 @@ public class UsuarioServiceImplementation implements IUsuarioService {
     @Transactional(readOnly = true)
     public Optional<List<UsuariosDTO>> findByAreaTrabajoId(Long id) {
         return (Optional<List<UsuariosDTO>>) ConversionLista.findList(usuarioRepository.findByAreaTrabajoId(id), UsuariosDTO.class);
+    }
+
+    @Override
+    public Optional<UsuariosDTO> updateContrasena(UsuariosDTO usuario, Long id) {
+        if (usuarioRepository.findById(id).isPresent()) {
+            UsuariosDTO usuCambioContrasena = new UsuariosDTO();
+            usuCambioContrasena = encriptarPassword(usuario);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(usuarioRepository.save(MapperUtils.EntityFromDto(usuCambioContrasena, Usuarios.class)), UsuariosDTO.class));
+        } else {
+            return null;
+        }
     }
 
 }
