@@ -33,6 +33,8 @@ public interface IUsuarioService {
     public UsuariosDTO create(UsuariosDTO usuario);
 
     public Optional<UsuariosDTO> update(UsuariosDTO usuario, Long id);
+    
+    public Optional<UsuariosDTO> updateContrasena(UsuariosDTO usuario, Long id);
 
     public void delete(Long id);
 

@@ -119,6 +119,7 @@ public class UsuarioController {
     public ResponseEntity<?> create(@Valid @RequestBody UsuariosDTO usuariosDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
+                System.out.println(usuariosDTO);
                 return new ResponseEntity(usuarioService.create(usuariosDTO), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -136,6 +137,26 @@ public class UsuarioController {
         if (!bindingResult.hasErrors()) {
             try {
                 Optional<UsuariosDTO> usuarioUpdated = usuarioService.update(usuarios, id);
+                if (usuarioUpdated.isPresent()) {
+                    return new ResponseEntity(usuarioUpdated, HttpStatus.OK);
+                } else {
+                    return new ResponseEntity(HttpStatus.NOT_FOUND);
+                }
+            } catch (Exception e) {
+                return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
+        }
+    }
+    @PutMapping("/cambioContrasena/{id}")
+    @ResponseBody
+    @ApiOperation(value = "Modifica un usuario", response = UsuariosDTO.class, tags = "Usuarios")
+    @PreAuthorize("hasRole('ROLE_GESTOR_RRHH')")
+    public ResponseEntity<?> updateCambioContrasena(@PathVariable(value = "id") Long id, @Valid @RequestBody UsuariosDTO usuarios, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            try {
+                Optional<UsuariosDTO> usuarioUpdated = usuarioService.updateContrasena(usuarios, id);
                 if (usuarioUpdated.isPresent()) {
                     return new ResponseEntity(usuarioUpdated, HttpStatus.OK);
                 } else {
