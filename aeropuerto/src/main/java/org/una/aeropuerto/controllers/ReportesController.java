@@ -38,15 +38,38 @@ public class ReportesController {
     @Autowired
     private IReportesService reportesService;
 
-    @GetMapping("/fechaini/fechafin/{fechaIni}/{fechaFin}")
+    @GetMapping("/gastosMant/fechaini/fechafin/{fechaIni}/{fechaFin}")
     @ApiOperation(value = "", response = String.class, tags = "Reportes")
     public @ResponseBody
-    ResponseEntity<?> findAll(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin) {
+    ResponseEntity<?> reportGastosMAntFechas(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin) {
         try {
-//            Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
-//            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
+            Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
+            System.out.println(dateIni+" "+dateFin);
             byte[] jasperReport;
-            JasperPrint jasperPrint = reportesService.reporteVuelos(new Date(), new Date()).get();
+            JasperPrint jasperPrint = reportesService.reporteGastosMantFechas(dateIni, dateFin).get();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream outputStream = new ObjectOutputStream(baos);
+            outputStream.writeObject(jasperPrint);
+            jasperReport = baos.toByteArray();
+            String envioString = Base64.getEncoder().encodeToString(jasperReport);
+            System.out.println(envioString);
+            return new ResponseEntity<>(envioString, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/gastosMant/fechaini/fechafin/empresa/{fechaIni}/{fechaFin}/{nombre}")
+    @ApiOperation(value = "", response = String.class, tags = "Reportes")
+    public @ResponseBody
+    ResponseEntity<?> reportGastosMAntFechasEmpresa(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin,@PathVariable(value = "nombre") String nombre) {
+        try {
+            Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
+            System.out.println(dateIni+" "+dateFin);
+            byte[] jasperReport;
+            JasperPrint jasperPrint = reportesService.reporteGastosMantFechasEmpresa(nombre,dateIni, dateFin).get();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream outputStream = new ObjectOutputStream(baos);
             outputStream.writeObject(jasperPrint);

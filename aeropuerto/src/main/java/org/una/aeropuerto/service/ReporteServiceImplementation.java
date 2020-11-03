@@ -34,6 +34,7 @@ import org.una.aeropuerto.AeropuertoApplication;
 public class ReporteServiceImplementation implements IReportesService {
 
     Connection connetion = null;
+    Map map = null;
 
     public void Conexion() {
         try {
@@ -48,15 +49,28 @@ public class ReporteServiceImplementation implements IReportesService {
 
     @Override
     public Optional<JasperPrint> reporteVuelos(Date fechaIni, Date fechaFin) {
+        return createReport("report1");
+    }
+
+    @Override
+    public Optional<JasperPrint> reporteGastosMantFechas(Date fechaIni, Date fechaFin) {
+        map = new HashMap();
+        map.put("fechafin", fechaFin);
+        map.put("fechaIni", fechaIni);
+        return createReport("reportGastosMantFechas");
+
+    }
+
+    private Optional<JasperPrint> createReport(String nombreReport) {
         try {
             Conexion();
-            Map map = new HashMap();
+
             System.out.println(AeropuertoApplication.class.getProtectionDomain().getCodeSource().getLocation());
             URL url = AeropuertoApplication.class.getProtectionDomain().getCodeSource().getLocation();
             String rutaUrl = decode(url.toURI().toString());
 
             String ruta = rutaUrl.replaceFirst("file:/", "");
-            String reporte = ruta.replaceAll("/target/classes/", "/src/main/java/org/una/aeropuerto/report/report1.jasper");
+            String reporte = ruta.replaceAll("/target/classes/", "/src/main/java/org/una/aeropuerto/report/" + nombreReport + ".jasper");
             String rutal = reporte.replaceAll("/", "\\\\");
             String rutaReal = rutal.replaceAll("%20", " ");
             System.out.println("59 " + rutaReal);
@@ -69,6 +83,18 @@ public class ReporteServiceImplementation implements IReportesService {
             System.out.println("67" + ex);
             return null;
         }
+
     }
 
+    @Override
+    public Optional<JasperPrint> reporteGastosMantFechasEmpresa(String nombre, Date fechaIni, Date fechaFin) {
+        map = new HashMap();
+        System.out.println(nombre);
+        System.out.println(fechaFin);
+        System.out.println(fechaIni);
+        map.put("nombreEmpresa",nombre);
+        map.put("fechaFin", fechaFin);
+        map.put("fechaIni", fechaIni);
+        return createReport("reportGastosMantFechasEmpresa");
+    }
 }
