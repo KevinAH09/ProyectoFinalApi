@@ -70,11 +70,6 @@ public class Vuelos {
 
     private static final long serialVersionUID = 1L;
 
-    @PrePersist
-    public void prePersist() {
-        estado = true;
-    }
-
     @PreUpdate
     public void preUpdate() {
 

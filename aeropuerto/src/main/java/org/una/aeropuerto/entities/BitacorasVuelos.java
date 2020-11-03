@@ -52,13 +52,4 @@ public class BitacorasVuelos {
     
     private static final long serialVersionUID = 1L;
     
-    @PrePersist
-    public void prePersist() {
-        cargaPasajero = true;
-        cargaCombustible = true;
-        horasVuelo = true;
-        zonaDescarga = true;
-        autorizacionTorreControl = true;
-    }
-    
 }
