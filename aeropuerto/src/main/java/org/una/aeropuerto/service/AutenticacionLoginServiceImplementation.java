@@ -49,7 +49,6 @@ public class AutenticacionLoginServiceImplementation implements UserDetailsServi
 
     @Override
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
-
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getContrasena()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();
@@ -80,7 +79,7 @@ public class AutenticacionLoginServiceImplementation implements UserDetailsServi
                 roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRolId().getCodigo() + usuarioBuscado.getAreaTrabajoId().getNombreAreaTrabajo()));
             } else {
                 roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRolId().getCodigo()));
-                System.out.println("org.una.aeropuerto.service.AutenticacionLoginServiceImplementation.loadUserByUsername()" +roles);
+                System.out.println("org.una.aeropuerto.service.AutenticacionLoginServiceImplementation.loadUserByUsername()" + roles);
             }
             UserDetails userDetails = new User(usuarioBuscado.getCedula(), usuarioBuscado.getContrasenaEncriptada(), roles);
             return userDetails;

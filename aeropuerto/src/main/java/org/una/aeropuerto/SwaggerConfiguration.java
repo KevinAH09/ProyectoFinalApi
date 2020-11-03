@@ -80,6 +80,8 @@ public class SwaggerConfiguration {
                 },
                         new Tag("Detalle de control de gastos de mantenimiento", "Metodos sobre detalle de control de gastos de mantenimiento") {
                 },  
+                        new Tag("Reportes", "Metodos sobre reportes") {
+                },  
                         new Tag("Usuarios", "Entidad de Usuarios")
                 );
 
