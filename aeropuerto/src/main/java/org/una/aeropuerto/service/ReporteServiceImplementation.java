@@ -112,4 +112,40 @@ public class ReporteServiceImplementation implements IReportesService {
         map.put("fechaIni", fechaIni);
         return createReport("reportGastosMantFechasEstadoPago");
     }
+
+    @Override
+    public Optional<JasperPrint> reporteAvionesFechas(Date fechaIni, Date fechaFin) {
+        map = new HashMap();
+        map.put("fechaFin", fechaFin);
+        map.put("fechaIni", fechaIni);
+        return createReport("reportGastosMantFechasEstadoPago");
+    }
+
+    @Override
+    public Optional<JasperPrint> reporteAvionesFechasAerolinea(Date fechaIni, Date fechaFin, Long id) {
+        map = new HashMap();
+        map.put("aero",id);
+        map.put("fechaFin", fechaFin);
+        map.put("fechaIni", fechaIni);
+        return createReport("reportGastosMantFechasEstadoPago");
+    }
+
+    @Override
+    public Optional<JasperPrint> reporteAvionesFechasZona(Date fechaIni, Date fechaFin, Long id) {
+         map = new HashMap();
+        map.put("zona",id);
+        map.put("fechaFin", fechaFin);
+        map.put("fechaIni", fechaIni);
+        return createReport("reportGastosMantFechasEstadoPago");
+    }
+
+    @Override
+    public Optional<JasperPrint> reporteAvionesFechasZonaAerolinea(Date fechaIni, Date fechaFin, Long zonaId, Long aeroId) {
+        map = new HashMap();
+        map.put("aero",aeroId);
+        map.put("zona",zonaId);
+        map.put("fechaFin", fechaFin);
+        map.put("fechaIni", fechaIni);
+        return createReport("reportGastosMantFechasEstadoPago");
+    }
 }

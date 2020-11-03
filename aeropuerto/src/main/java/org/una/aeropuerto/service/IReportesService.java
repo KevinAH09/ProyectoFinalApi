@@ -25,4 +25,12 @@ public interface IReportesService {
     
     Optional<JasperPrint> reporteGastosMantFechasEmpresa(String nombre,Date fechaIni, Date fechaFin);
     
+    Optional<JasperPrint> reporteAvionesFechas(Date fechaIni, Date fechaFin);
+    
+    Optional<JasperPrint> reporteAvionesFechasAerolinea(Date fechaIni, Date fechaFin,Long id);
+    
+    Optional<JasperPrint> reporteAvionesFechasZona(Date fechaIni, Date fechaFin,Long id);
+    
+    Optional<JasperPrint> reporteAvionesFechasZonaAerolinea(Date fechaIni, Date fechaFin,Long zonaId,Long aeroId);
+    
 }

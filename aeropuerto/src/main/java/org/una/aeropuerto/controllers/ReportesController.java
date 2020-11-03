@@ -126,6 +126,94 @@ public class ReportesController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/aviones/fechaini/fechafin/{fechaIni}/{fechaFin}")
+    @ApiOperation(value = "", response = String.class, tags = "Reportes")
+    public @ResponseBody
+    ResponseEntity<?> reportAvionesFechas(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin) {
+        try {
+            Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
+            System.out.println(dateIni+" "+dateFin);
+            byte[] jasperReport;
+            JasperPrint jasperPrint = reportesService.reporteAvionesFechas(dateIni, dateFin).get();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream outputStream = new ObjectOutputStream(baos);
+            outputStream.writeObject(jasperPrint);
+            jasperReport = baos.toByteArray();
+            String envioString = Base64.getEncoder().encodeToString(jasperReport);
+            System.out.println(envioString);
+            return new ResponseEntity<>(envioString, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/aviones/fechaini/fechafin/aerolinea/{fechaIni}/{fechaFin}/{id}")
+    @ApiOperation(value = "", response = String.class, tags = "Reportes")
+    public @ResponseBody
+    ResponseEntity<?> reportAvionesAerolinea(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin,@PathVariable(value = "id") Long id) {
+        try {
+            Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
+            System.out.println(dateIni+" "+dateFin);
+            byte[] jasperReport;
+            JasperPrint jasperPrint = reportesService.reporteAvionesFechasAerolinea(dateIni, dateFin,id).get();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream outputStream = new ObjectOutputStream(baos);
+            outputStream.writeObject(jasperPrint);
+            jasperReport = baos.toByteArray();
+            String envioString = Base64.getEncoder().encodeToString(jasperReport);
+            System.out.println(envioString);
+            return new ResponseEntity<>(envioString, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/aviones/fechaini/fechafin/zona/{fechaIni}/{fechaFin}/{id}")
+    @ApiOperation(value = "", response = String.class, tags = "Reportes")
+    public @ResponseBody
+    ResponseEntity<?> reportAvionesZona(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin,@PathVariable(value = "id") Long id) {
+        try {
+            Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
+            System.out.println(dateIni+" "+dateFin);
+            byte[] jasperReport;
+            JasperPrint jasperPrint = reportesService.reporteAvionesFechasZona(dateIni, dateFin,id).get();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream outputStream = new ObjectOutputStream(baos);
+            outputStream.writeObject(jasperPrint);
+            jasperReport = baos.toByteArray();
+            String envioString = Base64.getEncoder().encodeToString(jasperReport);
+            System.out.println(envioString);
+            return new ResponseEntity<>(envioString, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/aviones/fechaini/fechafin/zonaAerolinea/{fechaIni}/{fechaFin}/{idaero}/{idzona}")
+    @ApiOperation(value = "", response = String.class, tags = "Reportes")
+    public @ResponseBody
+    ResponseEntity<?> reportAvionesZonaAerolinea(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin,@PathVariable(value = "idaero") Long aero,@PathVariable(value = "idzona") Long zona) {
+        try {
+            Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
+            System.out.println(dateIni+" "+dateFin);
+            byte[] jasperReport;
+            JasperPrint jasperPrint = reportesService.reporteAvionesFechasZonaAerolinea(dateIni, dateFin,zona,aero).get();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream outputStream = new ObjectOutputStream(baos);
+            outputStream.writeObject(jasperPrint);
+            jasperReport = baos.toByteArray();
+            String envioString = Base64.getEncoder().encodeToString(jasperReport);
+            System.out.println(envioString);
+            return new ResponseEntity<>(envioString, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     
     
 }
