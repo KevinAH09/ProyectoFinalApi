@@ -19,6 +19,10 @@ public interface IReportesService {
     
     Optional<JasperPrint> reporteGastosMantFechas(Date fechaIni, Date fechaFin);
     
+    Optional<JasperPrint> reporteGastosMantFechasAreaTrabajo(Date fechaIni, Date fechaFin,Long id);
+    
+    Optional<JasperPrint> reporteGastosMantFechasEstadoPago(Date fechaIni, Date fechaFin,String estadoPago);
+    
     Optional<JasperPrint> reporteGastosMantFechasEmpresa(String nombre,Date fechaIni, Date fechaFin);
     
 }

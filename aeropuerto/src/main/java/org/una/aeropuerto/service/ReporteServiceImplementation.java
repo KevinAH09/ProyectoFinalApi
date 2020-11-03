@@ -89,12 +89,27 @@ public class ReporteServiceImplementation implements IReportesService {
     @Override
     public Optional<JasperPrint> reporteGastosMantFechasEmpresa(String nombre, Date fechaIni, Date fechaFin) {
         map = new HashMap();
-        System.out.println(nombre);
-        System.out.println(fechaFin);
-        System.out.println(fechaIni);
         map.put("nombreEmpresa",nombre);
         map.put("fechaFin", fechaFin);
         map.put("fechaIni", fechaIni);
         return createReport("reportGastosMantFechasEmpresa");
+    }
+
+    @Override
+    public Optional<JasperPrint> reporteGastosMantFechasAreaTrabajo(Date fechaIni, Date fechaFin, Long id) {
+        map = new HashMap();
+        map.put("area",id);
+        map.put("fechaFin", fechaFin);
+        map.put("fechaIni", fechaIni);
+        return createReport("reportGastosMantFechasAreaTrabajo");
+    }
+
+    @Override
+    public Optional<JasperPrint> reporteGastosMantFechasEstadoPago(Date fechaIni, Date fechaFin, String estadoPago) {
+        map = new HashMap();
+        map.put("pago",estadoPago);
+        map.put("fechaFin", fechaFin);
+        map.put("fechaIni", fechaIni);
+        return createReport("reportGastosMantFechasEstadoPago");
     }
 }

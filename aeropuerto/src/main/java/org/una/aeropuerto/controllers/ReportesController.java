@@ -41,7 +41,7 @@ public class ReportesController {
     @GetMapping("/gastosMant/fechaini/fechafin/{fechaIni}/{fechaFin}")
     @ApiOperation(value = "", response = String.class, tags = "Reportes")
     public @ResponseBody
-    ResponseEntity<?> reportGastosMAntFechas(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin) {
+    ResponseEntity<?> reportGastosMantFechas(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin) {
         try {
             Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
             Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
@@ -82,4 +82,50 @@ public class ReportesController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/gastosMant/fechaini/fechafin/area/{fechaIni}/{fechaFin}/{area}")
+    @ApiOperation(value = "", response = String.class, tags = "Reportes")
+    public @ResponseBody
+    ResponseEntity<?> reportGastosMantFechasAreaTrabajo(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin,@PathVariable(value = "area") Long area) {
+        try {
+            Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
+            System.out.println(dateIni+" "+dateFin);
+            byte[] jasperReport;
+            JasperPrint jasperPrint = reportesService.reporteGastosMantFechasAreaTrabajo(dateIni, dateFin,area).get();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream outputStream = new ObjectOutputStream(baos);
+            outputStream.writeObject(jasperPrint);
+            jasperReport = baos.toByteArray();
+            String envioString = Base64.getEncoder().encodeToString(jasperReport);
+            System.out.println(envioString);
+            return new ResponseEntity<>(envioString, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/gastosMant/fechaini/fechafin/pago/{fechaIni}/{fechaFin}/{pago}")
+    @ApiOperation(value = "", response = String.class, tags = "Reportes")
+    public @ResponseBody
+    ResponseEntity<?> reportGastosMantFechasEstadoPago(@PathVariable(value = "fechaIni") String fechaIni, @PathVariable(value = "fechaFin") String fechaFin,@PathVariable(value = "pago") String pago) {
+        try {
+            Date dateIni = new SimpleDateFormat("yyyy-MM-dd").parse(fechaIni);
+            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin);
+            System.out.println(dateIni+" "+dateFin);
+            byte[] jasperReport;
+            JasperPrint jasperPrint = reportesService.reporteGastosMantFechasEstadoPago(dateIni, dateFin,pago).get();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream outputStream = new ObjectOutputStream(baos);
+            outputStream.writeObject(jasperPrint);
+            jasperReport = baos.toByteArray();
+            String envioString = Base64.getEncoder().encodeToString(jasperReport);
+            System.out.println(envioString);
+            return new ResponseEntity<>(envioString, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    
 }
