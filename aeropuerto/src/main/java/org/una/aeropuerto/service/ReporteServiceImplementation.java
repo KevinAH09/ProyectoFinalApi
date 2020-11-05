@@ -118,7 +118,7 @@ public class ReporteServiceImplementation implements IReportesService {
         map = new HashMap();
         map.put("fechaFin", fechaFin);
         map.put("fechaIni", fechaIni);
-        return createReport("reportGastosMantFechasEstadoPago");
+        return createReport("reportRecorridoAvionesFechas");
     }
 
     @Override
@@ -127,7 +127,7 @@ public class ReporteServiceImplementation implements IReportesService {
         map.put("aero",id);
         map.put("fechaFin", fechaFin);
         map.put("fechaIni", fechaIni);
-        return createReport("reportGastosMantFechasEstadoPago");
+        return createReport("reportRecorridoAvionesFechasAero");
     }
 
     @Override
@@ -136,7 +136,7 @@ public class ReporteServiceImplementation implements IReportesService {
         map.put("zona",id);
         map.put("fechaFin", fechaFin);
         map.put("fechaIni", fechaIni);
-        return createReport("reportGastosMantFechasEstadoPago");
+        return createReport("reportRecorridoAvionesFechasZona");
     }
 
     @Override
@@ -146,6 +146,6 @@ public class ReporteServiceImplementation implements IReportesService {
         map.put("zona",zonaId);
         map.put("fechaFin", fechaFin);
         map.put("fechaIni", fechaIni);
-        return createReport("reportGastosMantFechasEstadoPago");
+        return createReport("reportRecorridoAvionesFechasZonaAero");
     }
 }
