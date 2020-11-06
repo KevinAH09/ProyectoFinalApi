@@ -7,6 +7,8 @@ package org.una.aeropuerto.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,6 +157,18 @@ public class VueloController {
 
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @GetMapping("/fechaInicio/{date}")
+    @ApiOperation(value = "Obtiene una lista de todos los registros accion por fecha de registro", response = VuelosDTO.class, responseContainer = "List", tags = "Vuelos")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    public ResponseEntity<?> findByFechaInicio(@PathVariable(value = "date") String fecha) {
+        try {
+            Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+            return new ResponseEntity<>(VueloService.findByFechaInicio(date2), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     

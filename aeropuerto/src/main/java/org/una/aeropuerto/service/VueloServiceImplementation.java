@@ -5,6 +5,7 @@
  */
 package org.una.aeropuerto.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,12 @@ public class VueloServiceImplementation implements IVueloService {
     @Transactional(readOnly = true)
     public Optional<List<VuelosDTO>> findBybitacoraVueloId(Long bitacora) {
         return (Optional<List<VuelosDTO>>) ConversionLista.findList(VueloRepository.findBybitacoraVueloId(bitacora), VuelosDTO.class);
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<List<VuelosDTO>> findByFechaInicio(Date fechaInicio) {
+        return (Optional<List<VuelosDTO>>)ConversionLista.findList(Optional.ofNullable(VueloRepository.findByFechaInicio(fechaInicio)),VuelosDTO.class);
     }
 
 }

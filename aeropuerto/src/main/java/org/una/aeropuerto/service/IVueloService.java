@@ -5,6 +5,7 @@
  */
 package org.una.aeropuerto.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.una.aeropuerto.dto.VuelosDTO;
@@ -31,4 +32,6 @@ public interface IVueloService {
     public Optional<List<VuelosDTO>> findByAvionId(Long avion);
     
     public Optional<List<VuelosDTO>> findBybitacoraVueloId(Long bitacora);
+    
+    public Optional<List<VuelosDTO>> findByFechaInicio(Date fechaInicio);
 }

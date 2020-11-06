@@ -5,6 +5,7 @@
  */
 package org.una.aeropuerto.repositories;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,7 +30,5 @@ public interface IVueloRepository extends JpaRepository<Vuelos, Long>{
     @Query("SELECT u FROM Vuelos u LEFT JOIN u.bitacoraVueloId d WHERE  d.id=:id")
     public List<Vuelos> findBybitacoraVueloId(Long id);
     
-    
-
-//    public List<Vuelos> findByZonaId(@Param("zona") Long zona);
+    public List<Vuelos> findByFechaInicio(@Param("fechaInicio") Date fechaInicio);
 }
