@@ -141,81 +141,67 @@
 				<text><![CDATA[Id]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="25" y="0" width="70" height="18" forecolor="#000000" uuid="b6021456-b10c-4412-ad4c-b58c11efffde"/>
+				<reportElement style="Column header" x="25" y="0" width="81" height="18" forecolor="#000000" uuid="b6021456-b10c-4412-ad4c-b58c11efffde"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Empresa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="95" y="0" width="90" height="18" forecolor="#000000" uuid="859031f8-2478-43a5-8abf-09c3dfa438d3"/>
+				<reportElement style="Column header" x="106" y="0" width="96" height="18" forecolor="#000000" uuid="859031f8-2478-43a5-8abf-09c3dfa438d3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Fecha registro]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="185" y="0" width="54" height="18" forecolor="#000000" uuid="01f26e55-0448-478d-b8d2-3b2d672fc78f"/>
+				<reportElement style="Column header" x="202" y="0" width="77" height="18" forecolor="#000000" uuid="01f26e55-0448-478d-b8d2-3b2d672fc78f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Contrato]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="239" y="0" width="79" height="18" forecolor="#000000" uuid="9469b3b6-6a85-445f-991c-63b6ec159156"/>
+				<reportElement style="Column header" x="279" y="0" width="95" height="18" forecolor="#000000" uuid="9469b3b6-6a85-445f-991c-63b6ec159156"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Responsable]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="318" y="0" width="56" height="18" forecolor="#000000" uuid="839f9613-f142-48e9-921d-72c1e2842016"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Duracion]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="374" y="0" width="41" height="18" forecolor="#000000" uuid="5f5bab1a-8681-4566-815e-72682e68d734"/>
+				<reportElement style="Column header" x="374" y="0" width="55" height="18" forecolor="#000000" uuid="5f5bab1a-8681-4566-815e-72682e68d734"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="415" y="0" width="69" height="18" forecolor="#000000" uuid="bb123093-80e4-403c-b509-9515ec7c10bf"/>
+				<reportElement style="Column header" x="429" y="0" width="79" height="18" forecolor="#000000" uuid="bb123093-80e4-403c-b509-9515ec7c10bf"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Estado pago]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="484" y="0" width="71" height="18" forecolor="#000000" uuid="991b1967-835a-4ebf-a2bc-474207a05851"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Observacion]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="555" y="0" width="73" height="18" forecolor="#000000" uuid="275cbdfa-d047-4143-9f28-e054f1c52f31"/>
+				<reportElement style="Column header" x="508" y="0" width="73" height="18" forecolor="#000000" uuid="275cbdfa-d047-4143-9f28-e054f1c52f31"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Periodicidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="628" y="0" width="82" height="18" forecolor="#000000" uuid="a50c453f-3209-467b-b14f-d53f6ef2b9d2"/>
+				<reportElement style="Column header" x="581" y="0" width="99" height="18" forecolor="#000000" uuid="a50c453f-3209-467b-b14f-d53f6ef2b9d2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Tipo servicio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="710" y="0" width="89" height="18" forecolor="#000000" uuid="0b4b390d-badb-4d9d-a0f7-3d2fd43f1ac6"/>
+				<reportElement style="Column header" x="680" y="0" width="119" height="18" forecolor="#000000" uuid="0b4b390d-badb-4d9d-a0f7-3d2fd43f1ac6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[Area trabajo]]></text>
+				<text><![CDATA[Nombre area trabajo]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -225,85 +211,71 @@
 				<reportElement style="Row" mode="Opaque" x="2" y="0" width="797" height="18" forecolor="#006666" backcolor="#FFFFFF" uuid="d110f997-91ff-4065-a825-1fe747b08b1b"/>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="0" y="0" width="23" height="18" uuid="90ed433d-01c9-477c-9ab1-48ab5c0281dc"/>
-					<textElement verticalAlignment="Middle">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="23" y="0" width="70" height="18" uuid="0660a8ac-02c7-494c-9215-070da903f853"/>
+					<reportElement style="Detail" positionType="Float" x="23" y="0" width="81" height="18" uuid="0660a8ac-02c7-494c-9215-070da903f853"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{empresa_contratante}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="93" y="0" width="90" height="18" uuid="0c288e32-6186-4509-869d-64d73e6d5a68"/>
+					<reportElement style="Detail" positionType="Float" x="104" y="0" width="96" height="18" uuid="0c288e32-6186-4509-869d-64d73e6d5a68"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{fecha_registro}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="183" y="0" width="54" height="18" uuid="a38607f7-9230-48a7-af37-7a77fd5211e9"/>
+					<reportElement style="Detail" positionType="Float" x="200" y="0" width="77" height="18" uuid="a38607f7-9230-48a7-af37-7a77fd5211e9"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{numero_contrato}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="237" y="0" width="79" height="18" uuid="b7df0100-1037-4b66-be29-822b39fad6b2"/>
+					<reportElement style="Detail" positionType="Float" x="277" y="0" width="95" height="18" uuid="b7df0100-1037-4b66-be29-822b39fad6b2"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="316" y="0" width="56" height="18" uuid="702da381-64c4-4691-ae8a-eaf5f1d38d79"/>
+					<reportElement style="Detail" positionType="Float" x="372" y="0" width="55" height="18" uuid="c56ff3f4-1c78-49f8-9640-4c2657ce3d94"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{duracion}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="372" y="0" width="41" height="18" uuid="c56ff3f4-1c78-49f8-9640-4c2657ce3d94"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="413" y="0" width="69" height="18" uuid="44bed049-57c0-4637-8cc6-1d3fa7042933"/>
+					<reportElement style="Detail" positionType="Float" x="427" y="0" width="79" height="18" uuid="44bed049-57c0-4637-8cc6-1d3fa7042933"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{estado_pago}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="482" y="0" width="71" height="18" uuid="9b961547-5890-4f5e-b1f5-4ca41b5f0893"/>
+					<reportElement style="Detail" positionType="Float" x="506" y="0" width="73" height="18" uuid="0aed6b6f-73d8-45e2-ab47-fa93dd913bcf"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="553" y="0" width="73" height="18" uuid="0aed6b6f-73d8-45e2-ab47-fa93dd913bcf"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{periodicidad}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="626" y="0" width="82" height="18" uuid="e572523c-9cf4-4128-8723-6d4ec8a9a525"/>
+					<reportElement style="Detail" positionType="Float" x="579" y="0" width="99" height="18" uuid="e572523c-9cf4-4128-8723-6d4ec8a9a525"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tipo_servicio}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="708" y="0" width="89" height="18" uuid="f1f50e57-70e6-4cbb-b53e-4e2ba3ff6aa8"/>
+					<reportElement style="Detail" positionType="Float" x="678" y="0" width="119" height="18" uuid="f1f50e57-70e6-4cbb-b53e-4e2ba3ff6aa8"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 				</textField>
