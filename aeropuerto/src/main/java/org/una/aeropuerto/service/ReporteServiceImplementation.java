@@ -132,7 +132,7 @@ public class ReporteServiceImplementation implements IReportesService {
 
     @Override
     public Optional<JasperPrint> reporteAvionesFechasZona(Date fechaIni, Date fechaFin, Long id) {
-         map = new HashMap();
+        map = new HashMap();
         map.put("zona",id);
         map.put("fechaFin", fechaFin);
         map.put("fechaIni", fechaIni);
