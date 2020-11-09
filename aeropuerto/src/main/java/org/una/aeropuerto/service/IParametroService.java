@@ -25,7 +25,7 @@ public interface IParametroService {
     
     public Optional<List<ParametrosDTO>> findByEstado(boolean estado);
     
-    public Optional<List<ParametrosDTO>> findByNombreParametro(String nombreParametro);
+    public Optional<ParametrosDTO> findByNombreParametro(String nombreParametro);
     
     //FALTA MAS
 }

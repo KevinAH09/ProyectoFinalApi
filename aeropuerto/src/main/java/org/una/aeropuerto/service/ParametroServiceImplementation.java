@@ -66,8 +66,8 @@ public class ParametroServiceImplementation implements IParametroService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<List<ParametrosDTO>> findByNombreParametro(String nombreParametro) {
-        return (Optional<List<ParametrosDTO>>) ConversionLista.findList(ParametroRepository.findByNombreParametro(nombreParametro), ParametrosDTO.class);
+    public Optional<ParametrosDTO> findByNombreParametro(String nombreParametro) {
+        return (Optional<ParametrosDTO>) ConversionLista.oneToDto(Optional.ofNullable(ParametroRepository.findByNombreParametro(nombreParametro)), ParametrosDTO.class);
     }
 
 }
