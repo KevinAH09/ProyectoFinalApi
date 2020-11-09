@@ -102,7 +102,6 @@ public class ParametroController {
     
     @GetMapping("/nombre_parametro/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los parametros por nombre del parametro", response = ParametrosDTO.class, responseContainer = "List", tags = "Parametros del sistema")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByNombreParametro(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(ParametroService.findByNombreParametro(term), HttpStatus.OK);

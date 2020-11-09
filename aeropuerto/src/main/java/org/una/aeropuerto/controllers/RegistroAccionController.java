@@ -34,8 +34,7 @@ import org.una.aeropuerto.service.IRegistroAccionService;
 @RequestMapping("/registroAccion")
 @Api(tags = {"Registro de acciones"})
 public class RegistroAccionController {
-    
-    
+
     @Autowired
     private IRegistroAccionService registroAccionService;
 
@@ -44,7 +43,8 @@ public class RegistroAccionController {
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos registros de acciones", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
-    public @ResponseBody ResponseEntity<?> findAll() {
+    public @ResponseBody
+    ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(registroAccionService.findAll(), HttpStatus.OK);
 
@@ -64,8 +64,7 @@ public class RegistroAccionController {
         }
 
     }
-   
-    
+
     @PostMapping("/")
     @ApiOperation(value = "Permite crear un registro de accion", response = RegistrosAccionesDTO.class, tags = "Registro de acciones")
     public ResponseEntity<?> create(@Valid @RequestBody RegistrosAccionesDTO registrosAccionesDTO, BindingResult bindingResult) {
@@ -79,7 +78,7 @@ public class RegistroAccionController {
             return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @GetMapping("/fechaRegistro/{date}")
     @ApiOperation(value = "Obtiene una lista de todos los registros accion por fecha de registro", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
@@ -90,7 +89,7 @@ public class RegistroAccionController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @GetMapping("/usuarioId/{id}")
     @ApiOperation(value = "Obtiene una lista de todos los registros accion por usuario", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
@@ -101,11 +100,11 @@ public class RegistroAccionController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @GetMapping("/fechaRegistroStar/{dateStar}/fechaRegistroEnd/{dateEnd}")
     @ApiOperation(value = "Obtiene una lista de todos los registros de acciones por rango de fechas de registro", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
-    public ResponseEntity<?> findByFechaRegistroBetween(@PathVariable(value = "dateStar") Date fechaStar,@PathVariable(value = "dateEnd") Date fechaEnd) {
+    public ResponseEntity<?> findByFechaRegistroBetween(@PathVariable(value = "dateStar") Date fechaStar, @PathVariable(value = "dateEnd") Date fechaEnd) {
         try {
             return new ResponseEntity<>(registroAccionService.findByFechaRegistroBetween(fechaStar, fechaEnd), HttpStatus.OK);
         } catch (Exception e) {
