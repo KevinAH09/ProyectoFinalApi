@@ -68,7 +68,6 @@ public class RegistroAccionController {
     
     @PostMapping("/")
     @ApiOperation(value = "Permite crear un registro de accion", response = RegistrosAccionesDTO.class, tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR') or hasRole('ROLE_GERENTE')")
     public ResponseEntity<?> create(@Valid @RequestBody RegistrosAccionesDTO registrosAccionesDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
