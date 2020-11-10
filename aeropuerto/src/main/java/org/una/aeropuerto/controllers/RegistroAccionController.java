@@ -7,6 +7,8 @@ package org.una.aeropuerto.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -82,9 +84,12 @@ public class RegistroAccionController {
     @GetMapping("/fechaRegistro/{date}")
     @ApiOperation(value = "Obtiene una lista de todos los registros accion por fecha de registro", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
     @PreAuthorize("hasRole('ROLE_AUDITOR')")
-    public ResponseEntity<?> findByFechaRegistro(@PathVariable(value = "date") Date fecha) {
+    public ResponseEntity<?> findByFechaRegistro(@PathVariable(value = "date") String strfecha) throws ParseException {
+        Date fechaIni = new SimpleDateFormat("yyyy-MM-dd").parse(strfecha);
+        System.out.println(fechaIni);
+        Date fechaFin = new Date(fechaIni.getTime() + 86309 * 1000);
         try {
-            return new ResponseEntity<>(registroAccionService.findByFechaRegistro(fecha), HttpStatus.OK);
+            return new ResponseEntity<>(registroAccionService.findByFechaRegistroBetween(fechaIni, fechaFin), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
