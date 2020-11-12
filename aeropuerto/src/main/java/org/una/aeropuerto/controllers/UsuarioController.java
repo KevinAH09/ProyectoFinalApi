@@ -43,7 +43,7 @@ public class UsuarioController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los Usuarios", response = UsuariosDTO.class, responseContainer = "List", tags = "Usuarios")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public @ResponseBody ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(usuarioService.findAll(), HttpStatus.OK);
@@ -55,7 +55,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un Usuario", response = UsuariosDTO.class, tags = "Usuarios")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(usuarioService.findById(id), HttpStatus.OK);
@@ -66,7 +66,7 @@ public class UsuarioController {
     }
     @GetMapping("/cedula/{cedula}")
     @ApiOperation(value = "Obtiene un Usuario por la cedula", response = UsuariosDTO.class, tags = "Usuarios")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByCedula(@PathVariable(value = "cedula") String ced) {
         try {
             return new ResponseEntity(usuarioService.findByCedula(ced), HttpStatus.OK);
@@ -80,7 +80,7 @@ public class UsuarioController {
 
     @GetMapping("/cedula/{cedula}/password_encriptado/{password}")
     @ApiOperation(value = "Obtiene un Usuario por cedula y password", response = UsuariosDTO.class, tags = "Usuarios")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByCedulaAndPassword(@PathVariable(value = "cedula") String cedula, @PathVariable(value = "password") String pass) {
         try {
             return new ResponseEntity<>(usuarioService.findByCedulaAndContrasenaEncriptado(cedula, pass), HttpStatus.OK);
@@ -92,7 +92,7 @@ public class UsuarioController {
 
     @GetMapping("/nombre/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los Usuarios", response = UsuariosDTO.class, responseContainer = "List", tags = "Usuarios")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByNombreCompletoAproximateIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(usuarioService.findByNombreCompletoAproximateIgnoreCase(term), HttpStatus.OK);
@@ -104,7 +104,7 @@ public class UsuarioController {
 
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los usuarios por estado", response = UsuariosDTO.class, responseContainer = "List", tags = "Usuarios")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstado(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(usuarioService.findByEstado(term), HttpStatus.OK);
@@ -172,7 +172,7 @@ public class UsuarioController {
 
     @GetMapping("/rol/{id}")
     @ApiOperation(value = "Obtiene una lista de Usuarios por Id del rol", response = UsuariosDTO.class, responseContainer = "List", tags = "Usuarios")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByRolId(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(usuarioService.findByRolId(id), HttpStatus.OK);
@@ -185,7 +185,7 @@ public class UsuarioController {
 
     @GetMapping("/areaTrabajo/{term}")//Puede que aqui sea nombreCompleto
     @ApiOperation(value = "Obtiene una lista de todos los usuarios por area de trabajo", response = UsuariosDTO.class, responseContainer = "List", tags = "Usuarios")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findJefeByAreaTrabajo(@PathVariable(value = "term") Long id) {
         try {
             return new ResponseEntity(usuarioService.findByAreaTrabajoId(id), HttpStatus.OK);

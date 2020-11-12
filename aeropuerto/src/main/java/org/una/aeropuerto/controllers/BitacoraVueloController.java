@@ -42,7 +42,7 @@ public class BitacoraVueloController {
     
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de las bitacoras de los vuelos por id", response = BitacorasVuelosDTO.class, tags = "Bitacora de vuelos")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(BitacoraVueloService.findById(id), HttpStatus.OK);
@@ -53,7 +53,7 @@ public class BitacoraVueloController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todas las bitacoras de los vuelos", response = BitacorasVuelosDTO.class, responseContainer = "List", tags = "Bitacora de vuelos")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -102,7 +102,7 @@ public class BitacoraVueloController {
     
     @GetMapping("/tipo_bitacora/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las bitacoras por el tipo de bitacora", response = BitacorasVuelosDTO.class, responseContainer = "List", tags = "Bitacora de vuelos")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByTipoBitacoraContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(BitacoraVueloService.findByTipoBitacoraContainingIgnoreCase(term), HttpStatus.OK);
@@ -114,7 +114,7 @@ public class BitacoraVueloController {
     
     @GetMapping("/autorizacion_torre_control/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las bitacoras de vuelo por autorizacion de la torre de control", response = BitacorasVuelosDTO.class, responseContainer = "List", tags = "Bitacora de vuelos")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByAutorizacionTorreControl(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(BitacoraVueloService.findByAutorizacionTorreControl(term), HttpStatus.OK);
@@ -125,7 +125,7 @@ public class BitacoraVueloController {
     
     @GetMapping("/cargo_combustible/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las bitacoras de vuelo por cargo de combustible", response = BitacorasVuelosDTO.class, responseContainer = "List", tags = "Bitacora de vuelos")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByCargaCombustible(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(BitacoraVueloService.findByCargaCombustible(term), HttpStatus.OK);
@@ -136,7 +136,7 @@ public class BitacoraVueloController {
     
     @GetMapping("/carga_pasajero/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las bitacoras de vuelo por carga de pasajeros", response = BitacorasVuelosDTO.class, responseContainer = "List", tags = "Bitacora de vuelos")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByCargaPasajero(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(BitacoraVueloService.findByCargaPasajero(term), HttpStatus.OK);
@@ -147,7 +147,7 @@ public class BitacoraVueloController {
     
     @GetMapping("/zona_descarga/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las bitacoras de vuelo por zona de descarga", response = BitacorasVuelosDTO.class, responseContainer = "List", tags = "Bitacora de vuelos")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByZonaDescarga(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(BitacoraVueloService.findByZonaDescarga(term), HttpStatus.OK);

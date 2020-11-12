@@ -43,7 +43,7 @@ public class AvionZonaController {
     
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de las zonas de los aviones por id", response = AvionesZonasDTO.class, tags = "Zonas y Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AvionZonaService.findById(id), HttpStatus.OK);
@@ -54,7 +54,7 @@ public class AvionZonaController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todas las zonas de los aviones", response = AvionesZonasDTO.class, responseContainer = "List", tags = "Zonas y Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -103,7 +103,7 @@ public class AvionZonaController {
     
     @GetMapping("/zona/{id}")
     @ApiOperation(value = "Obtiene una lista de aviones por Id de la zona", response = AvionesZonasDTO.class, responseContainer = "List", tags = "Zonas y Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByZonaId(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AvionZonaService.findByZonaId(id), HttpStatus.OK);
@@ -115,7 +115,7 @@ public class AvionZonaController {
  
     @GetMapping("/avion/{id}")
     @ApiOperation(value = "Obtiene una lista de zonas por Id del avion", response = AvionesZonasDTO.class, responseContainer = "List", tags = "Zonas y Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByAvionId(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AvionZonaService.findByAvion(id), HttpStatus.OK);
@@ -126,7 +126,7 @@ public class AvionZonaController {
     }
     @GetMapping("/avionZonaReciente/{id}")
     @ApiOperation(value = "Obtiene una lista de zonas por Id del avion y fecha reciente", response = AvionesZonasDTO.class, tags = "Zonas y Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByAvionIdANDFechaReciente(@PathVariable(value = "id") Long id) {
         try {
             Optional<List<AvionesZonasDTO>> avionesZonasDTO = AvionZonaService.findByAvion(id);

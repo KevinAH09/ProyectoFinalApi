@@ -44,7 +44,7 @@ public class RolController {
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los Roles", response = RolesDTO.class, responseContainer = "List", tags = "Roles")
     public @ResponseBody
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(rolService.findAll(), HttpStatus.OK);
@@ -56,7 +56,7 @@ public class RolController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un Rol", response = RolesDTO.class, tags = "Roles")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(rolService.findById(id), HttpStatus.OK);
@@ -68,7 +68,7 @@ public class RolController {
 
     @GetMapping("/codigo/{codigo}")
     @ApiOperation(value = "Obtiene un Rol por codigo", response = RolesDTO.class, tags = "Roles")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByCodigo(@PathVariable(value = "codigo") String codigo) {
         try {
             return new ResponseEntity(rolService.findByCodigo(codigo), HttpStatus.OK);
@@ -80,7 +80,7 @@ public class RolController {
 
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los roles por estado", response = RolesDTO.class, responseContainer = "List", tags = "Roles")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstado(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(rolService.findByEstado(term), HttpStatus.OK);

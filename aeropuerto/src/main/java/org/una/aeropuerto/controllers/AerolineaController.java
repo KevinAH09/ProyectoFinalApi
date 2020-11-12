@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.aeropuerto.dto.AerolineasDTO;
-import org.una.aeropuerto.dto.AerolineasDTO;
 import org.una.aeropuerto.service.IAerolineaService;
 
 /**
@@ -42,7 +41,7 @@ public class AerolineaController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de Aerolineas por id", response = AerolineasDTO.class, tags = "Aerolineas")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AerolineaService.findById(id), HttpStatus.OK);
@@ -53,7 +52,7 @@ public class AerolineaController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todas las aerolineas", response = AerolineasDTO.class, responseContainer = "List", tags = "Aerolineas")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -102,7 +101,7 @@ public class AerolineaController {
 
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las aerolineas por estado", response = AerolineasDTO.class, responseContainer = "List", tags = "Aerolineas")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstado(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(AerolineaService.findByEstado(term), HttpStatus.OK);
@@ -113,7 +112,7 @@ public class AerolineaController {
 
     @GetMapping("/nombre_aerolinea/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las aerolineas por nombre de la aerolinea", response = AerolineasDTO.class, responseContainer = "List", tags = "Aerolineas")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByNombreAerolineaContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(AerolineaService.findByNombreAerolineaContainingIgnoreCase(term), HttpStatus.OK);
@@ -125,7 +124,7 @@ public class AerolineaController {
     
     @GetMapping("/nombre_responsable/{value}")
     @ApiOperation(value = "Obtiene una lista de todas las aerolineas por el nombre del responsable", response = AerolineasDTO.class, responseContainer = "List", tags = "Aerolineas")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByNombreResponsableContainingIgnoreCase(@PathVariable(value = "value") String value) {
         try {
             return new ResponseEntity<>(AerolineaService.findByNombreResponsableContainingIgnoreCase(value), HttpStatus.OK);

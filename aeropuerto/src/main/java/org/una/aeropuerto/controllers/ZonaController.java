@@ -41,7 +41,7 @@ public class ZonaController {
     
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de la zonas por id", response = ZonasDTO.class, tags = "Zonas")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(ZonaService.findById(id), HttpStatus.OK);
@@ -52,7 +52,7 @@ public class ZonaController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todas las zonas", response = ZonasDTO.class, responseContainer = "List", tags = "Zonas")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -101,7 +101,7 @@ public class ZonaController {
     
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las zonas por estado", response = ZonasDTO.class, responseContainer = "List", tags = "Zonas")
-   @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+   @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstadoContaining(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(ZonaService.findByEstado(term), HttpStatus.OK);
@@ -112,7 +112,7 @@ public class ZonaController {
     
     @GetMapping("/nombre_zona/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las zonas por nombre de la zona", response = ZonasDTO.class, responseContainer = "List", tags = "Zonas")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByNombreZonaContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(ZonaService.findByNombreZonaContainingIgnoreCase(term), HttpStatus.OK);
@@ -124,7 +124,7 @@ public class ZonaController {
     
     @GetMapping("/codigo/{term}")
     @ApiOperation(value = "Obtiene una lista de todas las zonas por codigo de la zona", response = ZonasDTO.class, responseContainer = "List", tags = "Zonas")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByCodigo(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(ZonaService.findByCodigo(term), HttpStatus.OK);

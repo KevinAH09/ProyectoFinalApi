@@ -34,14 +34,14 @@ import org.una.aeropuerto.service.IAvionService;
 @RequestMapping("/avion")
 @Api(tags = {"Aviones"})
 public class AvionController {
-    
+
     @Autowired
     private IAvionService AvionService;
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
-    
+
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una lista de aviones por id", response = AvionesDTO.class, tags = "Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AvionService.findById(id), HttpStatus.OK);
@@ -49,9 +49,10 @@ public class AvionController {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @GetMapping("/matriculaUnica/{matricula}")
     @ApiOperation(value = "Obtiene un avion por matricula", response = AvionesDTO.class, tags = "Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByIdMatricula(@PathVariable(value = "matricula") String matricula) {
         try {
             return new ResponseEntity(AvionService.findByMatricula(matricula), HttpStatus.OK);
@@ -62,7 +63,7 @@ public class AvionController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los aviones", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -72,7 +73,7 @@ public class AvionController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
@@ -108,10 +109,10 @@ public class AvionController {
             return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @GetMapping("/matricula/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los aviones por matricula", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByMatriculaContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(AvionService.findByMatriculaContainingIgnoreCase(term), HttpStatus.OK);
@@ -120,10 +121,10 @@ public class AvionController {
         }
 
     }
-    
+
     @GetMapping("/tipo_avion/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los aviones por tipo de avion", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findBytipoAvionContainingIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             return new ResponseEntity(AvionService.findBytipoAvionContainingIgnoreCase(term), HttpStatus.OK);
@@ -132,10 +133,10 @@ public class AvionController {
         }
 
     }
-    
+
     @GetMapping("/aerolinea/{id}")
     @ApiOperation(value = "Obtiene una lista de aviones por Id de la aerolinea", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByAerolinea(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(AvionService.findByAerolineaId(id), HttpStatus.OK);
@@ -144,10 +145,10 @@ public class AvionController {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todos los aviones por estado", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
-    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstado(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(AvionService.findByEstado(term), HttpStatus.OK);
@@ -155,16 +156,5 @@ public class AvionController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-//    @GetMapping("/aerolinea/{id}/matricula/{term}")
-//    @ApiOperation(value = "Obtiene una lista de todos los aviones por matricula y id", response = AvionesDTO.class, responseContainer = "List", tags = "Aviones")
-//    @PreAuthorize("hasRole('ROLE_GERENTE_OPER_AERO') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_OPER_AERO')")
-//    public ResponseEntity<?> findByAerolineaMatricula(@PathVariable(value = "id") Long id, @PathVariable(value = "matricula") String matricula) {
-//        try {
-//            return new ResponseEntity<>(AvionService.findByAerolineaIdMatricula(id, matricula), HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-    
+
 }

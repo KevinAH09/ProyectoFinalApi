@@ -44,7 +44,7 @@ public class RegistroAccionController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos registros de acciones", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -57,7 +57,7 @@ public class RegistroAccionController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un registro de accion", response = RegistrosAccionesDTO.class, tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(registroAccionService.findById(id), HttpStatus.OK);
@@ -83,7 +83,7 @@ public class RegistroAccionController {
 
     @GetMapping("/fechaRegistro/{date}")
     @ApiOperation(value = "Obtiene una lista de todos los registros accion por fecha de registro", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByFechaRegistro(@PathVariable(value = "date") String strfecha) throws ParseException {
         Date fechaIni = new SimpleDateFormat("yyyy-MM-dd").parse(strfecha);
         System.out.println(fechaIni);
@@ -97,7 +97,7 @@ public class RegistroAccionController {
 
     @GetMapping("/usuarioId/{id}")
     @ApiOperation(value = "Obtiene una lista de todos los registros accion por usuario", response = RegistrosAccionesDTO.class, responseContainer = "List", tags = "Registro de acciones")
-    @PreAuthorize("hasRole('ROLE_AUDITOR')")
+    @PreAuthorize("hasRole('ROLE_AUDITOR') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByUsuarioId(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(registroAccionService.findByUsuarioId(id), HttpStatus.OK);

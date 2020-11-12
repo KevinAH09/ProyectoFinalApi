@@ -41,7 +41,7 @@ public class AreaTrabajoController {
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos las areas de trabajo", response = AreasTrabajosDTO.class, responseContainer = "List", tags = "Area de trabajo")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT') or hasRole('ROLE_ADMIN')")
     public @ResponseBody ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(areaService.findAll(), HttpStatus.OK);
@@ -53,7 +53,7 @@ public class AreaTrabajoController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un area de trabajo", response = AreasTrabajosDTO.class, tags = "Area de trabajo")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity(areaService.findById(id), HttpStatus.OK);
@@ -65,7 +65,7 @@ public class AreaTrabajoController {
 
     @GetMapping("/nombre_area_trabajo/{nombre}")
     @ApiOperation(value = "Obtiene un area de trabajo por codigo", response = AreasTrabajosDTO.class, responseContainer = "List", tags = "Area de trabajo")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByNombre(@PathVariable(value = "nombre") String codigo) {
         try {
             return new ResponseEntity(areaService.findByNombreAreaTrabajoContainingIgnoreCase(codigo), HttpStatus.OK);
@@ -77,7 +77,7 @@ public class AreaTrabajoController {
 
     @GetMapping("/estado/{term}")
     @ApiOperation(value = "Obtiene una lista de todos las areas de trabajo por estado", response = AreasTrabajosDTO.class, responseContainer = "List", tags = "Area de trabajo")
-    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT')")
+    @PreAuthorize("hasRole('ROLE_GERENTE_RRHH') or hasRole('ROLE_GESTOR_RRHH') or hasRole('ROLE_AUDITOR') or hasRole('ROLE_GESTOR_GAST_MANT') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByEstado(@PathVariable(value = "term") boolean term) {
         try {
             return new ResponseEntity<>(areaService.findByEstado(term), HttpStatus.OK);
